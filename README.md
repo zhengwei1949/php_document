@@ -1,8 +1,10 @@
-## prepare
+# prepare
 - 是否可以上网
 - 音响
 - 话筒
 - Hydra是否正常显示
+
+![](./why_php.png)
 
 # day01
 ## 这一阶段课程的作用
@@ -20,6 +22,7 @@
     + 店员从店里找到对应的桔子，然后给客户
 5. 网站流程图v1.0
 6. 如果当前的这个html引入了js,css，则是怎么请求的 --> 网站流程图v2.0
+7.0 我们平时其实上网其实并不在乎一个网站是美还是丑，比如12306虽然丑，但我们离不开，比如淘宝，我们天天逛，因为对我们来说，最重要的其实是商品，是数据
 7. 淘宝、京东、百度网页是不是写死的? ---> 如何理解***动态***这二个字(通过代码来演示) --> 网站流程图v3.0
     + 动态不是指的有轮播图、有选项卡这些特效，动态指的是***数据是动态的***
     + https://www.baidu.com/s?wd=java
@@ -330,18 +333,283 @@ echo $a;
     + 基本数据类型：string,int,float,boolean
     + 复合数据类型：array,object(不讲，我们的课程没有涉及到php的面向对象相关知识点，我们将来在学习ES6的时候会学习到ES6中的js的构造函数类的写法，和php大体上是一致的，到时候学到了可以再自己去查一下php的面向对象相关知识点)
     + 特殊数据类型：null,资源(后面会学习到)
+- 判断数据类型
+    + is_string
+    + is_bool
+    + is_int
+    + is_float
+    + is_array
+    + is_object
+- php中的点号连接符
+    + 理解为什么在php数组中并不存在.length这样求长度
+    + count函数引入
 
-## 作业
+## 单引号与双引号的区别
+- 双引号可以识别字符串中的变量名
+- 如果需要将变量名独立，避免解析错误，可以加上{}
+- php支持转义(`\$|\r|\n|\t`)
+- 如果想要解析，一定要保证***最外层加双引号***
+
+
+## 作业及补充
 - 配置虚拟主机
     + day8.com www.day8.com
     + day9.com www.day9.com
 - 参考《流程图练习.png》自己把流程图画出来理解今天讲的这些概念
 - 讲解header头避免中文乱码
 - 讲解vscode如何创建代码片段(快速生成header这一行代码)
+- vscode-goto-document用法
 - 把今天的代码自己写一遍
     + 动态打印获取时间
     + 条件判断php、html混编
     + 循环php,html混编
+- 如果第一天比较ok的话，可以把第二天的前面4个视频上完
+
+# day02
+## 复习
+- 概念层面
+- 配置层面
+- 代码层面
+
+## php中数组的创建和遍历
+- 索引数组
+- $arr = array(1,2,3);
+- $arr = [1,2,3];
+- count($arr)获取数组的长度
+- 关联数组$arr = array($key=>$value,$key=>$value)
+- 数组的打印print_r,var_dump
+- 遍历关联数组 foreach(数组 as 键=>值)
+- 遍历关联数组简洁语法 foreach(数组 as 值)
+
+## php数组的补充说明
+- 为什么要使用pre标签的使用
+- 混合数组的索引问题(忽略)
+- 通过[]创建数组和添加值(有点类似js中的push)
+- 数组相关的函数
+    + count
+    + unset(不推荐使用)
+    + 如下的代码会补充五个函数：in_array,array_slice,array_splice,die,exit
+
+### 练习代码
+
+```php
+//说出如下的代码的打印结果
+header('content-type:text/html;charset=utf-8');
+$arr1 = [1,2,3,4];
+var_dump(in_array(3, $arr1));
+```
+
+```php
+//说出如下的代码的打印结果
+header('content-type:text/html;charset=utf-8');
+$i = 0;
+while($i<100){
+    $i++;
+    $arr[] = $i;
+}
+print_r($arr);
+```
+
+```php
+//说出如下代码的打印结果
+header('content-type:text/html;charset=utf-8');
+$arr1 = [1,2,3,4];
+$arr2 = array_slice($arr1,2);
+print_r($arr2);
+```
+
+```php
+//说出如下的代码的打印结果
+header('content-type:text/html;charset=utf-8');
+$arr1 = [1,2,3,4];
+$arr2 = array_splice($arr1,2,1);
+print_r($arr2);
+print_r($arr1);
+```
+
+## 二维数组
+- 练习使用foreach嵌套
+
+## 数据类型转换和运算符介绍
+- 强制类型转换，$num = (int)$str;
+- 隐式类型转换 $num = $str + 0;
+- 需要记住的规则
+    + true类型转换成数字为1，false为0
+    + null转换为数字0
+    + []转换为数字为0
+    + 当字符串转换为整型或浮点型时，如果字符串是以数字开头的，就会先把数字部分转换为整型，在舍去后面的字符串；如果数字中含有小数点，则会取到小数前一位。
+
+```php
+//说出如下代码的值
+echo 1 + 'abc';
+echo 0+'123aaa';
+echo 1 + '5.53string';
+echo 5 + '-4string';
+echo 1 + true;
+echo 1 + false;
+echo 1.5 + true;
+echo 1 + null;
+```
+
+## php中的条件判断、循环语法
+- http://php.net/manual/zh/language.basic-syntax.phpmode.php
+    + 凡是在一对开始和结束标记之外的内容都会被 PHP 解析器忽略，这使得 PHP 文件可以具备混合内容。 可以使 PHP 嵌入到 HTML 文档中去
+    + 当 PHP 解释器碰到 ?> 结束标记时就简单地将其后内容原样输出（除非马上紧接换行 - 见指令分隔符）直到碰到下一个开始标记；例外是处于条件语句中间时，此时 PHP 解释器会根据条件判断来决定哪些输出，哪些跳过。
+    + if,endif
+    + for,endfor
+    + else if和elseif在php中都是ok的，但是如果用的是冒号方法进行混编，则只能用elseif,否则算语法错误(参考http://www.php.net/manual/zh/control-structures.elseif.php)
+
+
+## php中函数的声明和使用特点
+- 函数声明方式和js基本一致
+- php中函数内部无法访问函数外部成员(理解技巧：没有作用域链)
+- 使用global来引用全局变量(不推荐这样玩，因为代码比较多的情况下会让人理解错误，不知道到底是局部变量还是全局变量，推荐按下一个视频方式来玩)   
+
+### 参考代码 
+
+```php
+//求1到100的和
+header('content-type:text/html;charset=utf-8');
+$num = 100;
+$sum = 0;
+for($i=0;$i<=100;$i++){
+    $sum += $i;
+}
+echo $sum;
+```
+
+```php
+header('content-type:text/html;charset=utf-8');
+function cal($num){
+    $sum = 0;
+    for($i=0;$i<=$num;$i++){
+        $sum+=$i;
+    }
+    return $sum;
+}
+$num = 100;
+echo cal($num);
+```
+
+```php
+//这个代码不会得到正确的答案
+header('content-type:text/html;charset=utf-8');
+$num = 100;
+function cal(){
+    $sum = 0;
+    for($i=0;$i<=$num;$i++){
+        $sum+=$i;
+    }
+    return $sum;
+}
+echo cal($num);
+```
+
+```php
+//思考如下的代码的结果是多少
+header('content-type:text/html;charset=utf-8');
+$num = 100;
+function cal(){
+    global $num;
+    echo $num;//结果多少
+    $num = 20;
+    echo $num;//结果多少
+}
+cal();
+echo $num;//结果多少
+```
+
+
+## 超全局变量
+- $GLOBALS保存了所有全局变量，可以使用它来访问全局变量
+    + $GLOBALS有点类似js中的window对象，后面用$GLOBALS用得多一些
+- $_SERVER 获取服务器端相关信息
+- $_REQUEST 获取提交参数
+- $_GET 获取GET提交参数
+- $_POST 获取POST提交参数
+- $_FILES获取上传文件
+- $_ENV 获取操作环境变量
+- $_COOKIE 操作COOKIE
+- $_SESSION 操作SESSION
+
+```php
+header('content-type:text/html;charset=utf-8');
+$a = 100;
+echo $GLOBALS['a'];//值多少
+echo '<br>';
+$GLOBALS['b'] = 200;
+function fn(){
+    echo $GLOBALS['a'];//值多少
+    echo '<br>';
+    echo $GLOBALS['b'];//值多少
+    echo '<br>';
+    $GLOBALS['c'] = 300;
+    echo '<br>';
+}
+fn();
+echo $GLOBALS['c'];//值多少
+```
+
+## 常量的定义和使用
+- define('PI',3.14159,false)//false表示大小写敏感，默认是false
+- 魔术常量
+    + __LINE__
+    + __FILE__
+    + __DIR__
+    + __FUNCTION__
+
+```php
+echo __LINE__;//获取当前行数
+echo '<hr>';
+echo __FILE__;//获取当前文件的路径
+echo '<hr>';
+echo __DIR__;//获取当前文件所在的目录
+echo '<hr>';
+function test(){
+    echo __FUNCTION__;//获取当前函数的函数名
+}
+test();
+```
+
+- 补充：预定义常量
+    + PHP_VERSION
+    + PHP_INT_MAX
+
+## 文件载入
+- include
+- require
+- include_once
+- require_once
+
+## 字符串相关函数
+- strlen
+- mb_strlen(multibyte)
+- mb_internal_encoding(忽略，用不上) 获取当前php环境的默认编码，通过这个方法也可以设置默认编码 mb_internal_encoding('utf-8')
+
+### 补充
+- trim
+- explode
+- implode
+- strpos
+- strchr
+- strrchr
 
 
 
+
+
+
+## 时间处理函数
+- 注意事项：php时间单位是秒，js单位是毫秒
+- time()时间戳
+- date('Y-m-d H:i:s') 修改时区，需要修改配置文件 date.timezone = PRC|Asia/shanghai
+    + 东八区
+- strtotime能够将时间转换成时间戳
+
+### 练习
+- 打印24小时以后的时间戳
+    + time() + 24 * 60 * 60
+- 打印一周以后的时间戳
+    + time() + 7 * 24 * 60 * 60
+- 打印明天这个时间的时间格式
+    + date('Y-m-d H:i:s',strtotime('+1 day'))
