@@ -9,6 +9,14 @@
 [在线笔记](https://zhengwei1949.github.io/php_document/preview/README.html)
 
 # day01
+## 学习目标
+- 能够说出访问网址时请求与响应的流程
+- 能够说出什么是ip、dns、端口
+- 能够安装并使用apache服务器
+- 能够说出索引数组和关联数组的区别
+- 能够声明和调用自定义函数
+- 综合案例：**水果列表案例**
+
 ## 这一阶段课程的作用
 ### 摘要
 - 以前学习的技术回顾及局限性
@@ -28,6 +36,7 @@
 7. 淘宝、京东、百度网页是不是写死的? ---> 如何理解***动态***这二个字(通过代码来演示) --> 网站流程图v3.0
     + 动态不是指的有轮播图、有选项卡这些特效，动态指的是***数据是动态的***
     + https://www.baidu.com/s?wd=java
+    + 动态网页指的是网页是用像php这样的写的，有if..else,for之类的条件、循环语句，把执行后的结果返回给客户端
 8. 服务器的作用
 9. php的作用
 10. ajax这又是另一个话题了，二个陌生的概念一起理解会搞混，这块大家忽略掉，后面讲到了再理解
@@ -43,7 +52,7 @@ $arr = [
     ["id"=>5,"title"=>"第五篇新闻","content"=>"第五篇新闻的内容"],
     ["id"=>6,"title"=>"第六篇新闻","content"=>"第六篇新闻的内容"]
 ];
-($id = @$_GET['id']) or ($id = 1);
+($id = $_GET['id']) or ($id = 1);
 // print_r($arr[$id-1]);
 ?>
 <!DOCTYPE html>
@@ -372,6 +381,12 @@ echo $a;
 - 如果第一天比较ok的话，可以把第二天的前面4个视频上完
 
 # day02
+
+## 学习目标
+- 能够说出索引数组与关联数组的区别
+- 能够声明和调用自定义函数
+- 综合案例**水果列表案例**
+
 ## 复习
 - 概念层面
 - 配置层面
@@ -464,7 +479,77 @@ echo 1 + null;
     + if,endif
     + for,endfor
     + else if和elseif在php中都是ok的，但是如果用的是冒号方法进行混编，则只能用elseif,否则算语法错误(参考http://www.php.net/manual/zh/control-structures.elseif.php)
-- 06-php中函数的声明及使用特点.avi见word笔记这块有一个练习一起做一下
+
+
+### 练习
+- 水果案例练习(两种方式都要写一遍)
+    + 用for来实现
+    + 用foreach来实现
+
+```php
+//已知我们有如下的数组：
+$data = [
+    ["id" => 1, "name" => "香蕉", "src" => "img/banana1.jpg"],
+    ["id" => 2, "name" => "苹果", "src" => "img/apple1.jpg"],
+    ["id" => 3, "name" => "橙子", "src" => "img/orange1.jpg"],
+    ["id" => 4, "name" => "菠萝", "src" => "img/pineapple1.jpg"]
+];
+//静态页面见：code\fruit_demo\demo_01
+//现要求渲染成真正的用户可以看到的动态数据列表
+```
+
+```php
+//参考答案
+<?php 
+header('content-type:text/html;charset=utf-8');
+$data = [
+    ["id" => 1, "name" => "香蕉", "src" => "img/banana1.jpg"],
+    ["id" => 2, "name" => "苹果", "src" => "img/apple1.jpg"],
+    ["id" => 3, "name" => "橙子", "src" => "img/orange1.jpg"],
+    ["id" => 4, "name" => "菠萝", "src" => "img/pineapple1.jpg"]
+]
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="header">
+        传智网上水果超市
+    </div>
+    <div class="container">
+        <p>
+            <a href="javascript:;">水果</a>
+            <a href="javascript:;">干果</a>
+            <a href="javascript:;">蔬菜</a>
+        </p>
+        <ul>
+            <?php if(count($data)>0){?>
+                <?php for($i=0;$i<count($data);$i++){?>
+                    <li>
+                        <img src="<?php echo $data[$i]['src'];?>" alt="">
+                        <a href="#"><?php echo $data[$i]['name'];?></a>
+                    </li>
+                <?php } ?>
+            <?php }else{?>
+                <li>
+                    暂无数据
+                </li>
+            <?php } ?>
+        </ul>
+    </div>
+    <div class="footer">
+        传智播客 版权所有
+    </div>
+</body>
+</html>
+```
 
 ## php中函数的声明和使用特点
 - 函数声明方式和js基本一致
@@ -666,6 +751,7 @@ echo strrchr($str,'.');
 
 ## 补充函数(后二个之前介绍过)
 - rand
+    + rand(1000,9999)的含义 [1000,9999]
 - parse_url
 - array_slice
 - array_splice
@@ -718,3 +804,139 @@ print_r(parse_url($url));
         + file_put_contents
 
 ## 水果案例
+- 为了让大家理解这个案例，我把这个例子功能扩展了删除和添加的功能，这样更能让大家理解为什么必须要这样思考这个案例
+- 演示最终的效果(体现不需要懂编程也能看懂知道怎么修改数据)(在视频前体验一下)
+- 14-水果案例-基本实现思路.avi
+- 15-在php文件中根据数据动态生成水果列表.avi
+- 16-使用explode函数拆分字符串并生成对应结构.avi
+- 17-完成水果列表案例.avi
+- 思路整理
+    1. 学会数据建模
+        + 看到一组列表 --> 索引数组
+        + 看到一个东西的各方面描述 --> 关联数组
+    2. "\n"必须用双引号，否则不能解析
+- fruit.php --> getList.php --> final.php
+
+## 作业及补充（答案及思路见WORD笔记第81页晚上任务）
+1、把后天的当前时间打印出来
+2、打印1-100的偶数(提示：用循环+条件判断来实现)
+3、用php实现冒泡排序(提高题，选做)
+4、封装加减乘除取余的函数，提取到公共的php文件当中，在当前文件中使用这几个函数
+5、列表一下之前学过的表单控件(http://www.runoob.com/tags/att-input-type.html)
+    + input[type="text"]
+    + input[type="radio"]
+    + input[type="checkbox"]
+    + textarea
+    + select
+    + input[type="file"]
+    + input[type="date"]
+
+# day03
+## 每日目标
+- 能够进行服务器端渲染操作
+- 能够说出GET和POST请求方式的区别
+- 能够在服务器端分别接收GET、POST的请求参数
+- 能够处理复选按钮的请求参数
+- 能够进行文件上传并使用$_FILES处理
+- 综合案例:**能够完成注册案例**
+
+## get和post的介绍
+### 摘要
+- 学习目标介绍
+- get请求、获取数据都是get请求
+    + src
+    + href
+    + 地址栏直接输地址
+- get提交数据的方式
+- post请求的特点，传参与get的区别
+### 总结
+- 客户端向服务器传递数据有两种方式
+    + get的方式
+    + post的方式
+    + 通过代码演示一下(这块马上会学，了解即可)
+- get和post两种方式的特点
+    + get传递数据只能是4kb,不安全(明信片)，历史记录里可以看得到的
+    + post传递数据没有限制(默认为8M,可以调大)，比较安全(物流快递包裹)，在header里面可以看到，关掉页面就没了
+- get的应用
+    + https://www.baidu.com/s?wd=关键字
+    + 第一天讲的例子再看一次
+- post的应用
+    + 第一天讲的表单例子再看一次
+
+
+## get请求方式的特点
+### 摘要
+- form表单的action,method
+- 将数据提交给当前页面 01-form-get.php
+- 必须给input标签设置name属性
+- 超全局变量$_GET,$_POST
+- 使用$_GET接收get提交的参数
+### 总结
+- href,直接在地址栏输入网址,表单提交默认,表单提交主动设置method为get的时候，可以追加参数，参数能够被后台通过$_GET所接收
+
+## get请求方式的应用-水果案例详情页
+- 思路
+    1. 修改主页面a标签链接,跳转到商品详情页
+    2. 在商品详情页接收get参数
+    3. 读取fruit.txt文件，获取水果相关的数据
+    4. 遍历水果数据，判断水果id是否和get参数的id一致，如果一致，保存水果数据
+    5. 把水果数据填充到对应的html页面中
+- getList.php+detail.php
+
+## post请求方式的使用说明
+- $_SERVER判断请求是否是post类型，如果是，则打印$_POST获取参数
+- $_SERVER['REQUEST_METHOD']
+- 补充说明(必讲)
+    + 了解性知识：$_REQUEST可以同时打印$_GET,$_POST数据，但不建议使用，有可能会名字相同造成覆盖
+        1. http://php.net/manual/zh/ini.core.php#ini.request-order
+        2. This directive describes the order in which PHP registers GET, POST and Cookie variables into the _REQUEST array. Registration is done from left to right, newer values override older values.
+    + 直接进入水果详情页没有带参数的时候会报错，如何修复
+        1. $_SERVER['REQUEST_METHOD']
+        2. isset判断变量、数组的键是否存在
+
+## 几种表单元素收集数据方式的说明
+- $_SERVER['PHP_SELF']可以获取当前文件路径 -- 可以忽略，因为不写也是一样的
+- 复选框获取值的方式
+- 下拉列表值如果不设置，默认会找option的innerText
+
+## 文件上传的基本实现
+- 在看视频之前，可以用最简单的代码把文件上传做出来，先不要管一些细节问题
+- enctype属性 ---> 我们传递给后台的数据被以什么形式进行编码
+    + 默认application/x-www-form-urlencoded 键值对形式编码
+    + 如果是文件上传，上传的是一个文件，没办法并且不能通过键值对的形式上传
+- 使用multipart/form-data multipart指的是多种形式的意思
+- inut[type=”file”]
+- move_uploaded_file
+- 这个案例讲得了一堆的细节，大家听听就好，没有人记得住的，做好笔记和示例代码，后面用得上的话，直接抄过去就行了
+
+## 文件上传的补充1 - 判断各种出现错误的情况
+- 错误代码 - http://php.net/manual/zh/features.file-upload.errors.php
+- empty判断用户是否上传文件
+- if(strpos($type,"image/")===0)必须要为三个等于号
+    + 如果找不到值为false
+    + false隐式类型转换和0比较为true
+- 允许用户上传的文件扩展名，为表单元素添加属性accept=".jpg,.png"
+
+## 文件上传的补充2 -- 防止文件上传过大
+- upload_max_filesize默认为2M，在php.ini中可以修改
+- 服务器对每一次post请求传递的数据做了限制，默认为8mb,可以在php.ini配置文件中修改post_max_size属性值
+
+## 文件上传的补充3 -- 多文件上传
+
+## 注册案例 - 上
+0. 在学习视频之前，先把整个效果查看一下（说明，我们这个例子只做注册这块的功能，列表功能这块随便做的，和前面的水果案例类似，大家有兴趣可以自己做一下）
+1. 注册页面已经提前写好了
+2. 获取提交的用户名，对用户名数据进行验证，是否isset,是否是空串
+3. return语法，如果在php结构中直接写return,那么当运行到return代码的时候，整个php文件的执行就结束了，php后面的html代码也不会加载，但是如果写在函数中，就不会受到影响
+4. trim方法去掉空格
+
+
+## 注册案例 - 下
+1. implode，用指定字符串对数据进行合并，与explode作用相反
+2. 判断文件是否上传成功，error!=0表示上传失败
+3. 把生成的随机文件名写入到$_POST数组中
+4. file_put_content写文件，注意加换行符
+
+## 晚上要讲的案例
+
+

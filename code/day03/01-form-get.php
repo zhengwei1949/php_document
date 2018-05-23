@@ -25,7 +25,7 @@
             get:一般用来获取数据:特点：参数会在url地址栏中拼接
             post:一般用来发送数据到服务器
      -->
-    <form action="form-get.php" method="get">
+    <form action="01-form-get.php" method="get">
         <!-- 如果想提交表单元素的数据，则必须为表单元素设置name属性
         因为如果没有设置name属性，那么就无法生成传递参数时所需要的key=value的结构，因为浏览器不会自动的为数据生成key值 -->
         用户名：<input type="text" name="userName123"> <br>
