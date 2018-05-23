@@ -65,14 +65,15 @@
 				</div>
         <div id='readme' style='width:70%;margin-left:20%;'>
           	<article class='markdown-body'>
-            	<h2 id="prepare">prepare</h2>
+            	<h1 id="prepare">prepare</h1>
 <ul>
 <li>是否可以上网</li>
 <li>音响</li>
 <li>话筒</li>
 <li>Hydra是否正常显示</li>
 </ul>
-<p><img src="./why_php.png" alt="aaa"></p>
+<p><img src="./why_php.png" alt=""></p>
+<p><a href="https://zhengwei1949.github.io/php_document/preview/README.html">在线笔记</a></p>
 <h1 id="day01">day01</h1>
 <h2 id="-">这一阶段课程的作用</h2>
 <h3 id="-">摘要</h3>
@@ -91,7 +92,8 @@
 </ul>
 </li>
 <li>网站流程图v1.0</li>
-<li>如果当前的这个html引入了js,css，则是怎么请求的 --&gt; 网站流程图v2.0</li>
+<li>如果当前的这个html引入了js,css，则是怎么请求的 --&gt; 网站流程图v2.0
+7.0 我们平时其实上网其实并不在乎一个网站是美还是丑，比如12306虽然丑，但我们离不开，比如淘宝，我们天天逛，因为对我们来说，最重要的其实是商品，是数据</li>
 <li>淘宝、京东、百度网页是不是写死的? ---&gt; 如何理解<strong><em>动态</em></strong>这二个字(通过代码来演示) --&gt; 网站流程图v3.0<ul>
 <li>动态不是指的有轮播图、有选项卡这些特效，动态指的是<strong><em>数据是动态的</em></strong></li>
 <li><a href="https://www.baidu.com/s?wd=java">https://www.baidu.com/s?wd=java</a></li>
@@ -450,7 +452,18 @@ echo $a;
 <li>is_object</li>
 </ul>
 </li>
-<li>php中的点号连接符</li>
+<li>php中的点号连接符<ul>
+<li>理解为什么在php数组中并不存在.length这样求长度</li>
+<li>count函数引入</li>
+</ul>
+</li>
+</ul>
+<h2 id="-">单引号与双引号的区别</h2>
+<ul>
+<li>双引号可以识别字符串中的变量名</li>
+<li>如果需要将变量名独立，避免解析错误，可以加上{}</li>
+<li>php支持转义(<code>\$|\r|\n|\t</code>)</li>
+<li>如果想要解析，一定要保证<strong><em>最外层加双引号</em></strong></li>
 </ul>
 <h2 id="-">作业及补充</h2>
 <ul>
@@ -460,6 +473,12 @@ echo $a;
 </ul>
 </li>
 <li>参考《流程图练习.png》自己把流程图画出来理解今天讲的这些概念</li>
+<li>代码分割<ul>
+<li>br</li>
+<li>hr</li>
+<li>pre标签</li>
+</ul>
+</li>
 <li>讲解header头避免中文乱码</li>
 <li>讲解vscode如何创建代码片段(快速生成header这一行代码)</li>
 <li>vscode-goto-document用法</li>
@@ -469,7 +488,355 @@ echo $a;
 <li>循环php,html混编</li>
 </ul>
 </li>
+<li>如果第一天比较ok的话，可以把第二天的前面4个视频上完</li>
 </ul>
+<h1 id="day02">day02</h1>
+<h2 id="-">复习</h2>
+<ul>
+<li>概念层面</li>
+<li>配置层面</li>
+<li>代码层面</li>
+</ul>
+<h2 id="php-">php中数组的创建和遍历</h2>
+<ul>
+<li>索引数组</li>
+<li>$arr = array(1,2,3);</li>
+<li>$arr = [1,2,3];</li>
+<li>count($arr)获取数组的长度</li>
+<li>关联数组$arr = array($key=&gt;$value,$key=&gt;$value)</li>
+<li>数组的打印print_r,var_dump</li>
+<li>遍历关联数组 foreach(数组 as 键=&gt;值)</li>
+<li>遍历关联数组简洁语法 foreach(数组 as 值)</li>
+</ul>
+<h2 id="php-">php数组的补充说明</h2>
+<ul>
+<li>为什么要使用pre标签的使用</li>
+<li>混合数组的索引问题(忽略)</li>
+<li>通过[]创建数组和添加值(有点类似js中的push)</li>
+<li>数组相关的函数<ul>
+<li>count</li>
+<li>unset(不推荐使用)</li>
+<li>如下的代码会补充五个函数：in_array,array_slice,array_splice,die,exit</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">练习代码</h3>
+<pre><code class="lang-php">//说出如下的代码的打印结果
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$arr1 = [1,2,3,4];
+var_dump(in_array(3, $arr1));
+</code></pre>
+<pre><code class="lang-php">//说出如下的代码的打印结果
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$i = 0;
+while($i&lt;100){
+    $i++;
+    $arr[] = $i;
+}
+print_r($arr);
+</code></pre>
+<pre><code class="lang-php">//说出如下代码的打印结果
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$arr1 = [1,2,3,4];
+$arr2 = array_slice($arr1,2);
+print_r($arr2);
+</code></pre>
+<pre><code class="lang-php">//说出如下的代码的打印结果
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$arr1 = [1,2,3,4];
+$arr2 = array_splice($arr1,2,1);
+print_r($arr2);
+print_r($arr1);
+</code></pre>
+<h2 id="-">二维数组</h2>
+<ul>
+<li>练习使用foreach嵌套</li>
+</ul>
+<h2 id="-">数据类型转换和运算符介绍</h2>
+<ul>
+<li>强制类型转换，$num = (int)$str;</li>
+<li>隐式类型转换 $num = $str + 0;</li>
+<li>需要记住的规则<ul>
+<li>true类型转换成数字为1，false为0</li>
+<li>null转换为数字0</li>
+<li>[]转换为数字为0</li>
+<li>当字符串转换为整型或浮点型时，如果字符串是以数字开头的，就会先把数字部分转换为整型，在舍去后面的字符串；如果数字中含有小数点，则会取到小数前一位。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-php">//说出如下代码的值
+echo 1 + &#39;abc&#39;;
+echo 0+&#39;123aaa&#39;;
+echo 1 + &#39;5.53string&#39;;
+echo 5 + &#39;-4string&#39;;
+echo 1 + true;
+echo 1 + false;
+echo 1.5 + true;
+echo 1 + null;
+</code></pre>
+<h2 id="php-">php中的条件判断、循环语法</h2>
+<ul>
+<li><a href="http://php.net/manual/zh/language.basic-syntax.phpmode.php">http://php.net/manual/zh/language.basic-syntax.phpmode.php</a><ul>
+<li>凡是在一对开始和结束标记之外的内容都会被 PHP 解析器忽略，这使得 PHP 文件可以具备混合内容。 可以使 PHP 嵌入到 HTML 文档中去</li>
+<li>当 PHP 解释器碰到 ?&gt; 结束标记时就简单地将其后内容原样输出（除非马上紧接换行 - 见指令分隔符）直到碰到下一个开始标记；例外是处于条件语句中间时，此时 PHP 解释器会根据条件判断来决定哪些输出，哪些跳过。</li>
+<li>if,endif</li>
+<li>for,endfor</li>
+<li>else if和elseif在php中都是ok的，但是如果用的是冒号方法进行混编，则只能用elseif,否则算语法错误(参考<a href="http://www.php.net/manual/zh/control-structures.elseif.php">http://www.php.net/manual/zh/control-structures.elseif.php</a>)</li>
+</ul>
+</li>
+<li>06-php中函数的声明及使用特点.avi见word笔记这块有一个练习一起做一下</li>
+</ul>
+<h2 id="php-">php中函数的声明和使用特点</h2>
+<ul>
+<li>函数声明方式和js基本一致</li>
+<li>php中函数内部无法访问函数外部成员(理解技巧：没有作用域链)</li>
+<li>使用global来引用全局变量(不推荐这样玩，因为代码比较多的情况下会让人理解错误，不知道到底是局部变量还是全局变量，推荐按下一个视频方式来玩)   </li>
+</ul>
+<h3 id="-">参考代码</h3>
+<pre><code class="lang-php">//求1到100的和
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$num = 100;
+$sum = 0;
+for($i=0;$i&lt;=100;$i++){
+    $sum += $i;
+}
+echo $sum;
+</code></pre>
+<pre><code class="lang-php">header(&#39;content-type:text/html;charset=utf-8&#39;);
+function cal($num){
+    $sum = 0;
+    for($i=0;$i&lt;=$num;$i++){
+        $sum+=$i;
+    }
+    return $sum;
+}
+$num = 100;
+echo cal($num);
+</code></pre>
+<pre><code class="lang-php">//这个代码不会得到正确的答案
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$num = 100;
+function cal(){
+    $sum = 0;
+    for($i=0;$i&lt;=$num;$i++){
+        $sum+=$i;
+    }
+    return $sum;
+}
+echo cal($num);
+</code></pre>
+<pre><code class="lang-php">//思考如下的代码的结果是多少
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$num = 100;
+function cal(){
+    global $num;
+    echo $num;//结果多少
+    $num = 20;
+    echo $num;//结果多少
+}
+cal();
+echo $num;//结果多少
+</code></pre>
+<h2 id="-">超全局变量</h2>
+<ul>
+<li>$GLOBALS保存了所有全局变量，可以使用它来访问全局变量<ul>
+<li>$GLOBALS有点类似js中的window对象，后面用$GLOBALS用得多一些</li>
+</ul>
+</li>
+<li>$_SERVER 获取服务器端相关信息</li>
+<li>$_REQUEST 获取提交参数</li>
+<li>$_GET 获取GET提交参数</li>
+<li>$_POST 获取POST提交参数</li>
+<li>$_FILES获取上传文件</li>
+<li>$_ENV 获取操作环境变量</li>
+<li>$_COOKIE 操作COOKIE</li>
+<li>$_SESSION 操作SESSION</li>
+</ul>
+<pre><code class="lang-php">header(&#39;content-type:text/html;charset=utf-8&#39;);
+$a = 100;
+echo $GLOBALS[&#39;a&#39;];//值多少
+echo &#39;&lt;br&gt;&#39;;
+$GLOBALS[&#39;b&#39;] = 200;
+function fn(){
+    echo $GLOBALS[&#39;a&#39;];//值多少
+    echo &#39;&lt;br&gt;&#39;;
+    echo $GLOBALS[&#39;b&#39;];//值多少
+    echo &#39;&lt;br&gt;&#39;;
+    $GLOBALS[&#39;c&#39;] = 300;
+    echo &#39;&lt;br&gt;&#39;;
+}
+fn();
+echo $GLOBALS[&#39;c&#39;];//值多少
+</code></pre>
+<h2 id="-">常量的定义和使用</h2>
+<ul>
+<li>define(&#39;PI&#39;,3.14159,false)//false表示大小写敏感，默认是false</li>
+<li>魔术常量<ul>
+<li><strong>LINE</strong></li>
+<li><strong>FILE</strong></li>
+<li><strong>DIR</strong></li>
+<li><strong>FUNCTION</strong></li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-php">echo __LINE__;//获取当前行数
+echo &#39;&lt;hr&gt;&#39;;
+echo __FILE__;//获取当前文件的路径
+echo &#39;&lt;hr&gt;&#39;;
+echo __DIR__;//获取当前文件所在的目录
+echo &#39;&lt;hr&gt;&#39;;
+function test(){
+    echo __FUNCTION__;//获取当前函数的函数名
+}
+test();
+</code></pre>
+<ul>
+<li>补充：预定义常量<ul>
+<li>PHP_VERSION</li>
+<li>PHP_INT_MAX</li>
+</ul>
+</li>
+</ul>
+<h2 id="-">文件载入</h2>
+<ul>
+<li>include</li>
+<li>require</li>
+<li>include_once</li>
+<li>require_once</li>
+</ul>
+<h2 id="-">字符串相关函数</h2>
+<ul>
+<li>strlen</li>
+<li>mb_strlen(multibyte)</li>
+<li>mb_internal_encoding(忽略，用不上) 获取当前php环境的默认编码，通过这个方法也可以设置默认编码 mb_internal_encoding(&#39;utf-8&#39;)</li>
+</ul>
+<h3 id="-">补充</h3>
+<ul>
+<li>trim</li>
+<li>explode</li>
+<li>implode</li>
+<li>strpos</li>
+<li>strrpos</li>
+<li>strchr</li>
+<li>strrchr</li>
+</ul>
+<pre><code class="lang-php">$str = &quot; abc &quot;;
+echo mb_strlen($str);
+echo &#39;&lt;hr&gt;&#39;;
+$str1 = trim($str);
+echo mb_strlen($str1);
+</code></pre>
+<pre><code class="lang-php">$str = &quot;a|b|c&quot;;
+$arr = explode(&#39;|&#39;,$str);
+print_r($arr);
+</code></pre>
+<pre><code class="lang-php">$arr = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;];
+$str = implode(&#39;|&#39;,$arr);
+echo $str;
+</code></pre>
+<pre><code class="lang-php">$str = &quot;abcd&quot;;
+$index1 = strpos($str,&#39;c&#39;);
+var_dump($index1);
+echo &#39;&lt;hr&gt;&#39;;
+$index2 = strpos($str,&#39;e&#39;);
+var_dump($index2);
+</code></pre>
+<pre><code class="lang-php">$str = &quot;acbcd&quot;;
+$index1 = strrpos($str,&#39;c&#39;);
+var_dump($index1);
+echo &#39;&lt;hr&gt;&#39;;
+$index2 = strrpos($str,&#39;e&#39;);
+var_dump($index2);
+</code></pre>
+<pre><code class="lang-php">$str = &quot;a.d.c.b.d&quot;;
+$index = strrpos($str,&#39;.&#39;);
+echo substr($str,$index);
+</code></pre>
+<pre><code class="lang-php">//这个函数没有用，是为了引出下面这个函数
+$str = &quot;a.d.c.b.d&quot;;
+echo strchr($str,&#39;.&#39;);
+</code></pre>
+<pre><code class="lang-php">$str = &quot;a.d.c.b.d&quot;;
+echo strrchr($str,&#39;.&#39;);
+</code></pre>
+<h2 id="-">时间处理函数</h2>
+<ul>
+<li>注意事项：php时间单位是秒，js单位是毫秒</li>
+<li>time()时间戳</li>
+<li>date(&#39;Y-m-d H:i:s&#39;) 修改时区，需要修改配置文件 date.timezone = PRC|Asia/shanghai<ul>
+<li>东八区</li>
+</ul>
+</li>
+<li>strtotime能够将时间转换成时间戳</li>
+</ul>
+<h2 id="-">补充函数(后二个之前介绍过)</h2>
+<ul>
+<li>rand</li>
+<li>parse_url</li>
+<li>array_slice</li>
+<li>array_splice</li>
+</ul>
+<pre><code class="lang-php">$url = &#39;http://www.baidu.com:80/path?a=1&amp;b=2#anchor&#39;;
+print_r(parse_url($url));
+</code></pre>
+<h3 id="-">练习</h3>
+<ul>
+<li>打印24小时以后的时间戳<ul>
+<li>time() + 24 <em> 60 </em> 60</li>
+</ul>
+</li>
+<li>打印一周以后的时间戳<ul>
+<li>time() + 7 <em> 24 </em> 60 * 60</li>
+</ul>
+</li>
+<li>打印明天这个时间的时间格式<ul>
+<li>date(&#39;Y-m-d H:i:s&#39;,strtotime(&#39;+1 day&#39;))</li>
+</ul>
+</li>
+</ul>
+<h2 id="-">文件操作函数</h2>
+<ul>
+<li>file_get_contents:读取文件内容，可以读取二进制文件，如果读取成功，返回文件内容，否则返回false</li>
+<li>设置响应头content-type:image/jpeg,可以展示图片内容</li>
+<li>file_put_contents(文件路径,文件内容,是否追加),默认覆盖原始内容，第三个参数控制是否追加，FILE_APPEND属于系统预定义的常量，表示文件末尾追加，具体的值是一个整数</li>
+</ul>
+<h2 id="php-">php回顾</h2>
+<ul>
+<li>php标记 &lt;?php ?&gt;</li>
+<li>echo,print_r,var_dump</li>
+<li>字符串</li>
+<li>单引号与双引号</li>
+<li>数组、索引数组、关联数组、混合数组、二维数组、数组遍历</li>
+<li>变量作用域</li>
+<li>常量定义和使用define</li>
+<li>载入文件 include require include_once require_once</li>
+<li>常用内置函数<ul>
+<li>字符串相关<ol>
+<li>strlen</li>
+<li>mb_strlen</li>
+<li>trim</li>
+<li>strpos</li>
+<li>strrpos</li>
+<li>strrchr</li>
+<li>explode</li>
+<li>implode</li>
+</ol>
+</li>
+<li>时间相关<ul>
+<li>date</li>
+<li>time</li>
+<li>strtotime</li>
+</ul>
+</li>
+<li>文件相关<ul>
+<li>file_get_contents</li>
+<li>file_put_contents</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="-">水果案例</h2>
 
           	</article>
         </div>

@@ -6,6 +6,8 @@
 
 ![](./why_php.png)
 
+[在线笔记](https://zhengwei1949.github.io/php_document/preview/README.html)
+
 # day01
 ## 这一阶段课程的作用
 ### 摘要
