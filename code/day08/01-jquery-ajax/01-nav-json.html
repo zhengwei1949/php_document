@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <h2>京东商城</h2>
+<ul>
+</ul>
+<!-- <script src="./js/ajaxTool.js"></script> -->
+<script src="./js/jquery.js"></script>
+<script>
+    // $.ajax({
+    //     type:'post', //请求方式
+    //     url:'./server/nav-json.php', //请求url
+    //     data:{}, //请求需要传递的参数
+
+    //     // 设置请求超时:单位为毫秒，如果服务器的响应时间超过指定的时候，请求失败
+    //     timeout:3000,
+    //     // 设置响应数据的格式  xml json text html script jsonp
+    //     dataType:'json',
+
+    //     // 发送请求之前的回调：在这个回调中我们可以进行一些请求之前的相关操作：如验证
+    //     // 在这个回调函数中，如果return false,那么本次请求会中止
+    //     beforeSend:function(){
+    //         // 输入内容，实现验证
+    //         // return false;
+    //     },
+
+    //     success:render, //请求成功之后的回调
+
+    //     // 请求失败之后的回调
+    //     error:function(e){
+    //         if(e.statusText == "timeout"){
+    //             alert("请求超时，请重试");
+    //         }
+    //     },
+    //     // 无论请求是成功还是失败都会执行的回调
+    //     complete:function(){
+    //         console.log('实现一些全局成员的释放，或者页面状态的重置....');
+    //     }
+    // });
+
+    // url：请求的url
+    // Data:请求所传递的数据
+    // success:成功之后的回调
+    // datatype：你需要返回的数据的格式 xml json ...
+    // $.get(url,data,success,datatype):本质上只能发送get请求
+    // $.get('./server/nav-json.php',render,'json');
+
+    // $.post(url,data,success,datatype):本质上只能发送post请求
+    $.post('./server/nav-json.php',render,'json');
+
+    function render(result){
+        var html = "";
+        for(var i=0;i<result.length;i++){
+            html += "<li>";
+            html +='<a href="#">';
+            html += '<img src="'+result[i].src+'" alt="">';
+            html += '<p>'+result[i].text+'</p>';
+            html += '</a>';
+            html += '</li>';
+        }
+        console.log(html);
+        // 将生成的页面结构添加到dom元素中
+        document.querySelector("ul").innerHTML = html;
+    }
+</script>
+</body>
+</html>

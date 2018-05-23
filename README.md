@@ -356,6 +356,10 @@ echo $a;
     + day8.com www.day8.com
     + day9.com www.day9.com
 - 参考《流程图练习.png》自己把流程图画出来理解今天讲的这些概念
+- 代码分割
+    + br
+    + hr
+    + pre标签
 - 讲解header头避免中文乱码
 - 讲解vscode如何创建代码片段(快速生成header这一行代码)
 - vscode-goto-document用法
@@ -458,7 +462,7 @@ echo 1 + null;
     + if,endif
     + for,endfor
     + else if和elseif在php中都是ok的，但是如果用的是冒号方法进行混编，则只能用elseif,否则算语法错误(参考http://www.php.net/manual/zh/control-structures.elseif.php)
-
+- 06-php中函数的声明及使用特点.avi见word笔记这块有一个练习一起做一下
 
 ## php中函数的声明和使用特点
 - 函数声明方式和js基本一致
@@ -591,13 +595,65 @@ test();
 - explode
 - implode
 - strpos
+- strrpos
 - strchr
 - strrchr
 
+```php
+$str = " abc ";
+echo mb_strlen($str);
+echo '<hr>';
+$str1 = trim($str);
+echo mb_strlen($str1);
+```
+
+```php
+$str = "a|b|c";
+$arr = explode('|',$str);
+print_r($arr);
+```
+
+```php
+$arr = ["a","b","c"];
+$str = implode('|',$arr);
+echo $str;
+```
+
+```php
+$str = "abcd";
+$index1 = strpos($str,'c');
+var_dump($index1);
+echo '<hr>';
+$index2 = strpos($str,'e');
+var_dump($index2);
+```
+
+```php
+$str = "acbcd";
+$index1 = strrpos($str,'c');
+var_dump($index1);
+echo '<hr>';
+$index2 = strrpos($str,'e');
+var_dump($index2);
+```
 
 
+```php
+$str = "a.d.c.b.d";
+$index = strrpos($str,'.');
+echo substr($str,$index);
+```
 
+```php
+//这个函数没有用，是为了引出下面这个函数
+$str = "a.d.c.b.d";
+echo strchr($str,'.');
+```
 
+```php
+$str = "a.d.c.b.d";
+echo strrchr($str,'.');
+```
 
 ## 时间处理函数
 - 注意事项：php时间单位是秒，js单位是毫秒
@@ -606,6 +662,19 @@ test();
     + 东八区
 - strtotime能够将时间转换成时间戳
 
+## 补充函数(后二个之前介绍过)
+- rand
+- parse_url
+- array_slice
+- array_splice
+
+```php
+$url = 'http://www.baidu.com:80/path?a=1&b=2#anchor';
+print_r(parse_url($url));
+```
+
+
+
 ### 练习
 - 打印24小时以后的时间戳
     + time() + 24 * 60 * 60
@@ -613,3 +682,37 @@ test();
     + time() + 7 * 24 * 60 * 60
 - 打印明天这个时间的时间格式
     + date('Y-m-d H:i:s',strtotime('+1 day'))
+
+## 文件操作函数
+- file_get_contents:读取文件内容，可以读取二进制文件，如果读取成功，返回文件内容，否则返回false
+- 设置响应头content-type:image/jpeg,可以展示图片内容
+- file_put_contents(文件路径,文件内容,是否追加),默认覆盖原始内容，第三个参数控制是否追加，FILE_APPEND属于系统预定义的常量，表示文件末尾追加，具体的值是一个整数
+
+## php回顾
+- php标记 <?php ?>
+- echo,print_r,var_dump
+- 字符串
+- 单引号与双引号
+- 数组、索引数组、关联数组、混合数组、二维数组、数组遍历
+- 变量作用域
+- 常量定义和使用define
+- 载入文件 include require include_once require_once
+- 常用内置函数
+    + 字符串相关
+        1. strlen
+        + mb_strlen
+        + trim
+        + strpos
+        + strrpos
+        + strrchr
+        + explode
+        + implode
+    + 时间相关
+        + date
+        + time
+        + strtotime
+    + 文件相关
+        + file_get_contents
+        + file_put_contents
+
+## 水果案例

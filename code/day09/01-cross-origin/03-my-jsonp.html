@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function test(result){
+            console.log(result);
+        }
+        // 定义自己的ajax
+        var $ ={
+            ajax:function(option){
+                var url = option.url;
+                var callback = option.callback;
+                var dataType = option.dataType;
+                // 当dataType为jsonp的时候我们需要发起一个跨域请求
+                if(dataType == "jsonp"){
+                    // 1.创建一个script标签
+                    var script = document.createElement("script");
+                    // 2.为script标签设置src属性，同时在src中传入之后需要挨靠的函数名称
+                    script.src = url +"?callback="+callback;
+                    // 3.将生成的script标签添加到页面结构中
+                    document.body.appendChild(script);
+                }
+            }
+        };
+        // 我也希望通过$.ajax的方式发送请求，当我传入dataType:jsonp的时候，希望能够发送一个跨域请求
+        $.ajax({
+            type:'get',
+            url:'http://day8.com/corss.php',
+            callback:'test',
+            dataType:"jsonp"
+        });
+
+        // 1.主要是利用了script标签的天然的跨域特性来发送请求
+        // 2.它的实现方式：在发送请求的时候传递一个函数名称给后台，后台返回数据的时候会返回这个函数的调用形式，并且在()中拼接参数
+        // 3.ajax和jsonp的本质不一样。ajax的核心是通过XMLHttpRequest来发送请求，而jsonp是通过script标签来实现请求的发送
+    </script>
+</body>
+</html>

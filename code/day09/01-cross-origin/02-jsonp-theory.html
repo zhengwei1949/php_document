@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 实现跨域请求：请求数据(服务器) -->
+    <!-- 
+        下面这两个属性有天然的跨域特性
+        href:
+        src: img script
+     -->
+     <!-- <a href="http://www.baidu.com">我的百度</a>
+     <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1105037253,1131367531&fm=27&gp=0.jpg" alt=""> -->
+     <!-- 下面我们利用script标签的src的天然的跨域特性来实现跨域操作 -->
+     <script>
+         function test(data){
+             console.log(data);
+         }
+     </script>
+     <!-- 因为我们是使用script来发送请求的，所以返回值默认会以script所支持js请求来解析  -->
+     <script src="http://day8.com/corss.php?callback=test"></script>
+</body>
+</html>
