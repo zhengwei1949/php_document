@@ -424,6 +424,7 @@ echo $a;
 - 如果需要将变量名独立，避免解析错误，可以加上{}
 - php支持转义(`\$|\r|\n|\t`)
 - 如果想要解析，一定要保证***最外层加双引号***
+- 双引号可以解析变量内容，双引号里面的单引号也是可以解析出来的
 
 
 ## 作业及补充
@@ -866,11 +867,12 @@ echo strrchr($str,'.');
     + 东八区
 - strtotime能够将时间转换成时间戳
 
-## 补充函数(后二个之前介绍过)
+## 补充函数
 - max
 - min
 - ceil
 - floor
+- uniqid，基于微秒计的当前时间，一般用于生成唯一的id，类似身份证
 - rand
     + rand(1000,9999)的含义 [1000,9999]
 - parse_url
@@ -1894,24 +1896,123 @@ select * from mytable limit pageSize offset (pageCount - 1) * pageSize;
 - 我们不能用鼠标来玩navicat，也需要使用php来操作mysql
 
 ## php中建立数据库连接
+- 这个视频录制得有问题，从15:34到16:02没声音
+- $conn = mysqli_connect('localhost','root','root','mybase')
+- die
+- 解决乱码问题(mysqli_set_charset($conn,'utf8'))
 
 ## php中执行增加修改和删除操作
+- mysqli_query
+- mysqli_error
+- mysqli_affected_rows判断受影响的行数
 
 ## php中查询结果集(上)
+- mysqli_query($conn,"set names utf-8")设置编码的另一种方式
+- mysqli_num_rows($result)返回当前的查询结果集返回的行数
+- utf8,utf-8二种方式都是ok的
 
 ## php中查询结果集(下)
+- mysqli_fetch_array(很少用)
+- mysqli_fetch_assoc(用得最多)
+- mysqli_fetch_array(基本上不会用)，返回的内容的形式（MYSQL_ASSOC|MYSQL_NUM|MYSQL_BOTH）
 
 ## php操作数据库的回顾
+1. 如何创建连接
+2. 设置编码
+3. 创建sql语句，注意字符串要加引号
+4. 执行sql语句 mysqli_query
+5. 接收返回值mysqli_fetch_array,mysqli_fetch_assoc
 
 ## 操作简易封装
+- 连接数量是有限的
+- mysqli_close($conn)
+- 封装
+
+```
+mysql> show variables like '%max_connections%';
++-----------------+-------+
+| Variable_name   | Value |
++-----------------+-------+
+| max_connections | 512   |
++-----------------+-------+
+1 row in set (0.01 sec)
+```
+
+```php
+/**
+ * opt 封装增加、删除、修改操作
+ * @param mixed $sql 
+ * @return mixed 
+ */
+function opt($sql){
+    //创建连接，如果成功就返回连接对象（资源），如果失败就返回false
+    $conn = mysqli_connect('localhost','root','root','mybase');
+    //判断连接是否成功
+    if(!$conn){
+        die('连接失败');
+    }
+    //设置编码
+    mysqli_set_charset($conn,'utf8');
+    //执行sql语句，接收返回值，对于增加删除而言，mysqli_query返回true/false 
+    $res = mysqli_query($conn,$sql);
+    //及时关闭连接
+    mysqli_close($conn);
+    //返回
+    return $res;
+}
+
+/**
+ * select封装查询操作
+ * @param mixed $sql 
+ * @return mixed 
+ */
+function select($sql){
+    //创建连接，如果成功就返回连接对象（资源），如果失败就返回false
+    $conn = mysqli_connect('localhost','root','root','mybase');
+    //判断连接是否成功
+    if(!$conn){
+        die('连接失败');
+    }
+    //设置编码
+    mysqli_set_charset($conn,'utf8');
+    //查询语句的返回值,如果成功就返回资源（结果集），如果失败就返回false
+    $res = mysqli_query($conn,$sql);
+    if(!$res){
+        echo '查询失败';
+    }else if(mysqli_num_rows($res) == 0){//有结果集但是没有数据行
+        echo '没有查询到数据';
+    }else{
+        //有结果集也有数据行
+        while($arr = mysqli_fetch_assoc($res)){
+            $result[] = $arr;
+        }
+        mysqli_close($conn);
+        return $result;
+    }
+    mysqli_close($conn);
+}
+```
+
 
 ## 用户管理案例-项目介绍和数据表的创建
+- 案例介绍
+- 数据库设计、创建表userinfo
+- 给表中添加假数据
 
 ## 首页数据的动态展示(上)
+- 封装一个方法，专门处理数据库的访问逻辑，类似第6个视频
+- 查询数据，如果出错了后需要在页面显示错误信息，注意用td包裹
+- 封装的方法需要返回错误信息，为了保证数据库能正常关闭，需要调整相关代码
 
 ## 首页数据的动态展示(下)
+- 遍历数据展示用户信息
+- 计算用户年龄 strtotime转为时间戳，当前的时间戳-生日时间戳就是年龄，向上取整ceil
+
 
 ## 新增操作-实现数据验证
+- 5：56-6：05中间没有说话
+- 表单校验，错误提示，和之前的思路类似
+- 视频中错误，$GLOBALS['error']不能用count来计算数量，可以去掉
 
 ## 新增操作-实现新增
 
@@ -1920,9 +2021,11 @@ select * from mytable limit pageSize offset (pageCount - 1) * pageSize;
 ## 编辑操作-展示默认数据
 
 ## 编辑操作-验证用户数据
-
+- 类似音乐案例
 ## 编辑操作-实现数据更新
 
+# day07
+## 为什么需要ajax
 
 
 
