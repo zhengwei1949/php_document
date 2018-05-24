@@ -1,15 +1,4 @@
-# prepare
-- 是否可以上网
-- 音响
-- 话筒
-- Hydra是否正常显示
-
-![](./why_php.png)
-
-[在线笔记](https://zhengwei1949.github.io/php_document/preview/README.html)
-[在线思维导图](http://naotu.baidu.com/file/13dda7e5297738f7cb6dd1e217be0edc?token=da11768fe66cbce9)
-
-## 英语单词
+# 英语单词
 - constant 常量
 - client 客户端
 - server 服务器
