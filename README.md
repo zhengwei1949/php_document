@@ -7,6 +7,7 @@
 ![](./why_php.png)
 
 [在线笔记](https://zhengwei1949.github.io/php_document/preview/README.html)
+[在线思维导图](http://naotu.baidu.com/file/13dda7e5297738f7cb6dd1e217be0edc?token=da11768fe66cbce9)
 
 # day01
 ## 学习目标
@@ -499,7 +500,7 @@ $data = [
 ```
 
 ```php
-//参考答案
+//用for来实现的参考答案
 <?php 
 header('content-type:text/html;charset=utf-8');
 $data = [
@@ -542,6 +543,59 @@ $data = [
                     暂无数据
                 </li>
             <?php } ?>
+        </ul>
+    </div>
+    <div class="footer">
+        传智播客 版权所有
+    </div>
+</body>
+</html>
+```
+
+```php
+//用foreach实现的参考答案
+<?php 
+header('content-type:text/html;charset=utf-8');
+$data = [
+    ["id" => 1, "name" => "香蕉", "src" => "img/banana1.jpg"],
+    ["id" => 2, "name" => "苹果", "src" => "img/apple1.jpg"],
+    ["id" => 3, "name" => "橙子", "src" => "img/orange1.jpg"],
+    ["id" => 4, "name" => "菠萝", "src" => "img/pineapple1.jpg"]
+]
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="header">
+        传智网上水果超市
+    </div>
+    <div class="container">
+        <p>
+            <a href="javascript:;">水果</a>
+            <a href="javascript:;">干果</a>
+            <a href="javascript:;">蔬菜</a>
+        </p>
+        <ul>
+            <?php if(count($data)>0){?>
+                <?php foreach($data as $value){?>
+                    <li>
+                        <img src="<?php echo $value['src']; ?>" alt="">
+                        <a href="#"><?php echo $value['name']; ?></a>
+                    </li>
+                <?php } ?>
+            <?php }else{?>
+                <li>
+                    暂无数据
+                </li>
+            <?php } ?>    
         </ul>
     </div>
     <div class="footer">
@@ -804,8 +858,36 @@ print_r(parse_url($url));
         + file_put_contents
 
 ## 水果案例
-- 为了让大家理解这个案例，我把这个例子功能扩展了删除和添加的功能，这样更能让大家理解为什么必须要这样思考这个案例
-- 演示最终的效果(体现不需要懂编程也能看懂知道怎么修改数据)(在视频前体验一下)
+- 演示最终的效果(在视频前体验一下)，通过效果思考制作的思路(final.php)
+    1. 列表这块我们之前做过了同样的demo --> 把一个数组循环渲染成列表
+    2. 详情页使用的数据和列表页是一样的 --> 必须把索引数组数据单独提取到一个公共的文件当中
+    3. 将来这个案例还需要实现对水果的删除、编辑的功能 ---> 涉及到对数据文件的文件读写
+    4. 为了便于不懂php的同事的使用，我们可以用一般的数据格式来表示数据(如下所示)
+    5. 思考：如何把如下的数据转换成数组????
+
+```
+1|img/banana1.jpg|香蕉
+2|img/apple1.jpg|苹果
+3|img/orange1.jpg|橘子
+4|img/pineapple1.jpg|菠萝
+5|img/mango1.jpg|芒果
+6|img/grape1.jpg|葡萄
+7|img/pomelo1.jpg|柚子
+8|img/pawpaw1.jpg|木瓜
+9|img/kivi1.jpg|猕猴桃
+10|img/persimmon1.jpg|柿子
+11|img/lemon1.jpg|柠檬
+12|img/pomegranate1.jpg|石榴
+13|img/pear1.jpg|梨
+14|img/strawberry1.jpg|草莓
+15|img/blueberry1.jpg|蓝莓
+16|img/waxberry1.jpg|杨莓
+17|img/peach1.jpg|桃
+18|img/coconut1.jpg|椰子
+19|img/apricot1.jpg|杏
+20|img/cherry1.jpg|樱桃
+```
+
 - 14-水果案例-基本实现思路.avi
 - 15-在php文件中根据数据动态生成水果列表.avi
 - 16-使用explode函数拆分字符串并生成对应结构.avi
@@ -815,14 +897,12 @@ print_r(parse_url($url));
         + 看到一组列表 --> 索引数组
         + 看到一个东西的各方面描述 --> 关联数组
     2. "\n"必须用双引号，否则不能解析
-- fruit.php --> getList.php --> final.php
 
 ## 作业及补充（答案及思路见WORD笔记第81页晚上任务）
 1、把后天的当前时间打印出来
 2、打印1-100的偶数(提示：用循环+条件判断来实现)
-3、用php实现冒泡排序(提高题，选做)
-4、封装加减乘除取余的函数，提取到公共的php文件当中，在当前文件中使用这几个函数
-5、列表一下之前学过的表单控件(http://www.runoob.com/tags/att-input-type.html)
+3、封装加减乘除取余的函数，提取到公共的php文件当中，在当前文件中使用这几个函数
+4、列表一下之前学过的表单控件(http://www.runoob.com/tags/att-input-type.html)
     + input[type="text"]
     + input[type="radio"]
     + input[type="checkbox"]
@@ -924,12 +1004,15 @@ print_r(parse_url($url));
 ## 文件上传的补充3 -- 多文件上传
 
 ## 注册案例 - 上
-0. 在学习视频之前，先把整个效果查看一下（说明，我们这个例子只做注册这块的功能，列表功能这块随便做的，和前面的水果案例类似，大家有兴趣可以自己做一下）
-1. 注册页面已经提前写好了
-2. 获取提交的用户名，对用户名数据进行验证，是否isset,是否是空串
+0. 在学习视频之前，先把整个效果查看一下
+    + 回忆水果案例的思路
+        1. 把数据放在一个txt文件当中
+        2. 使用文件读写来读入，使用explode来转换成真正的数组
+    + 我们这个注册案例应该是刚好反过来的，一开始有一个txt，里面存了一堆的同学的信息
+    + 点击注册的时候，把新添加的同学的信息写入这个txt当中 ---> implode
+2. (这块建议大家忽略，先把逻辑功能做出来再考虑这些细节，一开始考虑这么多没必要)获取提交的用户名，对用户名数据进行验证，是否isset,是否是空串
 3. return语法，如果在php结构中直接写return,那么当运行到return代码的时候，整个php文件的执行就结束了，php后面的html代码也不会加载，但是如果写在函数中，就不会受到影响
 4. trim方法去掉空格
-
 
 ## 注册案例 - 下
 1. implode，用指定字符串对数据进行合并，与explode作用相反
@@ -938,5 +1021,657 @@ print_r(parse_url($url));
 4. file_put_content写文件，注意加换行符
 
 ## 晚上要讲的案例
++ 写一个表单来测试GET和POST提交方法的区别，并输出其结果。
+    1. 表单元素要求有：用户名、密码、重复密码、性别(单选)、爱好(复选框)、学历(下拉列表)、个人介绍(文本域)等。
++ 把明天要讲的案例用现有学习的知识做出来
+    1. 先实现列表页，把list.html修改为list.php
+    2. 数据建模
+        - 标题 title
+        - 歌手 singer
+        - 专辑 album
+        - 音乐 src
+        - id
+    3. 构建数组
+
+```php
+<?php 
+header('content-type:text/html;charset=utf-8');
+$musicArr = [
+    ["id"=>1,"title"=>"王五之歌1","singer"=>"王五","album"=>"王五的歌","src"=> "./mp3/See You Again.mp3"],
+    ["id"=>2,"title"=>"王五之歌2","singer"=>"王五","album"=>"王五的歌","src"=> "./mp3/See You Again.mp3"],
+    ["id"=>3,"title"=>"王五之歌3","singer"=>"王五","album"=>"王五的歌","src"=> "./mp3/See You Again.mp3"],
+    ["id"=>4,"title"=>"王五之歌4","singer"=>"王五","album"=>"王五的歌","src"=> "./mp3/See You Again.mp3"]
+]
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center display-3 py-3">音乐列表</h1>
+        <hr>
+        <a href="./upload.php" class="btn btn-dark">新增歌曲信息</a>
+        <table class="table table-bordered">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>标题</th>
+                    <th>歌手</th>
+                    <th>专辑</th>
+                    <th>音乐</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>王五之歌</td>
+                    <td>王五</td>
+                    <td>王五的歌</td>
+                    <td>
+                        <audio src="./mp3/See You Again.mp3" controls></audio>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>王五之歌</td>
+                    <td>王五</td>
+                    <td>王五的歌</td>
+                    <td>
+                        <audio src="./mp3/See You Again.mp3" controls></audio>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>王五之歌</td>
+                    <td>王五</td>
+                    <td>王五的歌</td>
+                    <td>
+                        <audio src="./mp3/See You Again.mp3" controls></audio>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>王五之歌</td>
+                    <td>王五</td>
+                    <td>王五的歌</td>
+                    <td>
+                        <audio src="./mp3/See You Again.mp3" controls></audio>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>王五之歌</td>
+                    <td>王五</td>
+                    <td>王五的歌</td>
+                    <td>
+                        <audio src="./mp3/See You Again.mp3" controls></audio>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>王五之歌</td>
+                    <td>王五</td>
+                    <td>王五的歌</td>
+                    <td>
+                        <audio src="./mp3/See You Again.mp3" controls></audio>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+```
+    4. 动态渲染列表数据
+
+```php
+<?php 
+header('content-type:text/html;charset=utf-8');
+$musicArr = [
+    ["id"=>1,"title"=>"王五之歌1","singer"=>"王五","album"=>"王五的歌","src"=> "./mp3/See You Again.mp3"],
+    ["id"=>2,"title"=>"王五之歌2","singer"=>"王五","album"=>"王五的歌","src"=> "./mp3/See You Again.mp3"],
+    ["id"=>3,"title"=>"王五之歌3","singer"=>"王五","album"=>"王五的歌","src"=> "./mp3/See You Again.mp3"],
+    ["id"=>4,"title"=>"王五之歌4","singer"=>"王五","album"=>"王五的歌","src"=> "./mp3/See You Again.mp3"]
+]
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center display-3 py-3">音乐列表</h1>
+        <hr>
+        <a href="./upload.php" class="btn btn-dark">新增歌曲信息</a>
+        <table class="table table-bordered">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>标题</th>
+                    <th>歌手</th>
+                    <th>专辑</th>
+                    <th>音乐</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($musicArr as $key => $value) {?>
+                <tr>
+                    <td><?php echo $value['title'];?></td>
+                    <td><?php echo $value['singer']; ?></td>
+                    <td><?php echo $value['album']; ?></td>
+                    <td>
+                        <audio src="<?php echo $value['src']; ?>" controls></audio>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+```
+
+    5. 把数组提取出去，用txt文本数据格式来表示
+
+```
+1|王五之歌1|王五|王五的歌|./mp3/See You Again.mp3
+2|王五之歌2|王五|王五的歌|./mp3/See You Again.mp3
+3|王五之歌3|王五|王五的歌|./mp3/See You Again.mp3
+4|王五之歌4|王五|王五的歌|./mp3/See You Again.mp3
+5|王五之歌5|王五|王五的歌|./mp3/See You Again.mp3
+6|王五之歌6|王五|王五的歌|./mp3/See You Again.mp3
+```
+
+
+```php
+<?php 
+header('content-type:text/html;charset=utf-8');
+$data = file_get_contents('./data.txt');
+$arr1 = explode("\n",$data);
+$musicArr = [];
+foreach ($arr1 as $key => $value) {
+    $musicArr[] = explode('|',$value);
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center display-3 py-3">音乐列表</h1>
+        <hr>
+        <a href="./upload.php" class="btn btn-dark">新增歌曲信息</a>
+        <table class="table table-bordered">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>标题</th>
+                    <th>歌手</th>
+                    <th>专辑</th>
+                    <th>音乐</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($musicArr as $key => $value) {?>
+                <tr>
+                    <td><?php echo $value[1];?></td>
+                    <td><?php echo $value[2]; ?></td>
+                    <td><?php echo $value[3]; ?></td>
+                    <td>
+                        <audio src="<?php echo $value[4]; ?>" controls></audio>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+```
+
+    6. 增加功能(upload.html -> upload.php)
+
+```php
+<?php
+header('content-type:text/html;charset=utf-8');
+if(!empty($_POST)){
+    // print_r($_POST);
+    // print_r($_FILES);
+    $data = file_get_contents('./data.txt');
+    $arr1 = explode("\n", $data);
+    $musicArr = [];
+    foreach ($arr1 as $key => $value) {
+        $musicArr[] = explode('|', $value);
+    }
+    $file = $_FILES['source'];
+    if(!($file['error'] == 0)){
+        echo '音乐上传出错';
+        echo '<script>setTimeout(function(){location.href="./upload.php"},1000)</script>';
+        die();
+    }
+    $fileName = './mp3/'.rand(10000,99999).time().strrchr($file['name'],'.');
+    $res = move_uploaded_file($file['tmp_name'], $fileName);
+    if ($res) {
+        $arr2 = [count($musicArr), $_POST['title'], $_POST['geshou'], $_POST['zhuanji'], $fileName];
+        $musicArr[] = $arr2;
+        foreach ($musicArr as $key => $value) {
+            $arr3[] = implode('|',$value);     
+        }
+        // print_r($arr3);
+        // echo implode("\n",$arr3);
+        $res = file_put_contents('./data.txt',implode("\n",$arr3));
+        if($res){
+            echo "<script>location.href='./list.php'</script>";
+        }
+    }
+    
+}
+?>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <style>
+        .showInfo {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class=" display-3 py-3">音乐上传</h1>
+        <hr>
+        <!-- 表单结构： -->
+        <form action="./upload.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">标题</label>
+                <!-- 下面的所有 is-invalid 均为要判断的类名 -->
+                <input type="text" class="form-control" id="title" name="title">
+                <!-- in_array("title",$errorArr):判断当前$errorArr有没有title这个值，如果有返回true -->
+                <small class="invalid-feedback ">这是一个标题</small>
+            </div>
+            <div class="form-group">
+                <label for="geshou">歌手</label>
+                <input type="text" class="form-control" id="geshou" name="geshou">
+                <small class="invalid-feedback ">歌手的名称</small>
+            </div>
+            <div class="form-group">
+                <label for="zhuanji">专辑</label>
+                <input type="text" class="form-control" id="zhuanji" name="zhuanji">
+                <small class="invalid-feedback ">专辑名称</small>
+            </div>
+            <div class="form-group">
+                <label for="source">资源文件</label>
+                <!-- accept 用于设置可以接受的文件类型，可以使用MIMEtype,也可以使用后缀名，使用逗号连接 -->
+                <input type="file" class="form-control" id="source" name="source" accept=".mp3">
+                <small class="invalid-feedback ">文件上传</small>
+            </div>
+            <button class="btn btn-primary btn-block">上传</button>
+        </form>
+    </div>
+</body>
+
+</html>
+```
+
+    7. 删除
+        - 修改list.php --> `<a href="del.php?id=<?php echo $value[0];?>" class="btn btn-danger">删除</a>`
+        - 添加del.php
+
+```php
+<?php 
+header('content-type:text/html;charset=utf-8');
+// print_r($_GET);
+$arr1 = explode("\n", file_get_contents('./data.txt'));
+foreach ($arr1 as $key => $value) {
+    $musicArr[] =  explode('|',$value);
+}
+// print_r($musicArr);
+for($i=0;$i<count($musicArr);$i++){
+    if($_GET['id'] == $musicArr[$i][0]){
+        array_splice($musicArr,$i);
+        foreach ($musicArr as $key => $value) {
+            $arr2[] = implode('|',$value);
+        }
+        file_put_contents('./data.txt',implode("\n",$arr2));
+        echo '<script>location.href="./list.php"</script>';
+        break;
+    }
+}
+?>
+```
+
+    8. 显示编辑(如果前面的掌握得好，可以做，如果不是很理解，需要自己写代码了，这块就不讲了)
+    
+```php
+<?php 
+header('content-type:text/html;charset=utf-8');
+$arr1 = explode("\n", file_get_contents('./data.txt'));
+foreach ($arr1 as $key => $value) {
+	$musicArr[] = explode('|', $value);
+}
+//显示编辑页面
+foreach ($musicArr as $key => $value) {
+    if ($value[0] == $_GET['id']) {
+        $myArr = $value;
+        break;
+    }
+}
+
+?>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bootstrap.css">
+	<style>
+		.showInfo {
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1 class=" display-3 py-3">编辑</h1>
+		<hr>
+		<!-- 表单结构： -->
+		<form method="post" enctype="multipart/form-data">
+			<input type="hidden" name="id" value="<?php echo $myArr[0] ?>">
+			<div class="form-group">
+				<label for="title">标题</label>
+				<input type="text" class="form-control" id="title" name="title" value="<?php echo $myArr[1] ?>">
+				<small class="invalid-feedback">这是一个标题</small>
+			</div>
+			<div class="form-group">
+				<label for="geshou">歌手</label>
+				<input type="text" class="form-control" id="geshou" name="geshou" value="<?php echo $myArr[2] ?>">
+				<small class="invalid-feedback">歌手的名称</small>
+			</div>
+			<div class="form-group">
+				<label for="zhuanji">专辑</label>
+				<input type="text" class="form-control" id="zhuanji" name="zhuanji" value="<?php echo $myArr[3] ?>">
+				<small class="invalid-feedback">专辑名称</small>
+			</div>
+			<div class="form-group">
+				<label for="source">资源文件</label>
+				<!-- accept 用于设置可以接受的文件类型，可以使用MIMEtype,也可以使用后缀名，使用逗号连接 -->
+				<input type="file" class="form-control" id="source" name="source" accept=".mp3">
+				<small class="invalid-feedback">文件上传</small>
+			</div>
+			<button class="btn btn-primary btn-block">保存</button>
+		</form>
+	</div>
+</body>
+
+</html>
+```
+
+    9. 处理编辑
+
+```php
+<?php 
+header('content-type:text/html;charset=utf-8');
+$arr1 = explode("\n", file_get_contents('./data.txt'));
+foreach ($arr1 as $key => $value) {
+	$musicArr[] = explode('|', $value);
+}
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
+	//显示编辑页面
+	foreach ($musicArr as $key => $value) {
+		if ($value[0] == $_GET['id']) {
+			$myArr = $value;
+			break;
+		}
+	}
+}else{
+	//处理编辑信息
+	// die;
+	for($i=0;$i<count($musicArr);$i++){
+		if($musicArr[$i][0] == $_POST['id']){
+			$file = $_FILES['source'];
+			$tempArr = [$_POST['id'], $_POST['title'], $_POST['geshou'], $_POST['zhuanji']];			
+			if($file['error'] == 0){
+				//有上传新的音乐
+				$fileName = './mp3/'.rand(10000,99999).time().strrchr($file['name'],'.');
+				$res = move_uploaded_file($file['tmp_name'],$fileName);
+				if($res){
+					$tempArr[] = $fileName;
+				}else{
+					$tempArr[] = $musicArr[$i][4];
+				}
+				$musicArr[$i] = $tempArr;
+				foreach ($musicArr as $key => $value) {
+					$arr2[] = implode('|',$value);
+				}
+				$res = file_put_contents('./data.txt',implode("\n",$arr2));
+				if($res){
+					echo "<script>location.href='./list.php'</script>";
+				}else{
+					echo "<script>location.href='./edit.php'</script>";
+				}
+			}else{
+				$tempArr[] = $musicArr[$i][4];
+				$musicArr[$i] = $tempArr;
+				foreach ($musicArr as $key => $value) {
+					$arr2[] = implode('|', $value);
+				}
+				$res = file_put_contents('./data.txt', implode("\n", $arr2));
+				if ($res) {
+					echo "<script>location.href='./list.php'</script>";
+				} else {
+					echo "<script>location.href='./edit.php'</script>";
+				}
+			}
+
+		} 
+	}
+}
+?>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bootstrap.css">
+	<style>
+		.showInfo {
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1 class=" display-3 py-3">编辑</h1>
+		<hr>
+		<!-- 表单结构： -->
+		<form method="post" enctype="multipart/form-data">
+			<input type="hidden" name="id" value="<?php echo $myArr[0] ?>">
+			<div class="form-group">
+				<label for="title">标题</label>
+				<input type="text" class="form-control" id="title" name="title" value="<?php echo $myArr[1] ?>">
+				<small class="invalid-feedback">这是一个标题</small>
+			</div>
+			<div class="form-group">
+				<label for="geshou">歌手</label>
+				<input type="text" class="form-control" id="geshou" name="geshou" value="<?php echo $myArr[2] ?>">
+				<small class="invalid-feedback">歌手的名称</small>
+			</div>
+			<div class="form-group">
+				<label for="zhuanji">专辑</label>
+				<input type="text" class="form-control" id="zhuanji" name="zhuanji" value="<?php echo $myArr[3] ?>">
+				<small class="invalid-feedback">专辑名称</small>
+			</div>
+			<div class="form-group">
+				<label for="source">资源文件</label>
+				<!-- accept 用于设置可以接受的文件类型，可以使用MIMEtype,也可以使用后缀名，使用逗号连接 -->
+				<input type="file" class="form-control" id="source" name="source" accept=".mp3">
+				<small class="invalid-feedback">文件上传</small>
+			</div>
+			<button class="btn btn-primary btn-block">保存</button>
+		</form>
+	</div>
+</body>
+
+</html>
+```
+
+# day04
+## 学习目标
+- 综合案例:**音乐列表**
+- 能够说出任意三个常见的请求头以及函数
+- 能够说出响应报文的组成
+- 能够识别常见的状态码以及含义
+
+## 音乐案例的基本功能展示
+- 当前课程介绍
+- 音乐列表案例功能演示，上传音乐，展示音乐列表，表单校验，编辑，删除
+- audio标签播放音乐
+
+## 简单介绍json文件的创建方法和语法特点
+- 使用json保存数据
+- json数据格式的特点
+
+### 练习
+- 描述笔记本的各方面的信息(object)
+- 描述水果数据(array)
+
+## 使用json格式描述歌曲列表数据并实现php的相关操作
+- 使用json描述音乐数据
+- json_decode($data,true),参数2表示是否将{}转换为数组，true表示优先转为数组，默认会转换为对象
+- json_encode
+- json中不能写注释
+
+## 歌曲列表数据的动态展示
+- 读取json数据，展示歌曲列表
+- 和水果案例对比，体验使用json存储数据的遍历
+
+## 新增操作-实现用户数据业务的分析
+- 和昨天的注册案例类似
+
+## 完成用户数据的验证及错误信息提示
+
+## 完成歌曲新增操作
+
+## 实现删除操作
+
+## 编辑操作-显示默认数据
+
+## 编辑操作-用户输入数据验证(上)
+
+## 编辑操作-用户输入数据验证(下)
+- break应该写在if里面，这块视频里写错了
+
+## 完成编辑操作
+
+## http协议简介
+- 如何理解协议这二个字
+    + 协议就是约定
+    + 两个宿舍楼，说话听不到，用电筒进行交流如何交流
+    + 约定好：如果XXX，则客户端就知道了，原来这是一个html文件，如果XXX，则客户端就知道了，原来这是一个图片,如果XXX，则客户端知道了，这是一个utf8的文件
+- 三次握手
+    1. 客户端向服务器发送一个连接请求
+    2. 服务器向客户端返回一个确认信息
+    3. 客户端将请求及这个确认信息发送到服务器
+- 约定内容
+    + 请求/响应报文格式
+    + 请求方式 - GET/POST
+    + 响应状态 - 200/404/302
+    + 预设的请求/响应头
+
+## 请求报文的内容
+- 请求行、请求头、请求体
+- fiddler可以抓取请求报文和内容(这块用firefox,chrome的network替代来看)
+![](./post_protocal.png)
+
+## 响应报文的内容
+
+## 请求报文和响应报文的应用
+- header('content-type:text/css')
+- 重定向 header('location:./01-form-get.php')
+- 重定向 header('refresh:2;url=./01-form-get.php')
+- 下载文件(了解即可)
+    + header('content-type:application/octet-stream')
+    + 实现自动下载，同时可以设置下载后的文件名称
+    + header('content-disposition:attachment;filename=temp.php')
+- 防盗链
+    + getallheaders()获取所有的请求头信息
+        1. 通过referer字段，拿到请求源地址
+        2. parse_url()解析请求源地址，获取域名
+        3. 对域名进行判断
+
+# day05
+## 学习目标
+- 掌握在服务器端操作cookie的方式
+- 掌握在服务器端操作session的方式
+- 能够说出cookie与session的关系与区别
+- 能够完成登录案例
+- 能够使用SQL语句对表进行增删改查操作
+- 能够使用数据库可视化工具对表进行增删改查操作
+
+## http是无状态的
+- 会话：打电话，在没挂断电话之前这个阶段叫会话
+
+
+
+
+
 
 
