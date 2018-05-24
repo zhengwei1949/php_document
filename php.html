@@ -1,0 +1,2395 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="generator" content="pandoc">
+    <meta name="description" content="">
+
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="./css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/dashboard.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+    <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Node.js笔记</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://npm.taobao.org/mirrors/node/latest/docs/api/index.html">node.js文档</a></li>
+            <li><a href="http://es6.ruanyifeng.com/">es6语法</a></li>
+            <li><a href="https://docs.npmjs.com/">npm文档</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">more<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://code.visualstudio.com/">vsCode官网</a></li>
+                <li><a href="http://browserhacks.com/">浏览器兼容性</a></li>
+                <li><a href="https://www.webpagefx.com/tools/emoji-cheat-sheet/">emoji速查</a></li>
+                <li><a href="https://oscarotero.com/jquery/">jquery api</a></li>
+                <li><a href="https://giphy.com/">轻松一刻</a></li>
+                <li><a href="http://leaverou.github.io/regexplained/">快乐学正则</a></li>
+                <li><a href="https://j11y.io/jquery/#v=1.7.2&fn=jQuery">jquery源码学习</a></li>
+                <li><a href="https://unbug.github.io/codelf/#ret">给变量起个好名字</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="https://github.com/zhengwei1949">问题反馈</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div id="sidebar" class="col-sm-3 col-md-2 sidebar">
+          <!--<ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+          </ul>-->
+          <ul>
+          <li><a href="#prepare">prepare</a><ul>
+          <li><a href="#英语单词">英语单词</a></li>
+          </ul></li>
+          <li><a href="#day01">day01</a><ul>
+          <li><a href="#学习目标">学习目标</a></li>
+          <li><a href="#这一阶段课程的作用">这一阶段课程的作用</a><ul>
+          <li><a href="#摘要">摘要</a></li>
+          </ul></li>
+          <li><a href="#我们为什么要学习php以及这块课程的安排">我们为什么要学习php以及这块课程的安排</a><ul>
+          <li><a href="#摘要-1">摘要</a></li>
+          </ul></li>
+          <li><a href="#服务器的理解">服务器的理解</a><ul>
+          <li><a href="#摘要-2">摘要</a></li>
+          </ul></li>
+          <li><a href="#csbs架构">C/S、B/S架构</a><ul>
+          <li><a href="#摘要-3">摘要</a></li>
+          </ul></li>
+          <li><a href="#网络基本概念-ip域名dns">网络基本概念-ip、域名、dns</a><ul>
+          <li><a href="#摘要-4">摘要</a></li>
+          </ul></li>
+          <li><a href="#网络基本概念-hosts文件端口">网络基本概念-hosts文件、端口</a><ul>
+          <li><a href="#摘要-5">摘要</a></li>
+          </ul></li>
+          <li><a href="#url组成">url组成</a><ul>
+          <li><a href="#摘要-6">摘要</a></li>
+          </ul></li>
+          <li><a href="#安装phpstudy">安装phpStudy</a></li>
+          <li><a href="#phpstudy的基本使用">phpStudy的基本使用</a></li>
+          <li><a href="#配置第一个虚拟主机">配置第一个虚拟主机</a></li>
+          <li><a href="#配置第二个虚拟主机">配置第二个虚拟主机</a></li>
+          <li><a href="#apache与php的关系">apache与php的关系</a><ul>
+          <li><a href="#摘要-7">摘要</a></li>
+          </ul></li>
+          <li><a href="#动态网页的基本实现原理">动态网页的基本实现原理</a></li>
+          <li><a href="#php输出方式和php混编方式">php输出方式和php混编方式</a><ul>
+          <li><a href="#摘要-8">摘要</a></li>
+          </ul></li>
+          <li><a href="#php中的注释和变量">php中的注释和变量</a><ul>
+          <li><a href="#摘要-9">摘要</a></li>
+          </ul></li>
+          <li><a href="#变量的几个相关函数">变量的几个相关函数</a></li>
+          <li><a href="#数据类型-字符串">数据类型-字符串</a></li>
+          <li><a href="#单引号与双引号的区别">单引号与双引号的区别</a></li>
+          <li><a href="#作业及补充">作业及补充</a></li>
+          </ul></li>
+          <li><a href="#day02">day02</a><ul>
+          <li><a href="#学习目标-1">学习目标</a></li>
+          <li><a href="#复习">复习</a></li>
+          <li><a href="#php中数组的创建和遍历">php中数组的创建和遍历</a></li>
+          <li><a href="#php数组的补充说明">php数组的补充说明</a><ul>
+          <li><a href="#练习代码">练习代码</a></li>
+          </ul></li>
+          <li><a href="#二维数组">二维数组</a></li>
+          <li><a href="#数据类型转换和运算符介绍">数据类型转换和运算符介绍</a></li>
+          <li><a href="#php中的条件判断循环语法">php中的条件判断、循环语法</a><ul>
+          <li><a href="#练习">练习</a></li>
+          </ul></li>
+          <li><a href="#php中函数的声明和使用特点">php中函数的声明和使用特点</a><ul>
+          <li><a href="#参考代码">参考代码</a></li>
+          </ul></li>
+          <li><a href="#超全局变量">超全局变量</a></li>
+          <li><a href="#常量的定义和使用">常量的定义和使用</a></li>
+          <li><a href="#文件载入">文件载入</a></li>
+          <li><a href="#字符串相关函数">字符串相关函数</a><ul>
+          <li><a href="#补充">补充</a></li>
+          </ul></li>
+          <li><a href="#时间处理函数">时间处理函数</a></li>
+          <li><a href="#补充函数">补充函数</a><ul>
+          <li><a href="#练习-1">练习</a></li>
+          </ul></li>
+          <li><a href="#文件操作函数">文件操作函数</a></li>
+          <li><a href="#php回顾">php回顾</a></li>
+          <li><a href="#水果案例">水果案例</a></li>
+          <li><a href="#作业及补充答案及思路见word笔记第81页晚上任务">作业及补充（答案及思路见WORD笔记第81页晚上任务）</a></li>
+          </ul></li>
+          <li><a href="#day03">day03</a><ul>
+          <li><a href="#每日目标">每日目标</a></li>
+          <li><a href="#get和post的介绍">get和post的介绍</a><ul>
+          <li><a href="#摘要-10">摘要</a></li>
+          </ul></li>
+          <li><a href="#get请求方式的特点">get请求方式的特点</a><ul>
+          <li><a href="#摘要-11">摘要</a></li>
+          </ul></li>
+          <li><a href="#get请求方式的应用-水果案例详情页">get请求方式的应用-水果案例详情页</a></li>
+          <li><a href="#post请求方式的使用说明">post请求方式的使用说明</a></li>
+          <li><a href="#几种表单元素收集数据方式的说明">几种表单元素收集数据方式的说明</a></li>
+          <li><a href="#文件上传的基本实现">文件上传的基本实现</a></li>
+          <li><a href="#文件上传的补充1---判断各种出现错误的情况">文件上传的补充1 - 判断各种出现错误的情况</a></li>
+          <li><a href="#文件上传的补充2----防止文件上传过大">文件上传的补充2 -- 防止文件上传过大</a></li>
+          <li><a href="#文件上传的补充3----多文件上传">文件上传的补充3 -- 多文件上传</a></li>
+          <li><a href="#注册案例---上">注册案例 - 上</a></li>
+          <li><a href="#注册案例---下">注册案例 - 下</a></li>
+          <li><a href="#晚上要讲的案例">晚上要讲的案例</a></li>
+          </ul></li>
+          <li><a href="#day04">day04</a><ul>
+          <li><a href="#学习目标-2">学习目标</a></li>
+          <li><a href="#音乐案例的基本功能展示">音乐案例的基本功能展示</a></li>
+          <li><a href="#简单介绍json文件的创建方法和语法特点">简单介绍json文件的创建方法和语法特点</a><ul>
+          <li><a href="#练习-2">练习</a></li>
+          </ul></li>
+          <li><a href="#使用json格式描述歌曲列表数据并实现php的相关操作">使用json格式描述歌曲列表数据并实现php的相关操作</a></li>
+          <li><a href="#歌曲列表数据的动态展示">歌曲列表数据的动态展示</a></li>
+          <li><a href="#新增操作-实现用户数据业务的分析">新增操作-实现用户数据业务的分析</a></li>
+          <li><a href="#完成用户数据的验证及错误信息提示">完成用户数据的验证及错误信息提示</a></li>
+          <li><a href="#完成歌曲新增操作">完成歌曲新增操作</a></li>
+          <li><a href="#实现删除操作">实现删除操作</a></li>
+          <li><a href="#编辑操作-显示默认数据">编辑操作-显示默认数据</a></li>
+          <li><a href="#编辑操作-用户输入数据验证上">编辑操作-用户输入数据验证(上)</a></li>
+          <li><a href="#编辑操作-用户输入数据验证下">编辑操作-用户输入数据验证(下)</a></li>
+          <li><a href="#完成编辑操作">完成编辑操作</a></li>
+          <li><a href="#http协议简介">http协议简介</a></li>
+          <li><a href="#请求报文的内容">请求报文的内容</a></li>
+          <li><a href="#响应报文的内容">响应报文的内容</a></li>
+          <li><a href="#请求报文和响应报文的应用">请求报文和响应报文的应用</a></li>
+          <li><a href="#晚上的任务">晚上的任务</a></li>
+          </ul></li>
+          <li><a href="#day05">day05</a><ul>
+          <li><a href="#学习目标-3">学习目标</a></li>
+          <li><a href="#通过登录案例引出我们要讲的知识点">通过登录案例引出我们要讲的知识点</a></li>
+          <li><a href="#http是无状态的">http是无状态的</a></li>
+          <li><a href="#cookie的实现原理说明">cookie的实现原理说明</a></li>
+          <li><a href="#在php中创建cookie并再次体会cookie的实现的原理">在php中创建cookie并再次体会cookie的实现的原理</a></li>
+          <li><a href="#setcookie函数的参数说明">setcookie函数的参数说明</a></li>
+          <li><a href="#cookie的删除">cookie的删除</a></li>
+          <li><a href="#登录案例">登录案例</a></li>
+          <li><a href="#session的基本介绍">session的基本介绍</a></li>
+          <li><a href="#session值的设置及实现原理的回顾">session值的设置及实现原理的回顾</a></li>
+          <li><a href="#使用session改造登录案例">使用session改造登录案例</a></li>
+          <li><a href="#数据库的基本概念">数据库的基本概念</a></li>
+          <li><a href="#navicat工具">navicat工具</a></li>
+          <li><a href="#查询语句">查询语句</a></li>
+          <li><a href="#增加删除修改语句的说明">增加、删除、修改语句的说明</a></li>
+          <li><a href="#补充几个统计函数">补充几个统计函数</a></li>
+          <li><a href="#limitorder-by">limit,order by</a></li>
+          <li><a href="#多表查询的实现">多表查询的实现</a></li>
+          <li><a href="#晚上的任务-1">晚上的任务</a></li>
+          </ul></li>
+          <li><a href="#day06">day06</a><ul>
+          <li><a href="#学习目标-4">学习目标</a></li>
+          <li><a href="#引言">引言</a></li>
+          <li><a href="#php中建立数据库连接">php中建立数据库连接</a></li>
+          <li><a href="#php中执行增加修改和删除操作">php中执行增加修改和删除操作</a></li>
+          <li><a href="#php中查询结果集上">php中查询结果集(上)</a></li>
+          <li><a href="#php中查询结果集下">php中查询结果集(下)</a></li>
+          <li><a href="#php操作数据库的回顾">php操作数据库的回顾</a></li>
+          <li><a href="#操作简易封装">操作简易封装</a></li>
+          <li><a href="#用户管理案例-项目介绍和数据表的创建">用户管理案例-项目介绍和数据表的创建</a></li>
+          <li><a href="#首页数据的动态展示上">首页数据的动态展示(上)</a></li>
+          <li><a href="#首页数据的动态展示下">首页数据的动态展示(下)</a></li>
+          <li><a href="#新增操作-实现数据验证">新增操作-实现数据验证</a></li>
+          <li><a href="#新增操作-实现新增">新增操作-实现新增</a></li>
+          <li><a href="#删除实现">删除实现</a></li>
+          <li><a href="#编辑操作-展示默认数据">编辑操作-展示默认数据</a></li>
+          <li><a href="#编辑操作-验证用户数据">编辑操作-验证用户数据</a></li>
+          </ul></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        
+<h1 id="prepare">prepare</h1>
+<ul>
+<li>是否可以上网</li>
+<li>音响</li>
+<li>话筒</li>
+<li>Hydra是否正常显示</li>
+</ul>
+<div class="figure">
+<img src="./why_php.png" />
+
+</div>
+<p><a href="https://zhengwei1949.github.io/php_document/preview/README.html">在线笔记</a> <a href="http://naotu.baidu.com/file/13dda7e5297738f7cb6dd1e217be0edc?token=da11768fe66cbce9">在线思维导图</a></p>
+<h2 id="英语单词">英语单词</h2>
+<ul>
+<li>constant 常量</li>
+<li>client 客户端</li>
+<li>server 服务器</li>
+<li>browser 浏览器</li>
+<li>get 获取</li>
+<li>post 发送、邮寄</li>
+<li>define 定义</li>
+<li>syntax 语法</li>
+<li>error 报错</li>
+<li>domain 区域</li>
+<li>load 载入</li>
+<li>module 模块</li>
+<li>load module 载入模块</li>
+<li>add type 添加类型</li>
+<li>time zone 时区</li>
+<li>document root 根目录</li>
+<li>global 全局</li>
+<li>define 定义</li>
+<li>decimal 十进制</li>
+<li>binary 二进制</li>
+<li>octonary 八进制</li>
+<li>hexdecimal 十六进制</li>
+<li>notice 警告</li>
+<li>line 第几行</li>
+<li>range 范围</li>
+<li>merge 合并</li>
+<li>split 拆分</li>
+<li>array 数组</li>
+<li>right 右边</li>
+<li>index 索引</li>
+<li>random 随机数</li>
+<li>shuffle 打乱</li>
+<li>join 连接</li>
+<li>exit 退出</li>
+<li>insert 插入</li>
+<li>delete 删除</li>
+<li>update 更新</li>
+<li>database(db)数据库</li>
+<li>detail 详情</li>
+<li>list 列表</li>
+<li>edit 编辑</li>
+<li>connect 连接</li>
+<li>index 索引</li>
+<li>fetch 获取</li>
+<li>query 查询</li>
+<li>redirect 跳转</li>
+<li>empty 空</li>
+<li>interval 整数</li>
+<li>float 浮点数、小数</li>
+<li>double 浮点数、小数</li>
+<li>decimal 小数</li>
+<li>print 打印</li>
+<li>association 关联</li>
+<li>context 上下文环境</li>
+<li>retrive 获取</li>
+<li>create 创建</li>
+<li>drop 销毁，放弃</li>
+<li>cookie 馅饼</li>
+<li>session 会话</li>
+<li>ascend 升序</li>
+<li>descend 降序</li>
+</ul>
+<h1 id="day01">day01</h1>
+<h2 id="学习目标">学习目标</h2>
+<ul>
+<li>能够说出访问网址时请求与响应的流程</li>
+<li>能够说出什么是ip、dns、端口</li>
+<li>能够安装并使用apache服务器</li>
+<li>能够说出索引数组和关联数组的区别</li>
+<li>能够声明和调用自定义函数</li>
+<li>综合案例：<strong>水果列表案例</strong></li>
+</ul>
+<h2 id="这一阶段课程的作用">这一阶段课程的作用</h2>
+<h3 id="摘要">摘要</h3>
+<ul>
+<li>以前学习的技术回顾及局限性</li>
+<li>动态网站开发</li>
+<li>客户端请求，服务端处理并响应，引入php和ajax ### 总结</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>我们平时写代码怎么打开网页的</li>
+<li>浏览器的作用理解：把html解析成人类可以看的有格式的内容</li>
+<li>平时上网的时候是怎么打开网站上的网页的</li>
+<li>上网的时候打开的网页代码是放在哪里的? --&gt; 服务器 --&gt; 怎么理解服务器，平时有没有见过服务器
+<ul>
+<li>水果店里有很多种水果，苹果，桔子，香蕉...</li>
+<li>客户想要桔子，他向服务员说明自己的需求</li>
+<li>店员从店里找到对应的桔子，然后给客户</li>
+</ul></li>
+<li>网站流程图v1.0</li>
+<li>如果当前的这个html引入了js,css，则是怎么请求的 --&gt; 网站流程图v2.0 7.0 我们平时其实上网其实并不在乎一个网站是美还是丑，比如12306虽然丑，但我们离不开，比如淘宝，我们天天逛，因为对我们来说，最重要的其实是商品，是数据</li>
+<li>淘宝、京东、百度网页是不是写死的? ---&gt; 如何理解<strong><em>动态</em></strong>这二个字(通过代码来演示) --&gt; 网站流程图v3.0
+<ul>
+<li>动态不是指的有轮播图、有选项卡这些特效，动态指的是<strong><em>数据是动态的</em></strong></li>
+<li>https://www.baidu.com/s?wd=java</li>
+<li>动态网页指的是网页是用像php这样的写的，有if..else,for之类的条件、循环语句，把执行后的结果返回给客户端</li>
+</ul></li>
+<li>服务器的作用</li>
+<li>php的作用</li>
+<li>ajax这又是另一个话题了，二个陌生的概念一起理解会搞混，这块大家忽略掉，后面讲到了再理解</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf8;&#39;</span><span class="ot">);</span>
+<span class="kw">$arr</span> = <span class="ot">[</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">1</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;第一篇新闻&quot;</span><span class="ot">,</span><span class="st">&#39;content&#39;</span>=&gt;<span class="st">&quot;第一篇新闻的内容&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">2</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;第二篇新闻&quot;</span><span class="ot">,</span><span class="st">&quot;content&quot;</span>=&gt;<span class="st">&quot;第二篇新闻的内容&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">3</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;第三篇新闻&quot;</span><span class="ot">,</span><span class="st">&quot;content&quot;</span>=&gt;<span class="st">&quot;第三篇新闻的内容&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">4</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;第四篇新闻&quot;</span><span class="ot">,</span><span class="st">&quot;content&quot;</span>=&gt;<span class="st">&quot;第四篇新闻的内容&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">5</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;第五篇新闻&quot;</span><span class="ot">,</span><span class="st">&quot;content&quot;</span>=&gt;<span class="st">&quot;第五篇新闻的内容&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">6</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;第六篇新闻&quot;</span><span class="ot">,</span><span class="st">&quot;content&quot;</span>=&gt;<span class="st">&quot;第六篇新闻的内容&quot;</span><span class="ot">]</span>
+<span class="ot">];</span>
+<span class="ot">(</span><span class="kw">$id</span> = <span class="kw">$_GET</span><span class="ot">[</span><span class="st">&#39;id&#39;</span><span class="ot">])</span> <span class="kw">or</span> <span class="ot">(</span><span class="kw">$id</span> = <span class="dv">1</span><span class="ot">);</span>
+<span class="co">// print_r($arr[$id-1]);</span>
+<span class="kw">?&gt;</span>
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;meta name=<span class="st">&quot;viewport&quot;</span> content=<span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;
+    &lt;meta http-equiv=<span class="st">&quot;X-UA-Compatible&quot;</span> content=<span class="st">&quot;ie=edge&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;<span class="ot">?</span>php <span class="kw">if</span><span class="ot">(</span><span class="fu">empty</span><span class="ot">(</span><span class="kw">$arr</span><span class="ot">[</span><span class="kw">$id</span>-<span class="dv">1</span><span class="ot">]))</span>{<span class="kw">?&gt;</span>
+        &lt;h1&gt;访问的内容不存在&lt;/h1&gt;
+    &lt;<span class="ot">?</span>php }<span class="kw">else</span>{<span class="kw">?&gt;</span>
+        &lt;h1&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$arr</span><span class="ot">[</span><span class="kw">$id</span>-<span class="dv">1</span><span class="ot">][</span><span class="st">&quot;title&quot;</span><span class="ot">];</span><span class="kw">?&gt;</span>&lt;/h1&gt;
+        &lt;p&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$arr</span><span class="ot">[</span><span class="kw">$id</span>-<span class="dv">1</span><span class="ot">][</span><span class="st">&quot;content&quot;</span><span class="ot">];</span><span class="kw">?&gt;</span>&lt;/p&gt;
+    &lt;<span class="ot">?</span>php } <span class="kw">?&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<h2 id="我们为什么要学习php以及这块课程的安排">我们为什么要学习php以及这块课程的安排</h2>
+<h3 id="摘要-1">摘要</h3>
+<ul>
+<li>为什么要学习php</li>
+<li>我们将学习哪些东西 ### 总结</li>
+<li>为什么要学习php
+<ul>
+<li>能够理解整个网站的开发体系，当网站出了问题的时候，能够快速的知道出了什么问题</li>
+<li>更好的与后端进行交流</li>
+<li>为了后面的ajax课程的学习</li>
+</ul></li>
+<li>这块课程的安排
+<ul>
+<li>搭建服务器和运行php的环境软件(apache+php)</li>
+<li>服务器端开发(php语法及应用)</li>
+<li>http协议(理论)</li>
+<li>数据库(mysql)</li>
+<li>ajax</li>
+</ul></li>
+<li>课程定位
+<ul>
+<li>php(不影响找工作，学习比较吃力的同学这块能学会多少算多少，后面找工作之前的复习时间不要用来复习这块)</li>
+<li>ajax(重点，需要所有人掌握)</li>
+</ul></li>
+</ul>
+<h2 id="服务器的理解">服务器的理解</h2>
+<h3 id="摘要-2">摘要</h3>
+<ul>
+<li>什么是服务器</li>
+<li>普通电脑安装提供web服务的软件，就可以作为服务器</li>
+<li>凡是需要联网才能使用的软件，都要用到服务器 ### 总结</li>
+<li>常见的服务器有哪些
+<ul>
+<li>商店</li>
+<li>餐馆</li>
+<li>游戏服务器</li>
+<li>百度云服务器</li>
+<li>hydra</li>
+<li>传智播客</li>
+<li>网吧上网网管的电脑扣钱系统</li>
+<li>apache</li>
+</ul></li>
+</ul>
+<h2 id="csbs架构">C/S、B/S架构</h2>
+<h3 id="摘要-3">摘要</h3>
+<ul>
+<li>概念</li>
+<li>优缺点分析</li>
+<li>具体说明哪些是C/S，哪些是B/S ### 总结</li>
+<li>常见的C/S架构
+<ul>
+<li>微信客户端</li>
+<li>网游客户端</li>
+<li>hydra</li>
+<li>qq</li>
+<li>迅雷</li>
+<li>百度云</li>
+<li>foxmail</li>
+</ul></li>
+<li>常见的B/S架构
+<ul>
+<li>微信网页版</li>
+<li>页游</li>
+<li>博学谷</li>
+<li>邮箱网页版</li>
+</ul></li>
+</ul>
+<h2 id="网络基本概念-ip域名dns">网络基本概念-ip、域名、dns</h2>
+<h3 id="摘要-4">摘要</h3>
+<ul>
+<li>ip地址</li>
+<li>127.0.0.1本机回环地址</li>
+<li>域名、localhost、DNS、购买域名</li>
+<li>ipconfig命令</li>
+<li>DNS起到了什么作用，DNS也是服务器，专门进行域名解析，真正请求时仍然是访问的ip地址 ### 总结</li>
+<li>ip --&gt; 江夏区高新区光谷大道77号光谷金融港B15栋2层</li>
+<li>域名 --&gt; 武汉传智播客</li>
+<li>dns --&gt; 百度地图</li>
+<li>网站流程图v4.0(加入dns)</li>
+<li>需要记住的知识点
+<ul>
+<li>localhost --&gt; 我当前电脑上的服务器</li>
+<li>127.0.0.1 --&gt; 同上</li>
+</ul></li>
+</ul>
+<h2 id="网络基本概念-hosts文件端口">网络基本概念-hosts文件、端口</h2>
+<h3 id="摘要-5">摘要</h3>
+<ul>
+<li>只有以管理员权限运行的编辑器才有权限修改hosts文件</li>
+<li>端口：ip地址像小区地址，端口像门牌号，范围:0到65535(2的16次方-1)</li>
+<li>netstat -an 查看当前占用的端口号，也就是对应的门牌号的房间有没有住着人，端口号不能冲突了，不同服务使用不同端口号，网页服务端口是80和443,数据库mysql端口号是3306,提供数据库服务 ### 总结</li>
+<li>网站流程图v5.0(加入hosts)</li>
+<li>如何找hosts文件
+<ul>
+<li>win+r --&gt; drivers</li>
+<li>进入etc文件</li>
+</ul></li>
+<li>修改hosts文件有可能会出现用管理员权限重试 --&gt; 解决办法</li>
+<li>测试hosts文件</li>
+<li>端口的理解
+<ul>
+<li>一个商场有很多的商店 --&gt; 光知道ip地址是不够的 --&gt; 还需要知道门牌号 --&gt; 端口就是门牌号</li>
+</ul></li>
+<li>检测80端口是否被占用
+<ul>
+<li>netstat -an</li>
+</ul></li>
+</ul>
+<h2 id="url组成">url组成</h2>
+<h3 id="摘要-6">摘要</h3>
+<ul>
+<li>url参数介绍,url的组成部分 ### 总结</li>
+<li>协议+域名(ip)+端口+端口+目录路径+文件名+查询参数+锚点</li>
+<li>http://baidu.com:80/a/b/c.php?a=1&amp;b=2#aa(可以打开百度地址举例)</li>
+</ul>
+<h2 id="安装phpstudy">安装phpStudy</h2>
+<ul>
+<li>如果安装失败 --&gt; 附件中有两个版本，都试一下 --&gt; 是否缺少vc库（主要见于win7,win8系统）</li>
+<li>运行phpStudy时，有时候会弹出一个类似错误一个的东西，关掉不影响使用就行，不用管</li>
+<li>安装的目录一定不要有中文</li>
+<li>红、绿的含义</li>
+</ul>
+<h2 id="phpstudy的基本使用">phpStudy的基本使用</h2>
+<ul>
+<li>默认访问文件设置 =&gt; 其他选项 --&gt; phpStudy设置--&gt; 端口常规设置</li>
+<li>域名默认会定位到网站的根目录</li>
+<li>开启目录访问 =&gt; 其他选项 --&gt; phpStudy设置 --&gt; 允许目录列表</li>
+<li>一个最基本的php代码
+<ol style="list-style-type: decimal">
+<li>在根目录创建一个php为扩展名的文件(文件名一定不要是中文，不支持中文)</li>
+<li><?php ?></li>
+<li>echo &quot;hello world&quot;;</li>
+</ol></li>
+<li>引言：为什么会有虚拟主机</li>
+</ul>
+<h2 id="配置第一个虚拟主机">配置第一个虚拟主机</h2>
+<ol style="list-style-type: decimal">
+<li>其他选项 --&gt; 站点域名管理</li>
+<li>网站域名、网站目录、第二目录、网站端口</li>
+<li>新增</li>
+<li>保存</li>
+<li>修改vhost文件</li>
+<li>修改hosts文件</li>
+<li>重启apache</li>
+</ol>
+<h2 id="配置第二个虚拟主机">配置第二个虚拟主机</h2>
+<ul>
+<li>phpStudy的bug，修改第二个会影响之前配置的虚拟主机，使第一个虚拟主机无法加载目录结构</li>
+</ul>
+<h2 id="apache与php的关系">apache与php的关系</h2>
+<h3 id="摘要-7">摘要</h3>
+<ul>
+<li>apache和php是分开的，apache负责提供网页服务，而php负责解析php代码</li>
+<li>apache还可以和java搭配使用</li>
+<li>phpStudy集成了apache,mysql,php,也可以独立安装这三个软件，只不过特别麻烦(有时候要一整天的折腾) ### 总结</li>
+<li>apache就是服务器软件，光有apache没有php只能实现静态网页服务器
+<ul>
+<li>测试=&gt;httpd.conf中的<code>Include conf/extra/httpd-php.conf</code>注释掉，测试之前写的php文件--&gt;修改了配置文件，一定要重启phpStudy，否则不能生效</li>
+</ul></li>
+<li>php是用来做动态网页的，可以把我们写的php代码(里面会有if...else,for,while逻辑代码)解析成html代码</li>
+<li>补充：怎么理解phpStudy这个软件 --&gt; 全家桶、套餐
+<ul>
+<li>真正的数据存放于mysql数据库当中</li>
+<li>php的另一大作用补充：接收用户提交的表单数据<br />
+</li>
+<li>从服务器、php、数据库的角度来理解增
+<ol style="list-style-type: decimal">
+<li>用户填写好表单</li>
+<li>点击submit提交</li>
+<li>php接收数据</li>
+<li>把接收到的数据保存到mysql数据库当中</li>
+</ol></li>
+<li>从服务器、php、数据库的角度来理解删(比如购物车中的商品的删)</li>
+<li>从服务器、php、数据库的角度来理解改(购物车中商品的数量修改)</li>
+<li>从服务器、php、数据库的角度来理解查(查询商品信息)</li>
+</ul></li>
+</ul>
+<h2 id="动态网页的基本实现原理">动态网页的基本实现原理</h2>
+<ul>
+<li>13、14两种视频一起放 ### 摘要 ### 总结</li>
+<li>案例一：把视频中讲解的例子用代码实现出来(先模仿，不要理解为什么)
+<ul>
+<li>[&quot;11&quot;,&quot;22&quot;,&quot;33&quot;]这个数组渲染成html列表</li>
+<li>注意事项 1、从现在开始，一定不要双击打开html页面 2、不要使用webstorm右上角图标点击打开网页 3、只能通过在地址栏输入网址的方式打开网页 4、语句结束一定要加上分号，否则会报错</li>
+</ul></li>
+<li>案例二：时间代码(先模仿，不要理解为什么)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
+<span class="kw">$arr</span> = <span class="ot">[</span><span class="st">&quot;11&quot;</span><span class="ot">,</span><span class="st">&quot;22&quot;</span><span class="ot">,</span><span class="st">&quot;33&quot;</span><span class="ot">];</span>
+<span class="kw">?&gt;</span>
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;meta name=<span class="st">&quot;viewport&quot;</span> content=<span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;
+    &lt;meta http-equiv=<span class="st">&quot;X-UA-Compatible&quot;</span> content=<span class="st">&quot;ie=edge&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;ul&gt;
+        &lt;<span class="ot">?</span>php <span class="kw">for</span><span class="ot">(</span><span class="kw">$i</span>=<span class="dv">0</span><span class="ot">;</span><span class="kw">$i</span>&lt;=<span class="dv">2</span><span class="ot">;</span><span class="kw">$i</span>++<span class="ot">)</span>{<span class="kw">?&gt;</span>
+        &lt;li&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$arr</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">];</span><span class="kw">?&gt;</span>&lt;/li&gt;
+        &lt;<span class="ot">?</span>php } <span class="kw">?&gt;</span>
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php">&lt;!<span class="kw">DOCTYPE</span> html&gt;
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;meta name=<span class="st">&quot;viewport&quot;</span> content=<span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;
+    &lt;meta http-equiv=<span class="st">&quot;X-UA-Compatible&quot;</span> content=<span class="st">&quot;ie=edge&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;<span class="ot">?</span>php 
+        <span class="fu">echo</span> <span class="fu">date</span><span class="ot">(</span><span class="st">&#39;Y-m-d&#39;</span><span class="ot">);</span>
+    <span class="kw">?&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<h2 id="php输出方式和php混编方式">php输出方式和php混编方式</h2>
+<h3 id="摘要-8">摘要</h3>
+<ul>
+<li>php的返回结果会按照浏览器的解析规则来展示</li>
+<li>php将结果返回给浏览器，浏览器按照html的解析规划进行解析</li>
+<li>echo</li>
+<li>print_r</li>
+<li>var_dump ### 总结</li>
+<li>打印输出的几种方式(print不要记，不用)
+<ul>
+<li>echo 输出字符串、数字</li>
+<li>print_r 输出数组</li>
+<li>var_dump 输出null,布尔型,判断数据的类型(不要用echo打印布尔型)</li>
+</ul></li>
+<li>混写
+<ul>
+<li>php代码要在<?php ?>里面，外面的算html的内容</li>
+<li>练习if..else</li>
+<li>练习if...endif,if...else...endif ### 练习</li>
+</ul></li>
+<li>声明一个$age,判断如果年龄大于18岁，显示h1标题：您已成年，否则显示您未成年</li>
+</ul>
+<h2 id="php中的注释和变量">php中的注释和变量</h2>
+<h3 id="摘要-9">摘要</h3>
+<ul>
+<li>单行注释</li>
+<li>多行注释</li>
+<li>变量的声明，默认值是null</li>
+<li>视频中变量没有赋值直接打印没有报错，如果我们也想不出现notice报错，设置php.ini配置文件,error_reporting=E_ALL&amp;~E_NOTICE 意思是报告所有的错误，但除了E_NOTICE这一种。这也是最常用的错误报告级别，它不会报告注意类（如：使用了未定义的变量）的错误。修改完了一定要重启phpStudy ### 总结</li>
+<li>注释方式和js一样</li>
+<li>变量命名规范和js一样(不同点：爱钱)</li>
+<li>没有var,第一次算定义，第二次算赋值</li>
+</ul>
+<h2 id="变量的几个相关函数">变量的几个相关函数</h2>
+<ul>
+<li>isset：判断变量是否存在，判断变量是否定义了，同时它还可以判断变量的值是否为null</li>
+<li>empty：判断变量是否为空，为空的值有:&quot;&quot;,0,&quot;0&quot;,&quot;0.0&quot;,false,[]</li>
+<li>unset：删除变量</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="fu">echo</span> <span class="kw">$a</span><span class="ot">;</span><span class="co">//会报错</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//可以改写成</span>
+<span class="kw">if</span> <span class="ot">(</span><span class="fu">isset</span><span class="ot">(</span><span class="kw">$a</span><span class="ot">))</span> {
+    <span class="fu">echo</span> <span class="kw">$a</span><span class="ot">;</span>
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$arr</span> = <span class="ot">[];</span>
+<span class="kw">for</span><span class="ot">(</span><span class="kw">$i</span>=<span class="dv">0</span><span class="ot">;</span><span class="kw">$i</span>&lt;<span class="dv">100</span><span class="ot">;</span><span class="kw">$i</span>++<span class="ot">)</span>{
+    <span class="fu">echo</span> <span class="kw">$arr</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">];</span>
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//可以改写成</span>
+<span class="kw">$arr</span> = <span class="ot">[];</span>
+<span class="kw">if</span><span class="ot">(</span>!<span class="fu">empty</span><span class="ot">(</span><span class="kw">$arr</span><span class="ot">))</span>{
+    <span class="kw">for</span> <span class="ot">(</span><span class="kw">$i</span> = <span class="dv">0</span><span class="ot">;</span> <span class="kw">$i</span> &lt; <span class="dv">100</span><span class="ot">;</span> <span class="kw">$i</span>++<span class="ot">)</span> {
+        <span class="fu">echo</span> <span class="kw">$arr</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">];</span>
+    }
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$a</span> = <span class="dv">100</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="kw">$a</span><span class="ot">;</span>
+<span class="fu">unset</span><span class="ot">(</span><span class="kw">$a</span><span class="ot">);</span>
+<span class="fu">echo</span> <span class="kw">$a</span><span class="ot">;</span></code></pre></div>
+<h2 id="数据类型-字符串">数据类型-字符串</h2>
+<ul>
+<li>php中的数据类型
+<ul>
+<li>基本数据类型：string,int,float,boolean</li>
+<li>复合数据类型：array,object(不讲，我们的课程没有涉及到php的面向对象相关知识点，我们将来在学习ES6的时候会学习到ES6中的js的构造函数类的写法，和php大体上是一致的，到时候学到了可以再自己去查一下php的面向对象相关知识点)</li>
+<li>特殊数据类型：null,资源(后面会学习到)</li>
+</ul></li>
+<li>判断数据类型
+<ul>
+<li>is_string</li>
+<li>is_bool</li>
+<li>is_int</li>
+<li>is_float</li>
+<li>is_array</li>
+<li>is_object</li>
+</ul></li>
+<li>php中的点号连接符
+<ul>
+<li>理解为什么在php数组中并不存在.length这样求长度</li>
+<li>count函数引入</li>
+</ul></li>
+</ul>
+<h2 id="单引号与双引号的区别">单引号与双引号的区别</h2>
+<ul>
+<li>双引号可以识别字符串中的变量名</li>
+<li>如果需要将变量名独立，避免解析错误，可以加上{}</li>
+<li>php支持转义(<code>\$|\r|\n|\t</code>)</li>
+<li>如果想要解析，一定要保证<strong><em>最外层加双引号</em></strong></li>
+<li>双引号可以解析变量内容，双引号里面的单引号也是可以解析出来的</li>
+</ul>
+<h2 id="作业及补充">作业及补充</h2>
+<ul>
+<li>配置虚拟主机
+<ul>
+<li>day8.com www.day8.com</li>
+<li>day9.com www.day9.com</li>
+</ul></li>
+<li>参考《流程图练习.png》自己把流程图画出来理解今天讲的这些概念</li>
+<li>代码分割
+<ul>
+<li>br</li>
+<li>hr</li>
+<li>pre标签</li>
+</ul></li>
+<li>讲解header头避免中文乱码</li>
+<li>讲解vscode如何创建代码片段(快速生成header这一行代码)</li>
+<li>vscode-goto-document用法</li>
+<li>把今天的代码自己写一遍
+<ul>
+<li>动态打印获取时间</li>
+<li>条件判断php、html混编</li>
+<li>循环php,html混编</li>
+</ul></li>
+<li>如果第一天比较ok的话，可以把第二天的前面4个视频上完</li>
+</ul>
+<h1 id="day02">day02</h1>
+<h2 id="学习目标-1">学习目标</h2>
+<ul>
+<li>能够说出索引数组与关联数组的区别</li>
+<li>能够声明和调用自定义函数</li>
+<li>综合案例<strong>水果列表案例</strong></li>
+</ul>
+<h2 id="复习">复习</h2>
+<ul>
+<li>概念层面</li>
+<li>配置层面</li>
+<li>代码层面</li>
+</ul>
+<h2 id="php中数组的创建和遍历">php中数组的创建和遍历</h2>
+<ul>
+<li>索引数组</li>
+<li>$arr = array(1,2,3);</li>
+<li>$arr = [1,2,3];</li>
+<li>count($arr)获取数组的长度</li>
+<li>关联数组<span class="math inline"><em>a</em><em>r</em><em>r</em> = <em>a</em><em>r</em><em>r</em><em>a</em><em>y</em>(</span>key=&gt;<span class="math inline"><em>v</em><em>a</em><em>l</em><em>u</em><em>e</em>,</span>key=&gt;$value)</li>
+<li>数组的打印print_r,var_dump</li>
+<li>遍历关联数组 foreach(数组 as 键=&gt;值)</li>
+<li>遍历关联数组简洁语法 foreach(数组 as 值)</li>
+</ul>
+<h2 id="php数组的补充说明">php数组的补充说明</h2>
+<ul>
+<li>为什么要使用pre标签的使用</li>
+<li>混合数组的索引问题(忽略)</li>
+<li>通过[]创建数组和添加值(有点类似js中的push)</li>
+<li>数组相关的函数
+<ul>
+<li>count</li>
+<li>unset(不推荐使用)</li>
+<li>如下的代码会补充五个函数：in_array,array_slice,array_splice,die,exit</li>
+</ul></li>
+</ul>
+<h3 id="练习代码">练习代码</h3>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//说出如下的代码的打印结果</span>
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$arr1</span> = <span class="ot">[</span><span class="dv">1</span><span class="ot">,</span><span class="dv">2</span><span class="ot">,</span><span class="dv">3</span><span class="ot">,</span><span class="dv">4</span><span class="ot">];</span>
+<span class="fu">var_dump</span><span class="ot">(</span><span class="fu">in_array</span><span class="ot">(</span><span class="dv">3</span><span class="ot">,</span> <span class="kw">$arr1</span><span class="ot">));</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//说出如下的代码的打印结果</span>
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$i</span> = <span class="dv">0</span><span class="ot">;</span>
+<span class="kw">while</span><span class="ot">(</span><span class="kw">$i</span>&lt;<span class="dv">100</span><span class="ot">)</span>{
+    <span class="kw">$i</span>++<span class="ot">;</span>
+    <span class="kw">$arr</span><span class="ot">[]</span> = <span class="kw">$i</span><span class="ot">;</span>
+}
+<span class="fu">print_r</span><span class="ot">(</span><span class="kw">$arr</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//说出如下代码的打印结果</span>
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$arr1</span> = <span class="ot">[</span><span class="dv">1</span><span class="ot">,</span><span class="dv">2</span><span class="ot">,</span><span class="dv">3</span><span class="ot">,</span><span class="dv">4</span><span class="ot">];</span>
+<span class="kw">$arr2</span> = <span class="fu">array_slice</span><span class="ot">(</span><span class="kw">$arr1</span><span class="ot">,</span><span class="dv">2</span><span class="ot">);</span>
+<span class="fu">print_r</span><span class="ot">(</span><span class="kw">$arr2</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//说出如下的代码的打印结果</span>
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$arr1</span> = <span class="ot">[</span><span class="dv">1</span><span class="ot">,</span><span class="dv">2</span><span class="ot">,</span><span class="dv">3</span><span class="ot">,</span><span class="dv">4</span><span class="ot">];</span>
+<span class="kw">$arr2</span> = <span class="fu">array_splice</span><span class="ot">(</span><span class="kw">$arr1</span><span class="ot">,</span><span class="dv">2</span><span class="ot">,</span><span class="dv">1</span><span class="ot">);</span>
+<span class="fu">print_r</span><span class="ot">(</span><span class="kw">$arr2</span><span class="ot">);</span>
+<span class="fu">print_r</span><span class="ot">(</span><span class="kw">$arr1</span><span class="ot">);</span></code></pre></div>
+<h2 id="二维数组">二维数组</h2>
+<ul>
+<li>练习使用foreach嵌套</li>
+</ul>
+<h2 id="数据类型转换和运算符介绍">数据类型转换和运算符介绍</h2>
+<ul>
+<li>强制类型转换，<span class="math inline"><em>n</em><em>u</em><em>m</em> = (<em>i</em><em>n</em><em>t</em>)</span>str;</li>
+<li>隐式类型转换 $num = $str + 0;</li>
+<li>需要记住的规则
+<ul>
+<li>true类型转换成数字为1，false为0</li>
+<li>null转换为数字0</li>
+<li>[]转换为数字为0</li>
+<li>当字符串转换为整型或浮点型时，如果字符串是以数字开头的，就会先把数字部分转换为整型，在舍去后面的字符串；如果数字中含有小数点，则会取到小数前一位。</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//说出如下代码的值</span>
+<span class="fu">echo</span> <span class="dv">1</span> + <span class="st">&#39;abc&#39;</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="dv">0</span>+<span class="st">&#39;123aaa&#39;</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="dv">1</span> + <span class="st">&#39;5.53string&#39;</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="dv">5</span> + <span class="st">&#39;-4string&#39;</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="dv">1</span> + <span class="kw">true</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="dv">1</span> + <span class="kw">false</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="fl">1.5</span> + <span class="kw">true</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="dv">1</span> + <span class="kw">null</span><span class="ot">;</span></code></pre></div>
+<h2 id="php中的条件判断循环语法">php中的条件判断、循环语法</h2>
+<ul>
+<li>http://php.net/manual/zh/language.basic-syntax.phpmode.php
+<ul>
+<li>凡是在一对开始和结束标记之外的内容都会被 PHP 解析器忽略，这使得 PHP 文件可以具备混合内容。 可以使 PHP 嵌入到 HTML 文档中去</li>
+<li>当 PHP 解释器碰到 ?&gt; 结束标记时就简单地将其后内容原样输出（除非马上紧接换行 - 见指令分隔符）直到碰到下一个开始标记；例外是处于条件语句中间时，此时 PHP 解释器会根据条件判断来决定哪些输出，哪些跳过。</li>
+<li>if,endif</li>
+<li>for,endfor</li>
+<li>else if和elseif在php中都是ok的，但是如果用的是冒号方法进行混编，则只能用elseif,否则算语法错误(参考http://www.php.net/manual/zh/control-structures.elseif.php)</li>
+</ul></li>
+</ul>
+<h3 id="练习">练习</h3>
+<ul>
+<li>水果案例练习(两种方式都要写一遍)
+<ul>
+<li>用for来实现</li>
+<li>用foreach来实现</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//已知我们有如下的数组：</span>
+<span class="kw">$data</span> = <span class="ot">[</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">1</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;香蕉&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/banana1.jpg&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">2</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;苹果&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/apple1.jpg&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">3</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;橙子&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/orange1.jpg&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">4</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;菠萝&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/pineapple1.jpg&quot;</span><span class="ot">]</span>
+<span class="ot">];</span>
+<span class="co">//静态页面见：code\fruit_demo\demo_01</span>
+<span class="co">//现要求渲染成真正的用户可以看到的动态数据列表</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//用for来实现的参考答案</span>
+&lt;<span class="ot">?</span>php 
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$data</span> = <span class="ot">[</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">1</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;香蕉&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/banana1.jpg&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">2</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;苹果&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/apple1.jpg&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">3</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;橙子&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/orange1.jpg&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">4</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;菠萝&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/pineapple1.jpg&quot;</span><span class="ot">]</span>
+<span class="ot">]</span>
+<span class="kw">?&gt;</span>
+
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;meta name=<span class="st">&quot;viewport&quot;</span> content=<span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;
+    &lt;meta http-equiv=<span class="st">&quot;X-UA-Compatible&quot;</span> content=<span class="st">&quot;ie=edge&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;<span class="fu">link</span> rel=<span class="st">&quot;stylesheet&quot;</span> href=<span class="st">&quot;./style.css&quot;</span>&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;header&quot;</span>&gt;
+        传智网上水果超市
+    &lt;/div&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;container&quot;</span>&gt;
+        &lt;p&gt;
+            &lt;a href=<span class="st">&quot;javascript:;&quot;</span>&gt;水果&lt;/a&gt;
+            &lt;a href=<span class="st">&quot;javascript:;&quot;</span>&gt;干果&lt;/a&gt;
+            &lt;a href=<span class="st">&quot;javascript:;&quot;</span>&gt;蔬菜&lt;/a&gt;
+        &lt;/p&gt;
+        &lt;ul&gt;
+            &lt;<span class="ot">?</span>php <span class="kw">if</span><span class="ot">(</span><span class="fu">count</span><span class="ot">(</span><span class="kw">$data</span><span class="ot">)</span>&gt;<span class="dv">0</span><span class="ot">)</span>{<span class="kw">?&gt;</span>
+                &lt;<span class="ot">?</span>php <span class="kw">for</span><span class="ot">(</span><span class="kw">$i</span>=<span class="dv">0</span><span class="ot">;</span><span class="kw">$i</span>&lt;<span class="fu">count</span><span class="ot">(</span><span class="kw">$data</span><span class="ot">);</span><span class="kw">$i</span>++<span class="ot">)</span>{<span class="kw">?&gt;</span>
+                    &lt;li&gt;
+                        &lt;img src=<span class="st">&quot;&lt;?php echo </span><span class="kw">$data</span><span class="st">[</span><span class="kw">$i</span><span class="st">][&#39;src&#39;];?&gt;&quot;</span> alt=<span class="st">&quot;&quot;</span>&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span>&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$data</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">][</span><span class="st">&#39;name&#39;</span><span class="ot">];</span><span class="kw">?&gt;</span>&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;<span class="ot">?</span>php } <span class="kw">?&gt;</span>
+            &lt;<span class="ot">?</span>php }<span class="kw">else</span>{<span class="kw">?&gt;</span>
+                &lt;li&gt;
+                    暂无数据
+                &lt;/li&gt;
+            &lt;<span class="ot">?</span>php } <span class="kw">?&gt;</span>
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;footer&quot;</span>&gt;
+        传智播客 版权所有
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//用foreach实现的参考答案</span>
+&lt;<span class="ot">?</span>php 
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$data</span> = <span class="ot">[</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">1</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;香蕉&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/banana1.jpg&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">2</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;苹果&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/apple1.jpg&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">3</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;橙子&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/orange1.jpg&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span> =&gt; <span class="dv">4</span><span class="ot">,</span> <span class="st">&quot;name&quot;</span> =&gt; <span class="st">&quot;菠萝&quot;</span><span class="ot">,</span> <span class="st">&quot;src&quot;</span> =&gt; <span class="st">&quot;img/pineapple1.jpg&quot;</span><span class="ot">]</span>
+<span class="ot">]</span>
+<span class="kw">?&gt;</span>
+
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;meta name=<span class="st">&quot;viewport&quot;</span> content=<span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;
+    &lt;meta http-equiv=<span class="st">&quot;X-UA-Compatible&quot;</span> content=<span class="st">&quot;ie=edge&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;<span class="fu">link</span> rel=<span class="st">&quot;stylesheet&quot;</span> href=<span class="st">&quot;./style.css&quot;</span>&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;header&quot;</span>&gt;
+        传智网上水果超市
+    &lt;/div&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;container&quot;</span>&gt;
+        &lt;p&gt;
+            &lt;a href=<span class="st">&quot;javascript:;&quot;</span>&gt;水果&lt;/a&gt;
+            &lt;a href=<span class="st">&quot;javascript:;&quot;</span>&gt;干果&lt;/a&gt;
+            &lt;a href=<span class="st">&quot;javascript:;&quot;</span>&gt;蔬菜&lt;/a&gt;
+        &lt;/p&gt;
+        &lt;ul&gt;
+            &lt;<span class="ot">?</span>php <span class="kw">if</span><span class="ot">(</span><span class="fu">count</span><span class="ot">(</span><span class="kw">$data</span><span class="ot">)</span>&gt;<span class="dv">0</span><span class="ot">)</span>{<span class="kw">?&gt;</span>
+                &lt;<span class="ot">?</span>php <span class="kw">foreach</span><span class="ot">(</span><span class="kw">$data</span> <span class="kw">as</span> <span class="kw">$value</span><span class="ot">)</span>{<span class="kw">?&gt;</span>
+                    &lt;li&gt;
+                        &lt;img src=<span class="st">&quot;&lt;?php echo </span><span class="kw">$value</span><span class="st">[&#39;src&#39;]; ?&gt;&quot;</span> alt=<span class="st">&quot;&quot;</span>&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span>&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$value</span><span class="ot">[</span><span class="st">&#39;name&#39;</span><span class="ot">];</span> <span class="kw">?&gt;</span>&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;<span class="ot">?</span>php } <span class="kw">?&gt;</span>
+            &lt;<span class="ot">?</span>php }<span class="kw">else</span>{<span class="kw">?&gt;</span>
+                &lt;li&gt;
+                    暂无数据
+                &lt;/li&gt;
+            &lt;<span class="ot">?</span>php } <span class="kw">?&gt;</span>    
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;footer&quot;</span>&gt;
+        传智播客 版权所有
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<h2 id="php中函数的声明和使用特点">php中函数的声明和使用特点</h2>
+<ul>
+<li>函数声明方式和js基本一致</li>
+<li>php中函数内部无法访问函数外部成员(理解技巧：没有作用域链)</li>
+<li>使用global来引用全局变量(不推荐这样玩，因为代码比较多的情况下会让人理解错误，不知道到底是局部变量还是全局变量，推荐按下一个视频方式来玩)</li>
+</ul>
+<h3 id="参考代码">参考代码</h3>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//求1到100的和</span>
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$num</span> = <span class="dv">100</span><span class="ot">;</span>
+<span class="kw">$sum</span> = <span class="dv">0</span><span class="ot">;</span>
+<span class="kw">for</span><span class="ot">(</span><span class="kw">$i</span>=<span class="dv">0</span><span class="ot">;</span><span class="kw">$i</span>&lt;=<span class="dv">100</span><span class="ot">;</span><span class="kw">$i</span>++<span class="ot">)</span>{
+    <span class="kw">$sum</span> += <span class="kw">$i</span><span class="ot">;</span>
+}
+<span class="fu">echo</span> <span class="kw">$sum</span><span class="ot">;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">function</span> cal<span class="ot">(</span><span class="kw">$num</span><span class="ot">)</span>{
+    <span class="kw">$sum</span> = <span class="dv">0</span><span class="ot">;</span>
+    <span class="kw">for</span><span class="ot">(</span><span class="kw">$i</span>=<span class="dv">0</span><span class="ot">;</span><span class="kw">$i</span>&lt;=<span class="kw">$num</span><span class="ot">;</span><span class="kw">$i</span>++<span class="ot">)</span>{
+        <span class="kw">$sum</span>+=<span class="kw">$i</span><span class="ot">;</span>
+    }
+    <span class="kw">return</span> <span class="kw">$sum</span><span class="ot">;</span>
+}
+<span class="kw">$num</span> = <span class="dv">100</span><span class="ot">;</span>
+<span class="fu">echo</span> cal<span class="ot">(</span><span class="kw">$num</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//这个代码不会得到正确的答案</span>
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$num</span> = <span class="dv">100</span><span class="ot">;</span>
+<span class="kw">function</span> cal<span class="ot">()</span>{
+    <span class="kw">$sum</span> = <span class="dv">0</span><span class="ot">;</span>
+    <span class="kw">for</span><span class="ot">(</span><span class="kw">$i</span>=<span class="dv">0</span><span class="ot">;</span><span class="kw">$i</span>&lt;=<span class="kw">$num</span><span class="ot">;</span><span class="kw">$i</span>++<span class="ot">)</span>{
+        <span class="kw">$sum</span>+=<span class="kw">$i</span><span class="ot">;</span>
+    }
+    <span class="kw">return</span> <span class="kw">$sum</span><span class="ot">;</span>
+}
+<span class="fu">echo</span> cal<span class="ot">(</span><span class="kw">$num</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//思考如下的代码的结果是多少</span>
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$num</span> = <span class="dv">100</span><span class="ot">;</span>
+<span class="kw">function</span> cal<span class="ot">()</span>{
+    <span class="kw">global</span> <span class="kw">$num</span><span class="ot">;</span>
+    <span class="fu">echo</span> <span class="kw">$num</span><span class="ot">;</span><span class="co">//结果多少</span>
+    <span class="kw">$num</span> = <span class="dv">20</span><span class="ot">;</span>
+    <span class="fu">echo</span> <span class="kw">$num</span><span class="ot">;</span><span class="co">//结果多少</span>
+}
+cal<span class="ot">();</span>
+<span class="fu">echo</span> <span class="kw">$num</span><span class="ot">;</span><span class="co">//结果多少</span></code></pre></div>
+<h2 id="超全局变量">超全局变量</h2>
+<ul>
+<li>$GLOBALS保存了所有全局变量，可以使用它来访问全局变量
+<ul>
+<li><span class="math inline"><em>G</em><em>L</em><em>O</em><em>B</em><em>A</em><em>L</em><em>S</em><em>有</em><em>点</em><em>类</em><em>似</em><em>j</em><em>s</em><em>中</em><em>的</em><em>w</em><em>i</em><em>n</em><em>d</em><em>o</em><em>w</em><em>对</em><em>象</em>，<em>后</em><em>面</em><em>用</em></span>GLOBALS用得多一些</li>
+</ul></li>
+<li>$_SERVER 获取服务器端相关信息</li>
+<li>$_REQUEST 获取提交参数</li>
+<li>$_GET 获取GET提交参数</li>
+<li>$_POST 获取POST提交参数</li>
+<li>$_FILES获取上传文件</li>
+<li>$_ENV 获取操作环境变量</li>
+<li>$_COOKIE 操作COOKIE</li>
+<li>$_SESSION 操作SESSION</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$a</span> = <span class="dv">100</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="kw">$GLOBALS</span><span class="ot">[</span><span class="st">&#39;a&#39;</span><span class="ot">];</span><span class="co">//值多少</span>
+<span class="fu">echo</span> <span class="st">&#39;&lt;br&gt;&#39;</span><span class="ot">;</span>
+<span class="kw">$GLOBALS</span><span class="ot">[</span><span class="st">&#39;b&#39;</span><span class="ot">]</span> = <span class="dv">200</span><span class="ot">;</span>
+<span class="kw">function</span> fn<span class="ot">()</span>{
+    <span class="fu">echo</span> <span class="kw">$GLOBALS</span><span class="ot">[</span><span class="st">&#39;a&#39;</span><span class="ot">];</span><span class="co">//值多少</span>
+    <span class="fu">echo</span> <span class="st">&#39;&lt;br&gt;&#39;</span><span class="ot">;</span>
+    <span class="fu">echo</span> <span class="kw">$GLOBALS</span><span class="ot">[</span><span class="st">&#39;b&#39;</span><span class="ot">];</span><span class="co">//值多少</span>
+    <span class="fu">echo</span> <span class="st">&#39;&lt;br&gt;&#39;</span><span class="ot">;</span>
+    <span class="kw">$GLOBALS</span><span class="ot">[</span><span class="st">&#39;c&#39;</span><span class="ot">]</span> = <span class="dv">300</span><span class="ot">;</span>
+    <span class="fu">echo</span> <span class="st">&#39;&lt;br&gt;&#39;</span><span class="ot">;</span>
+}
+fn<span class="ot">();</span>
+<span class="fu">echo</span> <span class="kw">$GLOBALS</span><span class="ot">[</span><span class="st">&#39;c&#39;</span><span class="ot">];</span><span class="co">//值多少</span></code></pre></div>
+<h2 id="常量的定义和使用">常量的定义和使用</h2>
+<ul>
+<li>define('PI',3.14159,false)//false表示大小写敏感，默认是false</li>
+<li>魔术常量
+<ul>
+<li><strong>LINE</strong></li>
+<li><strong>FILE</strong></li>
+<li><strong>DIR</strong></li>
+<li><strong>FUNCTION</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="fu">echo</span> <span class="kw">__LINE__</span><span class="ot">;</span><span class="co">//获取当前行数</span>
+<span class="fu">echo</span> <span class="st">&#39;&lt;hr&gt;&#39;</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="kw">__FILE__</span><span class="ot">;</span><span class="co">//获取当前文件的路径</span>
+<span class="fu">echo</span> <span class="st">&#39;&lt;hr&gt;&#39;</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="kw">__DIR__</span><span class="ot">;</span><span class="co">//获取当前文件所在的目录</span>
+<span class="fu">echo</span> <span class="st">&#39;&lt;hr&gt;&#39;</span><span class="ot">;</span>
+<span class="kw">function</span> test<span class="ot">()</span>{
+    <span class="fu">echo</span> <span class="kw">__FUNCTION__</span><span class="ot">;</span><span class="co">//获取当前函数的函数名</span>
+}
+test<span class="ot">();</span></code></pre></div>
+<ul>
+<li>补充：预定义常量
+<ul>
+<li>PHP_VERSION</li>
+<li>PHP_INT_MAX</li>
+</ul></li>
+</ul>
+<h2 id="文件载入">文件载入</h2>
+<ul>
+<li>include</li>
+<li>require</li>
+<li>include_once</li>
+<li>require_once</li>
+</ul>
+<h2 id="字符串相关函数">字符串相关函数</h2>
+<ul>
+<li>strlen</li>
+<li>mb_strlen(multibyte)</li>
+<li>mb_internal_encoding(忽略，用不上) 获取当前php环境的默认编码，通过这个方法也可以设置默认编码 mb_internal_encoding('utf-8')</li>
+</ul>
+<h3 id="补充">补充</h3>
+<ul>
+<li>trim</li>
+<li>explode</li>
+<li>implode</li>
+<li>strpos</li>
+<li>strrpos</li>
+<li>strchr</li>
+<li>strrchr</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$str</span> = <span class="st">&quot; abc &quot;</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="fu">mb_strlen</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">);</span>
+<span class="fu">echo</span> <span class="st">&#39;&lt;hr&gt;&#39;</span><span class="ot">;</span>
+<span class="kw">$str1</span> = <span class="fu">trim</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">);</span>
+<span class="fu">echo</span> <span class="fu">mb_strlen</span><span class="ot">(</span><span class="kw">$str1</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$str</span> = <span class="st">&quot;a|b|c&quot;</span><span class="ot">;</span>
+<span class="kw">$arr</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span><span class="kw">$str</span><span class="ot">);</span>
+<span class="fu">print_r</span><span class="ot">(</span><span class="kw">$arr</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$arr</span> = <span class="ot">[</span><span class="st">&quot;a&quot;</span><span class="ot">,</span><span class="st">&quot;b&quot;</span><span class="ot">,</span><span class="st">&quot;c&quot;</span><span class="ot">];</span>
+<span class="kw">$str</span> = <span class="fu">implode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span><span class="kw">$arr</span><span class="ot">);</span>
+<span class="fu">echo</span> <span class="kw">$str</span><span class="ot">;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$str</span> = <span class="st">&quot;abcd&quot;</span><span class="ot">;</span>
+<span class="kw">$index1</span> = <span class="fu">strpos</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">,</span><span class="st">&#39;c&#39;</span><span class="ot">);</span>
+<span class="fu">var_dump</span><span class="ot">(</span><span class="kw">$index1</span><span class="ot">);</span>
+<span class="fu">echo</span> <span class="st">&#39;&lt;hr&gt;&#39;</span><span class="ot">;</span>
+<span class="kw">$index2</span> = <span class="fu">strpos</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">,</span><span class="st">&#39;e&#39;</span><span class="ot">);</span>
+<span class="fu">var_dump</span><span class="ot">(</span><span class="kw">$index2</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$str</span> = <span class="st">&quot;acbcd&quot;</span><span class="ot">;</span>
+<span class="kw">$index1</span> = <span class="fu">strrpos</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">,</span><span class="st">&#39;c&#39;</span><span class="ot">);</span>
+<span class="fu">var_dump</span><span class="ot">(</span><span class="kw">$index1</span><span class="ot">);</span>
+<span class="fu">echo</span> <span class="st">&#39;&lt;hr&gt;&#39;</span><span class="ot">;</span>
+<span class="kw">$index2</span> = <span class="fu">strrpos</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">,</span><span class="st">&#39;e&#39;</span><span class="ot">);</span>
+<span class="fu">var_dump</span><span class="ot">(</span><span class="kw">$index2</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$str</span> = <span class="st">&quot;a.d.c.b.d&quot;</span><span class="ot">;</span>
+<span class="kw">$index</span> = <span class="fu">strrpos</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">,</span><span class="st">&#39;.&#39;</span><span class="ot">);</span>
+<span class="fu">echo</span> <span class="fu">substr</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">,</span><span class="kw">$index</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">//这个函数没有用，是为了引出下面这个函数</span>
+<span class="kw">$str</span> = <span class="st">&quot;a.d.c.b.d&quot;</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="fu">strchr</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">,</span><span class="st">&#39;.&#39;</span><span class="ot">);</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$str</span> = <span class="st">&quot;a.d.c.b.d&quot;</span><span class="ot">;</span>
+<span class="fu">echo</span> <span class="fu">strrchr</span><span class="ot">(</span><span class="kw">$str</span><span class="ot">,</span><span class="st">&#39;.&#39;</span><span class="ot">);</span></code></pre></div>
+<h2 id="时间处理函数">时间处理函数</h2>
+<ul>
+<li>注意事项：php时间单位是秒，js单位是毫秒</li>
+<li>time()时间戳</li>
+<li>date('Y-m-d H:i:s') 修改时区，需要修改配置文件 date.timezone = PRC|Asia/shanghai
+<ul>
+<li>东八区</li>
+</ul></li>
+<li>strtotime能够将时间转换成时间戳</li>
+</ul>
+<h2 id="补充函数">补充函数</h2>
+<ul>
+<li>max</li>
+<li>min</li>
+<li>ceil</li>
+<li>floor</li>
+<li>uniqid，基于微秒计的当前时间，一般用于生成唯一的id，类似身份证</li>
+<li>rand
+<ul>
+<li>rand(1000,9999)的含义 [1000,9999]</li>
+</ul></li>
+<li>parse_url</li>
+<li>array_slice</li>
+<li>array_splice</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">$url</span> = <span class="st">&#39;http://www.baidu.com:80/path?a=1&amp;b=2#anchor&#39;</span><span class="ot">;</span>
+<span class="fu">print_r</span><span class="ot">(</span><span class="fu">parse_url</span><span class="ot">(</span><span class="kw">$url</span><span class="ot">));</span></code></pre></div>
+<h3 id="练习-1">练习</h3>
+<ul>
+<li>打印24小时以后的时间戳
+<ul>
+<li>time() + 24 * 60 * 60</li>
+</ul></li>
+<li>打印一周以后的时间戳
+<ul>
+<li>time() + 7 * 24 * 60 * 60</li>
+</ul></li>
+<li>打印明天这个时间的时间格式
+<ul>
+<li>date('Y-m-d H:i:s',strtotime('+1 day'))</li>
+</ul></li>
+</ul>
+<h2 id="文件操作函数">文件操作函数</h2>
+<ul>
+<li>file_get_contents:读取文件内容，可以读取二进制文件，如果读取成功，返回文件内容，否则返回false</li>
+<li>设置响应头content-type:image/jpeg,可以展示图片内容</li>
+<li>file_put_contents(文件路径,文件内容,是否追加),默认覆盖原始内容，第三个参数控制是否追加，FILE_APPEND属于系统预定义的常量，表示文件末尾追加，具体的值是一个整数</li>
+</ul>
+<h2 id="php回顾">php回顾</h2>
+<ul>
+<li>php标记 <?php ?></li>
+<li>echo,print_r,var_dump</li>
+<li>字符串</li>
+<li>单引号与双引号</li>
+<li>数组、索引数组、关联数组、混合数组、二维数组、数组遍历</li>
+<li>变量作用域</li>
+<li>常量定义和使用define</li>
+<li>载入文件 include require include_once require_once</li>
+<li>常用内置函数
+<ul>
+<li>字符串相关
+<ol style="list-style-type: decimal">
+<li>strlen</li>
+</ol>
+<ul>
+<li>mb_strlen</li>
+<li>trim</li>
+<li>strpos</li>
+<li>strrpos</li>
+<li>strrchr</li>
+<li>explode</li>
+<li>implode</li>
+</ul></li>
+<li>时间相关
+<ul>
+<li>date</li>
+<li>time</li>
+<li>strtotime</li>
+</ul></li>
+<li>文件相关
+<ul>
+<li>file_get_contents</li>
+<li>file_put_contents</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="水果案例">水果案例</h2>
+<ul>
+<li>演示最终的效果(在视频前体验一下)，通过效果思考制作的思路(final.php)
+<ol style="list-style-type: decimal">
+<li>列表这块我们之前做过了同样的demo --&gt; 把一个数组循环渲染成列表</li>
+<li>详情页使用的数据和列表页是一样的 --&gt; 必须把索引数组数据单独提取到一个公共的文件当中</li>
+<li>将来这个案例还需要实现对水果的删除、编辑的功能 ---&gt; 涉及到对数据文件的文件读写</li>
+<li>为了便于不懂php的同事的使用，我们可以用一般的数据格式来表示数据(如下所示)</li>
+<li>思考：如何把如下的数据转换成数组????</li>
+</ol></li>
+</ul>
+<pre><code>1|img/banana1.jpg|香蕉
+2|img/apple1.jpg|苹果
+3|img/orange1.jpg|橘子
+4|img/pineapple1.jpg|菠萝
+5|img/mango1.jpg|芒果
+6|img/grape1.jpg|葡萄
+7|img/pomelo1.jpg|柚子
+8|img/pawpaw1.jpg|木瓜
+9|img/kivi1.jpg|猕猴桃
+10|img/persimmon1.jpg|柿子
+11|img/lemon1.jpg|柠檬
+12|img/pomegranate1.jpg|石榴
+13|img/pear1.jpg|梨
+14|img/strawberry1.jpg|草莓
+15|img/blueberry1.jpg|蓝莓
+16|img/waxberry1.jpg|杨莓
+17|img/peach1.jpg|桃
+18|img/coconut1.jpg|椰子
+19|img/apricot1.jpg|杏
+20|img/cherry1.jpg|樱桃</code></pre>
+<ul>
+<li>14-水果案例-基本实现思路.avi</li>
+<li>15-在php文件中根据数据动态生成水果列表.avi</li>
+<li>16-使用explode函数拆分字符串并生成对应结构.avi</li>
+<li>17-完成水果列表案例.avi</li>
+<li>思路整理
+<ol style="list-style-type: decimal">
+<li>学会数据建模
+<ul>
+<li>看到一组列表 --&gt; 索引数组</li>
+<li>看到一个东西的各方面描述 --&gt; 关联数组</li>
+</ul></li>
+<li>&quot;&quot;必须用双引号，否则不能解析</li>
+</ol></li>
+</ul>
+<h2 id="作业及补充答案及思路见word笔记第81页晚上任务">作业及补充（答案及思路见WORD笔记第81页晚上任务）</h2>
+<p>1、把后天的当前时间打印出来 2、打印1-100的偶数(提示：用循环+条件判断来实现) 3、封装加减乘除取余的函数，提取到公共的php文件当中，在当前文件中使用这几个函数 4、列表一下之前学过的表单控件(h5_input_type.html) + input[type=&quot;text&quot;] + input[type=&quot;radio&quot;] + input[type=&quot;checkbox&quot;] + textarea + select + input[type=&quot;file&quot;] + input[type=&quot;date&quot;] + 参考：http://www.runoob.com/tags/att-input-type.html</p>
+<h1 id="day03">day03</h1>
+<h2 id="每日目标">每日目标</h2>
+<ul>
+<li>能够进行服务器端渲染操作</li>
+<li>能够说出GET和POST请求方式的区别</li>
+<li>能够在服务器端分别接收GET、POST的请求参数</li>
+<li>能够处理复选按钮的请求参数</li>
+<li>能够进行文件上传并使用$_FILES处理</li>
+<li>综合案例:<strong>能够完成注册案例</strong></li>
+</ul>
+<h2 id="get和post的介绍">get和post的介绍</h2>
+<h3 id="摘要-10">摘要</h3>
+<ul>
+<li>学习目标介绍</li>
+<li>get请求、获取数据都是get请求
+<ul>
+<li>src</li>
+<li>href</li>
+<li>地址栏直接输地址</li>
+</ul></li>
+<li>get提交数据的方式</li>
+<li>post请求的特点，传参与get的区别 ### 总结</li>
+<li>客户端向服务器传递数据有两种方式
+<ul>
+<li>get的方式</li>
+<li>post的方式</li>
+<li>通过代码演示一下(这块马上会学，了解即可)</li>
+</ul></li>
+<li>get和post两种方式的特点
+<ul>
+<li>get传递数据只能是4kb,不安全(明信片)，历史记录里可以看得到的</li>
+<li>post传递数据没有限制(默认为8M,可以调大)，比较安全(物流快递包裹)，在header里面可以看到，关掉页面就没了</li>
+</ul></li>
+<li>get的应用
+<ul>
+<li>https://www.baidu.com/s?wd=关键字</li>
+<li>第一天讲的例子再看一次</li>
+</ul></li>
+<li>post的应用
+<ul>
+<li>第一天讲的表单例子再看一次</li>
+</ul></li>
+</ul>
+<h2 id="get请求方式的特点">get请求方式的特点</h2>
+<h3 id="摘要-11">摘要</h3>
+<ul>
+<li>form表单的action,method</li>
+<li>将数据提交给当前页面 01-form-get.php</li>
+<li>必须给input标签设置name属性</li>
+<li>超全局变量<span class="math inline"><em></em><sub><em>G</em></sub><em>E</em><em>T</em>,</span>_POST</li>
+<li>使用$_GET接收get提交的参数 ### 总结</li>
+<li>href,直接在地址栏输入网址,表单提交默认,表单提交主动设置method为get的时候，可以追加参数，参数能够被后台通过$_GET所接收</li>
+</ul>
+<h2 id="get请求方式的应用-水果案例详情页">get请求方式的应用-水果案例详情页</h2>
+<ul>
+<li>思路
+<ol style="list-style-type: decimal">
+<li>修改主页面a标签链接,跳转到商品详情页</li>
+<li>在商品详情页接收get参数</li>
+<li>读取fruit.txt文件，获取水果相关的数据</li>
+<li>遍历水果数据，判断水果id是否和get参数的id一致，如果一致，保存水果数据</li>
+<li>把水果数据填充到对应的html页面中</li>
+</ol></li>
+<li>getList.php+detail.php</li>
+</ul>
+<h2 id="post请求方式的使用说明">post请求方式的使用说明</h2>
+<ul>
+<li><span class="math inline"><em></em><sub><em>S</em></sub><em>E</em><em>R</em><em>V</em><em>E</em><em>R</em><em>判</em><em>断</em><em>请</em><em>求</em><em>是</em><em>否</em><em>是</em><em>p</em><em>o</em><em>s</em><em>t</em><em>类</em><em>型</em>，<em>如</em><em>果</em><em>是</em>，<em>则</em><em>打</em><em>印</em></span>_POST获取参数</li>
+<li>$_SERVER['REQUEST_METHOD']</li>
+<li>补充说明(必讲)
+<ul>
+<li>了解性知识：<span class="math inline"><em></em><sub><em>R</em></sub><em>E</em><em>Q</em><em>U</em><em>E</em><em>S</em><em>T</em><em>可</em><em>以</em><em>同</em><em>时</em><em>打</em><em>印</em></span>_GET,$_POST数据，但不建议使用，有可能会名字相同造成覆盖
+<ol style="list-style-type: decimal">
+<li>http://php.net/manual/zh/ini.core.php#ini.request-order</li>
+<li>This directive describes the order in which PHP registers GET, POST and Cookie variables into the _REQUEST array. Registration is done from left to right, newer values override older values.</li>
+</ol></li>
+<li>直接进入水果详情页没有带参数的时候会报错，如何修复
+<ol style="list-style-type: decimal">
+<li>$_SERVER['REQUEST_METHOD']</li>
+<li>isset判断变量、数组的键是否存在</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="几种表单元素收集数据方式的说明">几种表单元素收集数据方式的说明</h2>
+<ul>
+<li>$_SERVER['PHP_SELF']可以获取当前文件路径 -- 可以忽略，因为不写也是一样的</li>
+<li>复选框获取值的方式</li>
+<li>下拉列表值如果不设置，默认会找option的innerText</li>
+</ul>
+<h2 id="文件上传的基本实现">文件上传的基本实现</h2>
+<ul>
+<li>在看视频之前，可以用最简单的代码把文件上传做出来，先不要管一些细节问题</li>
+<li>enctype属性 ---&gt; 我们传递给后台的数据被以什么形式进行编码
+<ul>
+<li>默认application/x-www-form-urlencoded 键值对形式编码</li>
+<li>如果是文件上传，上传的是一个文件，没办法并且不能通过键值对的形式上传</li>
+</ul></li>
+<li>使用multipart/form-data multipart指的是多种形式的意思</li>
+<li>inut[type=”file”]</li>
+<li>move_uploaded_file</li>
+<li>这个案例讲得了一堆的细节，大家听听就好，没有人记得住的，做好笔记和示例代码，后面用得上的话，直接抄过去就行了</li>
+</ul>
+<h2 id="文件上传的补充1---判断各种出现错误的情况">文件上传的补充1 - 判断各种出现错误的情况</h2>
+<ul>
+<li>错误代码 - http://php.net/manual/zh/features.file-upload.errors.php</li>
+<li>empty判断用户是否上传文件</li>
+<li>if(strpos($type,&quot;image/&quot;)===0)必须要为三个等于号
+<ul>
+<li>如果找不到值为false</li>
+<li>false隐式类型转换和0比较为true</li>
+</ul></li>
+<li>允许用户上传的文件扩展名，为表单元素添加属性accept=&quot;.jpg,.png&quot;</li>
+</ul>
+<h2 id="文件上传的补充2----防止文件上传过大">文件上传的补充2 -- 防止文件上传过大</h2>
+<ul>
+<li>upload_max_filesize默认为2M，在php.ini中可以修改</li>
+<li>服务器对每一次post请求传递的数据做了限制，默认为8mb,可以在php.ini配置文件中修改post_max_size属性值</li>
+</ul>
+<h2 id="文件上传的补充3----多文件上传">文件上传的补充3 -- 多文件上传</h2>
+<h2 id="注册案例---上">注册案例 - 上</h2>
+<ol start="0" style="list-style-type: decimal">
+<li>在学习视频之前，先把整个效果查看一下
+<ul>
+<li>回忆水果案例的思路
+<ol style="list-style-type: decimal">
+<li>把数据放在一个txt文件当中</li>
+<li>使用文件读写来读入，使用explode来转换成真正的数组</li>
+</ol></li>
+<li>我们这个注册案例应该是刚好反过来的，一开始有一个txt，里面存了一堆的同学的信息</li>
+<li>点击注册的时候，把新添加的同学的信息写入这个txt当中 ---&gt; implode</li>
+</ul></li>
+<li>(这块建议大家忽略，先把逻辑功能做出来再考虑这些细节，一开始考虑这么多没必要)获取提交的用户名，对用户名数据进行验证，是否isset,是否是空串</li>
+<li>return语法，如果在php结构中直接写return,那么当运行到return代码的时候，整个php文件的执行就结束了，php后面的html代码也不会加载，但是如果写在函数中，就不会受到影响</li>
+<li>trim方法去掉空格</li>
+</ol>
+<h2 id="注册案例---下">注册案例 - 下</h2>
+<ol style="list-style-type: decimal">
+<li>implode，用指定字符串对数据进行合并，与explode作用相反</li>
+<li>判断文件是否上传成功，error!=0表示上传失败</li>
+<li>把生成的随机文件名写入到$_POST数组中</li>
+<li>file_put_content写文件，注意加换行符</li>
+</ol>
+<h2 id="晚上要讲的案例">晚上要讲的案例</h2>
+<ul>
+<li>写一个表单来测试GET和POST提交方法的区别，并输出其结果。
+<ol style="list-style-type: decimal">
+<li>表单元素要求有：用户名、密码、重复密码、性别(单选)、爱好(复选框)、学历(下拉列表)、个人介绍(文本域)等。</li>
+</ol></li>
+<li>把明天要讲的案例用现有学习的知识做出来
+<ol style="list-style-type: decimal">
+<li>先实现列表页，把list.html修改为list.php</li>
+<li>数据建模
+<ul>
+<li>标题 title</li>
+<li>歌手 singer</li>
+<li>专辑 album</li>
+<li>音乐 src</li>
+<li>id</li>
+</ul></li>
+<li>构建数组</li>
+</ol></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span> 
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$musicArr</span> = <span class="ot">[</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">1</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;王五之歌1&quot;</span><span class="ot">,</span><span class="st">&quot;singer&quot;</span>=&gt;<span class="st">&quot;王五&quot;</span><span class="ot">,</span><span class="st">&quot;album&quot;</span>=&gt;<span class="st">&quot;王五的歌&quot;</span><span class="ot">,</span><span class="st">&quot;src&quot;</span>=&gt; <span class="st">&quot;./mp3/See You Again.mp3&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">2</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;王五之歌2&quot;</span><span class="ot">,</span><span class="st">&quot;singer&quot;</span>=&gt;<span class="st">&quot;王五&quot;</span><span class="ot">,</span><span class="st">&quot;album&quot;</span>=&gt;<span class="st">&quot;王五的歌&quot;</span><span class="ot">,</span><span class="st">&quot;src&quot;</span>=&gt; <span class="st">&quot;./mp3/See You Again.mp3&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">3</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;王五之歌3&quot;</span><span class="ot">,</span><span class="st">&quot;singer&quot;</span>=&gt;<span class="st">&quot;王五&quot;</span><span class="ot">,</span><span class="st">&quot;album&quot;</span>=&gt;<span class="st">&quot;王五的歌&quot;</span><span class="ot">,</span><span class="st">&quot;src&quot;</span>=&gt; <span class="st">&quot;./mp3/See You Again.mp3&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">4</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;王五之歌4&quot;</span><span class="ot">,</span><span class="st">&quot;singer&quot;</span>=&gt;<span class="st">&quot;王五&quot;</span><span class="ot">,</span><span class="st">&quot;album&quot;</span>=&gt;<span class="st">&quot;王五的歌&quot;</span><span class="ot">,</span><span class="st">&quot;src&quot;</span>=&gt; <span class="st">&quot;./mp3/See You Again.mp3&quot;</span><span class="ot">]</span>
+<span class="ot">]</span>
+<span class="kw">?&gt;</span>
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;<span class="fu">link</span> rel=<span class="st">&quot;stylesheet&quot;</span> href=<span class="st">&quot;bootstrap.css&quot;</span>&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;container&quot;</span>&gt;
+        &lt;h1 <span class="kw">class</span>=<span class="st">&quot;text-center display-3 py-3&quot;</span>&gt;音乐列表&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;a href=<span class="st">&quot;./upload.php&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-dark&quot;</span>&gt;新增歌曲信息&lt;/a&gt;
+        &lt;table <span class="kw">class</span>=<span class="st">&quot;table table-bordered&quot;</span>&gt;
+            &lt;thead <span class="kw">class</span>=<span class="st">&quot;thead-inverse&quot;</span>&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;标题&lt;/th&gt;
+                    &lt;th&gt;歌手&lt;/th&gt;
+                    &lt;th&gt;专辑&lt;/th&gt;
+                    &lt;th&gt;音乐&lt;/th&gt;
+                    &lt;th&gt;操作&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;王五之歌&lt;/td&gt;
+                    &lt;td&gt;王五&lt;/td&gt;
+                    &lt;td&gt;王五的歌&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;audio src=<span class="st">&quot;./mp3/See You Again.mp3&quot;</span> controls&gt;&lt;/audio&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-primary&quot;</span>&gt;编辑&lt;/a&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-danger&quot;</span>&gt;删除&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;王五之歌&lt;/td&gt;
+                    &lt;td&gt;王五&lt;/td&gt;
+                    &lt;td&gt;王五的歌&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;audio src=<span class="st">&quot;./mp3/See You Again.mp3&quot;</span> controls&gt;&lt;/audio&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-primary&quot;</span>&gt;编辑&lt;/a&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-danger&quot;</span>&gt;删除&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;王五之歌&lt;/td&gt;
+                    &lt;td&gt;王五&lt;/td&gt;
+                    &lt;td&gt;王五的歌&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;audio src=<span class="st">&quot;./mp3/See You Again.mp3&quot;</span> controls&gt;&lt;/audio&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-primary&quot;</span>&gt;编辑&lt;/a&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-danger&quot;</span>&gt;删除&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;王五之歌&lt;/td&gt;
+                    &lt;td&gt;王五&lt;/td&gt;
+                    &lt;td&gt;王五的歌&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;audio src=<span class="st">&quot;./mp3/See You Again.mp3&quot;</span> controls&gt;&lt;/audio&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-primary&quot;</span>&gt;编辑&lt;/a&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-danger&quot;</span>&gt;删除&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;王五之歌&lt;/td&gt;
+                    &lt;td&gt;王五&lt;/td&gt;
+                    &lt;td&gt;王五的歌&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;audio src=<span class="st">&quot;./mp3/See You Again.mp3&quot;</span> controls&gt;&lt;/audio&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-primary&quot;</span>&gt;编辑&lt;/a&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-danger&quot;</span>&gt;删除&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;王五之歌&lt;/td&gt;
+                    &lt;td&gt;王五&lt;/td&gt;
+                    &lt;td&gt;王五的歌&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;audio src=<span class="st">&quot;./mp3/See You Again.mp3&quot;</span> controls&gt;&lt;/audio&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-primary&quot;</span>&gt;编辑&lt;/a&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-danger&quot;</span>&gt;删除&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div>
+<pre><code>4. 动态渲染列表数据</code></pre>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span> 
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$musicArr</span> = <span class="ot">[</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">1</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;王五之歌1&quot;</span><span class="ot">,</span><span class="st">&quot;singer&quot;</span>=&gt;<span class="st">&quot;王五&quot;</span><span class="ot">,</span><span class="st">&quot;album&quot;</span>=&gt;<span class="st">&quot;王五的歌&quot;</span><span class="ot">,</span><span class="st">&quot;src&quot;</span>=&gt; <span class="st">&quot;./mp3/See You Again.mp3&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">2</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;王五之歌2&quot;</span><span class="ot">,</span><span class="st">&quot;singer&quot;</span>=&gt;<span class="st">&quot;王五&quot;</span><span class="ot">,</span><span class="st">&quot;album&quot;</span>=&gt;<span class="st">&quot;王五的歌&quot;</span><span class="ot">,</span><span class="st">&quot;src&quot;</span>=&gt; <span class="st">&quot;./mp3/See You Again.mp3&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">3</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;王五之歌3&quot;</span><span class="ot">,</span><span class="st">&quot;singer&quot;</span>=&gt;<span class="st">&quot;王五&quot;</span><span class="ot">,</span><span class="st">&quot;album&quot;</span>=&gt;<span class="st">&quot;王五的歌&quot;</span><span class="ot">,</span><span class="st">&quot;src&quot;</span>=&gt; <span class="st">&quot;./mp3/See You Again.mp3&quot;</span><span class="ot">],</span>
+    <span class="ot">[</span><span class="st">&quot;id&quot;</span>=&gt;<span class="dv">4</span><span class="ot">,</span><span class="st">&quot;title&quot;</span>=&gt;<span class="st">&quot;王五之歌4&quot;</span><span class="ot">,</span><span class="st">&quot;singer&quot;</span>=&gt;<span class="st">&quot;王五&quot;</span><span class="ot">,</span><span class="st">&quot;album&quot;</span>=&gt;<span class="st">&quot;王五的歌&quot;</span><span class="ot">,</span><span class="st">&quot;src&quot;</span>=&gt; <span class="st">&quot;./mp3/See You Again.mp3&quot;</span><span class="ot">]</span>
+<span class="ot">]</span>
+<span class="kw">?&gt;</span>
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;<span class="fu">link</span> rel=<span class="st">&quot;stylesheet&quot;</span> href=<span class="st">&quot;bootstrap.css&quot;</span>&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;container&quot;</span>&gt;
+        &lt;h1 <span class="kw">class</span>=<span class="st">&quot;text-center display-3 py-3&quot;</span>&gt;音乐列表&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;a href=<span class="st">&quot;./upload.php&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-dark&quot;</span>&gt;新增歌曲信息&lt;/a&gt;
+        &lt;table <span class="kw">class</span>=<span class="st">&quot;table table-bordered&quot;</span>&gt;
+            &lt;thead <span class="kw">class</span>=<span class="st">&quot;thead-inverse&quot;</span>&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;标题&lt;/th&gt;
+                    &lt;th&gt;歌手&lt;/th&gt;
+                    &lt;th&gt;专辑&lt;/th&gt;
+                    &lt;th&gt;音乐&lt;/th&gt;
+                    &lt;th&gt;操作&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;<span class="ot">?</span>php <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$musicArr</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {<span class="kw">?&gt;</span>
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$value</span><span class="ot">[</span><span class="st">&#39;title&#39;</span><span class="ot">];</span><span class="kw">?&gt;</span>&lt;/td&gt;
+                    &lt;td&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$value</span><span class="ot">[</span><span class="st">&#39;singer&#39;</span><span class="ot">];</span> <span class="kw">?&gt;</span>&lt;/td&gt;
+                    &lt;td&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$value</span><span class="ot">[</span><span class="st">&#39;album&#39;</span><span class="ot">];</span> <span class="kw">?&gt;</span>&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;audio src=<span class="st">&quot;&lt;?php echo </span><span class="kw">$value</span><span class="st">[&#39;src&#39;]; ?&gt;&quot;</span> controls&gt;&lt;/audio&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-primary&quot;</span>&gt;编辑&lt;/a&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-danger&quot;</span>&gt;删除&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;<span class="ot">?</span>php } <span class="kw">?&gt;</span>
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div>
+<pre><code>5. 把数组提取出去，用txt文本数据格式来表示</code></pre>
+<pre><code>1|王五之歌1|王五|王五的歌|./mp3/See You Again.mp3
+2|王五之歌2|王五|王五的歌|./mp3/See You Again.mp3
+3|王五之歌3|王五|王五的歌|./mp3/See You Again.mp3
+4|王五之歌4|王五|王五的歌|./mp3/See You Again.mp3
+5|王五之歌5|王五|王五的歌|./mp3/See You Again.mp3
+6|王五之歌6|王五|王五的歌|./mp3/See You Again.mp3</code></pre>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span> 
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$data</span> = <span class="fu">file_get_contents</span><span class="ot">(</span><span class="st">&#39;./data.txt&#39;</span><span class="ot">);</span>
+<span class="kw">$arr1</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">,</span><span class="kw">$data</span><span class="ot">);</span>
+<span class="kw">$musicArr</span> = <span class="ot">[];</span>
+<span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$arr1</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+    <span class="kw">$musicArr</span><span class="ot">[]</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span><span class="kw">$value</span><span class="ot">);</span>
+}
+<span class="kw">?&gt;</span>
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;<span class="fu">link</span> rel=<span class="st">&quot;stylesheet&quot;</span> href=<span class="st">&quot;bootstrap.css&quot;</span>&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;container&quot;</span>&gt;
+        &lt;h1 <span class="kw">class</span>=<span class="st">&quot;text-center display-3 py-3&quot;</span>&gt;音乐列表&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;a href=<span class="st">&quot;./upload.php&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-dark&quot;</span>&gt;新增歌曲信息&lt;/a&gt;
+        &lt;table <span class="kw">class</span>=<span class="st">&quot;table table-bordered&quot;</span>&gt;
+            &lt;thead <span class="kw">class</span>=<span class="st">&quot;thead-inverse&quot;</span>&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;标题&lt;/th&gt;
+                    &lt;th&gt;歌手&lt;/th&gt;
+                    &lt;th&gt;专辑&lt;/th&gt;
+                    &lt;th&gt;音乐&lt;/th&gt;
+                    &lt;th&gt;操作&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;<span class="ot">?</span>php <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$musicArr</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {<span class="kw">?&gt;</span>
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$value</span><span class="ot">[</span><span class="dv">1</span><span class="ot">];</span><span class="kw">?&gt;</span>&lt;/td&gt;
+                    &lt;td&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$value</span><span class="ot">[</span><span class="dv">2</span><span class="ot">];</span> <span class="kw">?&gt;</span>&lt;/td&gt;
+                    &lt;td&gt;&lt;<span class="ot">?</span>php <span class="fu">echo</span> <span class="kw">$value</span><span class="ot">[</span><span class="dv">3</span><span class="ot">];</span> <span class="kw">?&gt;</span>&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;audio src=<span class="st">&quot;&lt;?php echo </span><span class="kw">$value[4]</span><span class="st">; ?&gt;&quot;</span> controls&gt;&lt;/audio&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-primary&quot;</span>&gt;编辑&lt;/a&gt;
+                        &lt;a href=<span class="st">&quot;#&quot;</span> <span class="kw">class</span>=<span class="st">&quot;btn btn-danger&quot;</span>&gt;删除&lt;/a&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;<span class="ot">?</span>php } <span class="kw">?&gt;</span>
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div>
+<pre><code>6. 增加功能(upload.html -&gt; upload.php)</code></pre>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span>
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">if</span><span class="ot">(</span>!<span class="fu">empty</span><span class="ot">(</span><span class="kw">$_POST</span><span class="ot">))</span>{
+    <span class="co">// print_r($_POST);</span>
+    <span class="co">// print_r($_FILES);</span>
+    <span class="kw">$data</span> = <span class="fu">file_get_contents</span><span class="ot">(</span><span class="st">&#39;./data.txt&#39;</span><span class="ot">);</span>
+    <span class="kw">$arr1</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">,</span> <span class="kw">$data</span><span class="ot">);</span>
+    <span class="kw">$musicArr</span> = <span class="ot">[];</span>
+    <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$arr1</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+        <span class="kw">$musicArr</span><span class="ot">[]</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span> <span class="kw">$value</span><span class="ot">);</span>
+    }
+    <span class="kw">$file</span> = <span class="kw">$_FILES</span><span class="ot">[</span><span class="st">&#39;source&#39;</span><span class="ot">];</span>
+    <span class="kw">if</span><span class="ot">(</span>!<span class="ot">(</span><span class="kw">$file</span><span class="ot">[</span><span class="st">&#39;error&#39;</span><span class="ot">]</span> == <span class="dv">0</span><span class="ot">))</span>{
+        <span class="fu">echo</span> <span class="st">&#39;音乐上传出错&#39;</span><span class="ot">;</span>
+        <span class="fu">echo</span> <span class="st">&#39;&lt;script&gt;setTimeout(function(){location.href=&quot;./upload.php&quot;},1000)&lt;/script&gt;&#39;</span><span class="ot">;</span>
+        <span class="fu">die</span><span class="ot">();</span>
+    }
+    <span class="kw">$fileName</span> = <span class="st">&#39;./mp3/&#39;</span>.<span class="fu">rand</span><span class="ot">(</span><span class="dv">10000</span><span class="ot">,</span><span class="dv">99999</span><span class="ot">)</span>.<span class="fu">time</span><span class="ot">()</span>.<span class="fu">strrchr</span><span class="ot">(</span><span class="kw">$file</span><span class="ot">[</span><span class="st">&#39;name&#39;</span><span class="ot">],</span><span class="st">&#39;.&#39;</span><span class="ot">);</span>
+    <span class="kw">$res</span> = <span class="fu">move_uploaded_file</span><span class="ot">(</span><span class="kw">$file</span><span class="ot">[</span><span class="st">&#39;tmp_name&#39;</span><span class="ot">],</span> <span class="kw">$fileName</span><span class="ot">);</span>
+    <span class="kw">if</span> <span class="ot">(</span><span class="kw">$res</span><span class="ot">)</span> {
+        <span class="kw">$arr2</span> = <span class="ot">[</span><span class="fu">count</span><span class="ot">(</span><span class="kw">$musicArr</span><span class="ot">),</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;title&#39;</span><span class="ot">],</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;geshou&#39;</span><span class="ot">],</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;zhuanji&#39;</span><span class="ot">],</span> <span class="kw">$fileName</span><span class="ot">];</span>
+        <span class="kw">$musicArr</span><span class="ot">[]</span> = <span class="kw">$arr2</span><span class="ot">;</span>
+        <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$musicArr</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+            <span class="kw">$arr3</span><span class="ot">[]</span> = <span class="fu">implode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span><span class="kw">$value</span><span class="ot">);</span>     
+        }
+        <span class="co">// print_r($arr3);</span>
+        <span class="co">// echo implode(&quot;\n&quot;,$arr3);</span>
+        <span class="kw">$res</span> = <span class="fu">file_put_contents</span><span class="ot">(</span><span class="st">&#39;./data.txt&#39;</span><span class="ot">,</span><span class="fu">implode</span><span class="ot">(</span><span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">,</span><span class="kw">$arr3</span><span class="ot">));</span>
+        <span class="kw">if</span><span class="ot">(</span><span class="kw">$res</span><span class="ot">)</span>{
+            <span class="fu">echo</span> <span class="st">&quot;&lt;script&gt;location.href=&#39;./list.php&#39;&lt;/script&gt;&quot;</span><span class="ot">;</span>
+        }
+    }
+    
+}
+<span class="kw">?&gt;</span>
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;<span class="fu">link</span> rel=<span class="st">&quot;stylesheet&quot;</span> href=<span class="st">&quot;bootstrap.css&quot;</span>&gt;
+    &lt;style&gt;
+        .showInfo {
+            display: block<span class="ot">;</span>
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;container&quot;</span>&gt;
+        &lt;h1 <span class="kw">class</span>=<span class="st">&quot; display-3 py-3&quot;</span>&gt;音乐上传&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;!-- 表单结构： --&gt;
+        &lt;form action=<span class="st">&quot;./upload.php&quot;</span> method=<span class="st">&quot;POST&quot;</span> enctype=<span class="st">&quot;multipart/form-data&quot;</span>&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;title&quot;</span>&gt;标题&lt;/label&gt;
+                &lt;!-- 下面的所有 is-invalid 均为要判断的类名 --&gt;
+                &lt;input type=<span class="st">&quot;text&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;title&quot;</span> name=<span class="st">&quot;title&quot;</span>&gt;
+                &lt;!-- <span class="fu">in_array</span><span class="ot">(</span><span class="st">&quot;title&quot;</span><span class="ot">,</span><span class="kw">$errorArr</span><span class="ot">)</span>:判断当前<span class="kw">$errorArr</span>有没有title这个值，如果有返回true --&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback &quot;</span>&gt;这是一个标题&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;geshou&quot;</span>&gt;歌手&lt;/label&gt;
+                &lt;input type=<span class="st">&quot;text&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;geshou&quot;</span> name=<span class="st">&quot;geshou&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback &quot;</span>&gt;歌手的名称&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;zhuanji&quot;</span>&gt;专辑&lt;/label&gt;
+                &lt;input type=<span class="st">&quot;text&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;zhuanji&quot;</span> name=<span class="st">&quot;zhuanji&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback &quot;</span>&gt;专辑名称&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;source&quot;</span>&gt;资源文件&lt;/label&gt;
+                &lt;!-- accept 用于设置可以接受的文件类型，可以使用MIMEtype<span class="ot">,</span>也可以使用后缀名，使用逗号连接 --&gt;
+                &lt;input type=<span class="st">&quot;file&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;source&quot;</span> name=<span class="st">&quot;source&quot;</span> accept=<span class="st">&quot;.mp3&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback &quot;</span>&gt;文件上传&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;button <span class="kw">class</span>=<span class="st">&quot;btn btn-primary btn-block&quot;</span>&gt;上传&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div>
+<pre><code>7. 删除
+    - 修改list.php --&gt; `&lt;a href=&quot;del.php?id=&lt;?php echo $value[0];?&gt;&quot; class=&quot;btn btn-danger&quot;&gt;删除&lt;/a&gt;`
+    - 添加del.php</code></pre>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span> 
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="co">// print_r($_GET);</span>
+<span class="kw">$arr1</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">,</span> <span class="fu">file_get_contents</span><span class="ot">(</span><span class="st">&#39;./data.txt&#39;</span><span class="ot">));</span>
+<span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$arr1</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+    <span class="kw">$musicArr</span><span class="ot">[]</span> =  <span class="fu">explode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span><span class="kw">$value</span><span class="ot">);</span>
+}
+<span class="co">// print_r($musicArr);</span>
+<span class="kw">for</span><span class="ot">(</span><span class="kw">$i</span>=<span class="dv">0</span><span class="ot">;</span><span class="kw">$i</span>&lt;<span class="fu">count</span><span class="ot">(</span><span class="kw">$musicArr</span><span class="ot">);</span><span class="kw">$i</span>++<span class="ot">)</span>{
+    <span class="kw">if</span><span class="ot">(</span><span class="kw">$_GET</span><span class="ot">[</span><span class="st">&#39;id&#39;</span><span class="ot">]</span> == <span class="kw">$musicArr</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">][</span><span class="dv">0</span><span class="ot">])</span>{
+        <span class="fu">array_splice</span><span class="ot">(</span><span class="kw">$musicArr</span><span class="ot">,</span><span class="kw">$i</span><span class="ot">);</span>
+        <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$musicArr</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+            <span class="kw">$arr2</span><span class="ot">[]</span> = <span class="fu">implode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span><span class="kw">$value</span><span class="ot">);</span>
+        }
+        <span class="fu">file_put_contents</span><span class="ot">(</span><span class="st">&#39;./data.txt&#39;</span><span class="ot">,</span><span class="fu">implode</span><span class="ot">(</span><span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">,</span><span class="kw">$arr2</span><span class="ot">));</span>
+        <span class="fu">echo</span> <span class="st">&#39;&lt;script&gt;location.href=&quot;./list.php&quot;&lt;/script&gt;&#39;</span><span class="ot">;</span>
+        <span class="kw">break</span><span class="ot">;</span>
+    }
+}
+<span class="kw">?&gt;</span></code></pre></div>
+<pre><code>8. 显示编辑(如果前面的掌握得好，可以做，如果不是很理解，需要自己写代码了，这块就不讲了)</code></pre>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span> 
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$arr1</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">,</span> <span class="fu">file_get_contents</span><span class="ot">(</span><span class="st">&#39;./data.txt&#39;</span><span class="ot">));</span>
+<span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$arr1</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+    <span class="kw">$musicArr</span><span class="ot">[]</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span> <span class="kw">$value</span><span class="ot">);</span>
+}
+<span class="co">//显示编辑页面</span>
+<span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$musicArr</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+    <span class="kw">if</span> <span class="ot">(</span><span class="kw">$value</span><span class="ot">[</span><span class="dv">0</span><span class="ot">]</span> == <span class="kw">$_GET</span><span class="ot">[</span><span class="st">&#39;id&#39;</span><span class="ot">])</span> {
+        <span class="kw">$myArr</span> = <span class="kw">$value</span><span class="ot">;</span>
+        <span class="kw">break</span><span class="ot">;</span>
+    }
+}
+
+<span class="kw">?&gt;</span>
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;<span class="fu">link</span> rel=<span class="st">&quot;stylesheet&quot;</span> href=<span class="st">&quot;bootstrap.css&quot;</span>&gt;
+    &lt;style&gt;
+        .showInfo {
+            display: block<span class="ot">;</span>
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;container&quot;</span>&gt;
+        &lt;h1 <span class="kw">class</span>=<span class="st">&quot; display-3 py-3&quot;</span>&gt;编辑&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;!-- 表单结构： --&gt;
+        &lt;form method=<span class="st">&quot;post&quot;</span> enctype=<span class="st">&quot;multipart/form-data&quot;</span>&gt;
+            &lt;input type=<span class="st">&quot;hidden&quot;</span> name=<span class="st">&quot;id&quot;</span> value=<span class="st">&quot;&lt;?php echo </span><span class="kw">$myArr[0]</span><span class="st"> ?&gt;&quot;</span>&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;title&quot;</span>&gt;标题&lt;/label&gt;
+                &lt;input type=<span class="st">&quot;text&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;title&quot;</span> name=<span class="st">&quot;title&quot;</span> value=<span class="st">&quot;&lt;?php echo </span><span class="kw">$myArr[1]</span><span class="st"> ?&gt;&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback&quot;</span>&gt;这是一个标题&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;geshou&quot;</span>&gt;歌手&lt;/label&gt;
+                &lt;input type=<span class="st">&quot;text&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;geshou&quot;</span> name=<span class="st">&quot;geshou&quot;</span> value=<span class="st">&quot;&lt;?php echo </span><span class="kw">$myArr[2]</span><span class="st"> ?&gt;&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback&quot;</span>&gt;歌手的名称&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;zhuanji&quot;</span>&gt;专辑&lt;/label&gt;
+                &lt;input type=<span class="st">&quot;text&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;zhuanji&quot;</span> name=<span class="st">&quot;zhuanji&quot;</span> value=<span class="st">&quot;&lt;?php echo </span><span class="kw">$myArr[3]</span><span class="st"> ?&gt;&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback&quot;</span>&gt;专辑名称&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;source&quot;</span>&gt;资源文件&lt;/label&gt;
+                &lt;!-- accept 用于设置可以接受的文件类型，可以使用MIMEtype<span class="ot">,</span>也可以使用后缀名，使用逗号连接 --&gt;
+                &lt;input type=<span class="st">&quot;file&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;source&quot;</span> name=<span class="st">&quot;source&quot;</span> accept=<span class="st">&quot;.mp3&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback&quot;</span>&gt;文件上传&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;button <span class="kw">class</span>=<span class="st">&quot;btn btn-primary btn-block&quot;</span>&gt;保存&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div>
+<pre><code>9. 处理编辑</code></pre>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="kw">&lt;?php</span> 
+<span class="fu">header</span><span class="ot">(</span><span class="st">&#39;content-type:text/html;charset=utf-8&#39;</span><span class="ot">);</span>
+<span class="kw">$arr1</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">,</span> <span class="fu">file_get_contents</span><span class="ot">(</span><span class="st">&#39;./data.txt&#39;</span><span class="ot">));</span>
+<span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$arr1</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+    <span class="kw">$musicArr</span><span class="ot">[]</span> = <span class="fu">explode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span> <span class="kw">$value</span><span class="ot">);</span>
+}
+<span class="kw">if</span><span class="ot">(</span><span class="kw">$_SERVER</span><span class="ot">[</span><span class="st">&#39;REQUEST_METHOD&#39;</span><span class="ot">]</span> == <span class="st">&#39;GET&#39;</span><span class="ot">)</span>{
+    <span class="co">//显示编辑页面</span>
+    <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$musicArr</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+        <span class="kw">if</span> <span class="ot">(</span><span class="kw">$value</span><span class="ot">[</span><span class="dv">0</span><span class="ot">]</span> == <span class="kw">$_GET</span><span class="ot">[</span><span class="st">&#39;id&#39;</span><span class="ot">])</span> {
+            <span class="kw">$myArr</span> = <span class="kw">$value</span><span class="ot">;</span>
+            <span class="kw">break</span><span class="ot">;</span>
+        }
+    }
+}<span class="kw">else</span>{
+    <span class="co">//处理编辑信息</span>
+    <span class="co">// die;</span>
+    <span class="kw">for</span><span class="ot">(</span><span class="kw">$i</span>=<span class="dv">0</span><span class="ot">;</span><span class="kw">$i</span>&lt;<span class="fu">count</span><span class="ot">(</span><span class="kw">$musicArr</span><span class="ot">);</span><span class="kw">$i</span>++<span class="ot">)</span>{
+        <span class="kw">if</span><span class="ot">(</span><span class="kw">$musicArr</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">][</span><span class="dv">0</span><span class="ot">]</span> == <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;id&#39;</span><span class="ot">])</span>{
+            <span class="kw">$file</span> = <span class="kw">$_FILES</span><span class="ot">[</span><span class="st">&#39;source&#39;</span><span class="ot">];</span>
+            <span class="kw">$tempArr</span> = <span class="ot">[</span><span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;id&#39;</span><span class="ot">],</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;title&#39;</span><span class="ot">],</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;geshou&#39;</span><span class="ot">],</span> <span class="kw">$_POST</span><span class="ot">[</span><span class="st">&#39;zhuanji&#39;</span><span class="ot">]];</span>            
+            <span class="kw">if</span><span class="ot">(</span><span class="kw">$file</span><span class="ot">[</span><span class="st">&#39;error&#39;</span><span class="ot">]</span> == <span class="dv">0</span><span class="ot">)</span>{
+                <span class="co">//有上传新的音乐</span>
+                <span class="kw">$fileName</span> = <span class="st">&#39;./mp3/&#39;</span>.<span class="fu">rand</span><span class="ot">(</span><span class="dv">10000</span><span class="ot">,</span><span class="dv">99999</span><span class="ot">)</span>.<span class="fu">time</span><span class="ot">()</span>.<span class="fu">strrchr</span><span class="ot">(</span><span class="kw">$file</span><span class="ot">[</span><span class="st">&#39;name&#39;</span><span class="ot">],</span><span class="st">&#39;.&#39;</span><span class="ot">);</span>
+                <span class="kw">$res</span> = <span class="fu">move_uploaded_file</span><span class="ot">(</span><span class="kw">$file</span><span class="ot">[</span><span class="st">&#39;tmp_name&#39;</span><span class="ot">],</span><span class="kw">$fileName</span><span class="ot">);</span>
+                <span class="kw">if</span><span class="ot">(</span><span class="kw">$res</span><span class="ot">)</span>{
+                    <span class="kw">$tempArr</span><span class="ot">[]</span> = <span class="kw">$fileName</span><span class="ot">;</span>
+                }<span class="kw">else</span>{
+                    <span class="kw">$tempArr</span><span class="ot">[]</span> = <span class="kw">$musicArr</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">][</span><span class="dv">4</span><span class="ot">];</span>
+                }
+                <span class="kw">$musicArr</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">]</span> = <span class="kw">$tempArr</span><span class="ot">;</span>
+                <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$musicArr</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+                    <span class="kw">$arr2</span><span class="ot">[]</span> = <span class="fu">implode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span><span class="kw">$value</span><span class="ot">);</span>
+                }
+                <span class="kw">$res</span> = <span class="fu">file_put_contents</span><span class="ot">(</span><span class="st">&#39;./data.txt&#39;</span><span class="ot">,</span><span class="fu">implode</span><span class="ot">(</span><span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">,</span><span class="kw">$arr2</span><span class="ot">));</span>
+                <span class="kw">if</span><span class="ot">(</span><span class="kw">$res</span><span class="ot">)</span>{
+                    <span class="fu">echo</span> <span class="st">&quot;&lt;script&gt;location.href=&#39;./list.php&#39;&lt;/script&gt;&quot;</span><span class="ot">;</span>
+                }<span class="kw">else</span>{
+                    <span class="fu">echo</span> <span class="st">&quot;&lt;script&gt;location.href=&#39;./edit.php&#39;&lt;/script&gt;&quot;</span><span class="ot">;</span>
+                }
+            }<span class="kw">else</span>{
+                <span class="kw">$tempArr</span><span class="ot">[]</span> = <span class="kw">$musicArr</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">][</span><span class="dv">4</span><span class="ot">];</span>
+                <span class="kw">$musicArr</span><span class="ot">[</span><span class="kw">$i</span><span class="ot">]</span> = <span class="kw">$tempArr</span><span class="ot">;</span>
+                <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$musicArr</span> <span class="kw">as</span> <span class="kw">$key</span> =&gt; <span class="kw">$value</span><span class="ot">)</span> {
+                    <span class="kw">$arr2</span><span class="ot">[]</span> = <span class="fu">implode</span><span class="ot">(</span><span class="st">&#39;|&#39;</span><span class="ot">,</span> <span class="kw">$value</span><span class="ot">);</span>
+                }
+                <span class="kw">$res</span> = <span class="fu">file_put_contents</span><span class="ot">(</span><span class="st">&#39;./data.txt&#39;</span><span class="ot">,</span> <span class="fu">implode</span><span class="ot">(</span><span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">,</span> <span class="kw">$arr2</span><span class="ot">));</span>
+                <span class="kw">if</span> <span class="ot">(</span><span class="kw">$res</span><span class="ot">)</span> {
+                    <span class="fu">echo</span> <span class="st">&quot;&lt;script&gt;location.href=&#39;./list.php&#39;&lt;/script&gt;&quot;</span><span class="ot">;</span>
+                } <span class="kw">else</span> {
+                    <span class="fu">echo</span> <span class="st">&quot;&lt;script&gt;location.href=&#39;./edit.php&#39;&lt;/script&gt;&quot;</span><span class="ot">;</span>
+                }
+            }
+
+        } 
+    }
+}
+<span class="kw">?&gt;</span>
+&lt;!<span class="kw">DOCTYPE</span> html&gt;
+
+&lt;html lang=<span class="st">&quot;en&quot;</span>&gt;
+
+&lt;head&gt;
+    &lt;meta charset=<span class="st">&quot;UTF-8&quot;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;<span class="fu">link</span> rel=<span class="st">&quot;stylesheet&quot;</span> href=<span class="st">&quot;bootstrap.css&quot;</span>&gt;
+    &lt;style&gt;
+        .showInfo {
+            display: block<span class="ot">;</span>
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div <span class="kw">class</span>=<span class="st">&quot;container&quot;</span>&gt;
+        &lt;h1 <span class="kw">class</span>=<span class="st">&quot; display-3 py-3&quot;</span>&gt;编辑&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;!-- 表单结构： --&gt;
+        &lt;form method=<span class="st">&quot;post&quot;</span> enctype=<span class="st">&quot;multipart/form-data&quot;</span>&gt;
+            &lt;input type=<span class="st">&quot;hidden&quot;</span> name=<span class="st">&quot;id&quot;</span> value=<span class="st">&quot;&lt;?php echo </span><span class="kw">$myArr[0]</span><span class="st"> ?&gt;&quot;</span>&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;title&quot;</span>&gt;标题&lt;/label&gt;
+                &lt;input type=<span class="st">&quot;text&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;title&quot;</span> name=<span class="st">&quot;title&quot;</span> value=<span class="st">&quot;&lt;?php echo </span><span class="kw">$myArr[1]</span><span class="st"> ?&gt;&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback&quot;</span>&gt;这是一个标题&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;geshou&quot;</span>&gt;歌手&lt;/label&gt;
+                &lt;input type=<span class="st">&quot;text&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;geshou&quot;</span> name=<span class="st">&quot;geshou&quot;</span> value=<span class="st">&quot;&lt;?php echo </span><span class="kw">$myArr[2]</span><span class="st"> ?&gt;&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback&quot;</span>&gt;歌手的名称&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;zhuanji&quot;</span>&gt;专辑&lt;/label&gt;
+                &lt;input type=<span class="st">&quot;text&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;zhuanji&quot;</span> name=<span class="st">&quot;zhuanji&quot;</span> value=<span class="st">&quot;&lt;?php echo </span><span class="kw">$myArr[3]</span><span class="st"> ?&gt;&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback&quot;</span>&gt;专辑名称&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;div <span class="kw">class</span>=<span class="st">&quot;form-group&quot;</span>&gt;
+                &lt;label <span class="kw">for</span>=<span class="st">&quot;source&quot;</span>&gt;资源文件&lt;/label&gt;
+                &lt;!-- accept 用于设置可以接受的文件类型，可以使用MIMEtype<span class="ot">,</span>也可以使用后缀名，使用逗号连接 --&gt;
+                &lt;input type=<span class="st">&quot;file&quot;</span> <span class="kw">class</span>=<span class="st">&quot;form-control&quot;</span> id=<span class="st">&quot;source&quot;</span> name=<span class="st">&quot;source&quot;</span> accept=<span class="st">&quot;.mp3&quot;</span>&gt;
+                &lt;small <span class="kw">class</span>=<span class="st">&quot;invalid-feedback&quot;</span>&gt;文件上传&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;button <span class="kw">class</span>=<span class="st">&quot;btn btn-primary btn-block&quot;</span>&gt;保存&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div>
+<h1 id="day04">day04</h1>
+<h2 id="学习目标-2">学习目标</h2>
+<ul>
+<li>综合案例:<strong>音乐列表</strong></li>
+<li>能够说出任意三个常见的请求头以及函数</li>
+<li>能够说出响应报文的组成</li>
+<li>能够识别常见的状态码以及含义</li>
+</ul>
+<h2 id="音乐案例的基本功能展示">音乐案例的基本功能展示</h2>
+<ul>
+<li>当前课程介绍</li>
+<li>音乐列表案例功能演示，上传音乐，展示音乐列表，表单校验，编辑，删除</li>
+<li>audio标签播放音乐</li>
+</ul>
+<h2 id="简单介绍json文件的创建方法和语法特点">简单介绍json文件的创建方法和语法特点</h2>
+<ul>
+<li>使用json保存数据</li>
+<li>json数据格式的特点</li>
+</ul>
+<h3 id="练习-2">练习</h3>
+<ul>
+<li>描述笔记本的各方面的信息(object)</li>
+<li>描述水果数据(array)</li>
+</ul>
+<h2 id="使用json格式描述歌曲列表数据并实现php的相关操作">使用json格式描述歌曲列表数据并实现php的相关操作</h2>
+<ul>
+<li>使用json描述音乐数据</li>
+<li>json_decode($data,true),参数2表示是否将{}转换为数组，true表示优先转为数组，默认会转换为对象</li>
+<li>json_encode</li>
+<li>json中不能写注释</li>
+</ul>
+<h2 id="歌曲列表数据的动态展示">歌曲列表数据的动态展示</h2>
+<ul>
+<li>读取json数据，展示歌曲列表</li>
+<li>和水果案例对比，体验使用json存储数据的遍历</li>
+</ul>
+<h2 id="新增操作-实现用户数据业务的分析">新增操作-实现用户数据业务的分析</h2>
+<ul>
+<li>和昨天的注册案例类似</li>
+</ul>
+<h2 id="完成用户数据的验证及错误信息提示">完成用户数据的验证及错误信息提示</h2>
+<h2 id="完成歌曲新增操作">完成歌曲新增操作</h2>
+<h2 id="实现删除操作">实现删除操作</h2>
+<h2 id="编辑操作-显示默认数据">编辑操作-显示默认数据</h2>
+<h2 id="编辑操作-用户输入数据验证上">编辑操作-用户输入数据验证(上)</h2>
+<h2 id="编辑操作-用户输入数据验证下">编辑操作-用户输入数据验证(下)</h2>
+<ul>
+<li>break应该写在if里面，这块视频里写错了</li>
+</ul>
+<h2 id="完成编辑操作">完成编辑操作</h2>
+<h2 id="http协议简介">http协议简介</h2>
+<ul>
+<li>如何理解协议这二个字
+<ul>
+<li>协议就是约定</li>
+<li>两个宿舍楼，说话听不到，用电筒进行交流如何交流</li>
+<li>约定好：如果XXX，则客户端就知道了，原来这是一个html文件，如果XXX，则客户端就知道了，原来这是一个图片,如果XXX，则客户端知道了，这是一个utf8的文件</li>
+</ul></li>
+<li>三次握手
+<ol style="list-style-type: decimal">
+<li>客户端向服务器发送一个连接请求</li>
+<li>服务器向客户端返回一个确认信息</li>
+<li>客户端将请求及这个确认信息发送到服务器</li>
+</ol></li>
+<li>约定内容
+<ul>
+<li>请求/响应报文格式</li>
+<li>请求方式 - GET/POST</li>
+<li>响应状态 - 200/404/302</li>
+<li>预设的请求/响应头</li>
+</ul></li>
+</ul>
+<h2 id="请求报文的内容">请求报文的内容</h2>
+<ul>
+<li>请求行、请求头、请求体</li>
+<li>fiddler可以抓取请求报文和内容(这块用firefox,chrome的network替代来看) <img src="./post_protocal.png" /></li>
+</ul>
+<h2 id="响应报文的内容">响应报文的内容</h2>
+<h2 id="请求报文和响应报文的应用">请求报文和响应报文的应用</h2>
+<ul>
+<li>header('content-type:text/css')</li>
+<li>重定向 header('location:./01-form-get.php')</li>
+<li>重定向 header('refresh:2;url=./01-form-get.php')</li>
+<li>下载文件(了解即可)
+<ul>
+<li>header('content-type:application/octet-stream')</li>
+<li>实现自动下载，同时可以设置下载后的文件名称</li>
+<li>header('content-disposition:attachment;filename=temp.php')</li>
+</ul></li>
+<li>防盗链
+<ul>
+<li>getallheaders()获取所有的请求头信息
+<ol style="list-style-type: decimal">
+<li>通过referer字段，拿到请求源地址</li>
+<li>parse_url()解析请求源地址，获取域名</li>
+<li>对域名进行判断</li>
+</ol></li>
+</ul></li>
+</ul>
+<h2 id="晚上的任务">晚上的任务</h2>
+<ul>
+<li>把音乐案例重新做一遍</li>
+<li>安装google插件:editThisCookie</li>
+</ul>
+<h1 id="day05">day05</h1>
+<h2 id="学习目标-3">学习目标</h2>
+<ul>
+<li>掌握在服务器端操作cookie的方式</li>
+<li>掌握在服务器端操作session的方式</li>
+<li>能够说出cookie与session的关系与区别</li>
+<li>能够完成登录案例</li>
+<li>能够使用SQL语句对表进行增删改查操作</li>
+<li>能够使用数据库可视化工具对表进行增删改查操作</li>
+</ul>
+<h2 id="通过登录案例引出我们要讲的知识点">通过登录案例引出我们要讲的知识点</h2>
+<h2 id="http是无状态的">http是无状态的</h2>
+<ul>
+<li>会话：打电话，在没挂断电话之前这个阶段叫会话</li>
+<li>如何理解无状态</li>
+<li>实现记录和保持状态的技术有：cookie,session
+<ul>
+<li>用卖早餐的例子来理解cookie,session</li>
+</ul></li>
+</ul>
+<h2 id="cookie的实现原理说明">cookie的实现原理说明</h2>
+<ul>
+<li>cookie传输流程图</li>
+<li>cookie就类似在游泳馆办的打的卡，卡是商场发给用户的，以后用户再来游，都会带着卡来，在卡上打一个洞</li>
+</ul>
+<h2 id="在php中创建cookie并再次体会cookie的实现的原理">在php中创建cookie并再次体会cookie的实现的原理</h2>
+<ul>
+<li>setcookie</li>
+</ul>
+<h2 id="setcookie函数的参数说明">setcookie函数的参数说明</h2>
+<ul>
+<li>设置cookie的有效期 setcookie('username','jack',time()+10),截止日期，单位是秒</li>
+<li>设置永久有效期setcookie('username','jack',PHP_INT_MAX),PHP_INT_MAX大概是68年，从1970年开始算的话大概20年后过期，并不完全永久，PHP_INT_MAX分平台，以上是按32位系统算的，虽然目前电脑是64位，但phpStudy仍然按32位程序运行，如果是64位的话，max值会非常大，近似永久</li>
+<li>通过path设置访问权限setcookie('username','jack',PHP_INT_MAX,'/')</li>
+<li>设置域名访问权限，了解即可(多个二级域名之间可以共享)</li>
+</ul>
+<h2 id="cookie的删除">cookie的删除</h2>
+<ul>
+<li>方式一：设置有效时间为过去的时间 <code>setcookie('uName','admin',time()-1)</code></li>
+<li>方式二：将cookie中的值设置为false或空字符串<code>setcookie('uName',false)</code>或setcookie('uName',&quot;&quot;)</li>
+<li>方式三：不设置值setcookie('uName')</li>
+<li>在浏览器自己清掉</li>
+<li>注意：即使cookie的键名完全一致，但只要设置的参数不同，浏览器就会认为是两个不同的cookie</li>
+<li>cookie的缺点：
+<ul>
+<li>只能存字符中</li>
+<li>只能存4kb左右</li>
+<li>不太安全（用户可以自己修改掉进行伪造）</li>
+</ul></li>
+</ul>
+<h2 id="登录案例">登录案例</h2>
+<ol style="list-style-type: decimal">
+<li>表单校验处理，由于只有两个输入框，所以统一在一处提示错误信息</li>
+<li>精准提示用户名不存在还是密码错误</li>
+<li>如果登录成功，向客户端写入cookie,isLogin=true</li>
+<li>跳转到主页面</li>
+<li>在主页面通过$_COOKIE读取isLogin,如果未登录，就调到登录页面</li>
+<li>退出功能实现：删除cookie,跳到登录页</li>
+<li>分析问题：目前的逻辑，只要客户端传入了一个isLogin=true的cookie,服务器就认为登录了，很不安全，就类似你拿了一张隔壁商场的会员卡，来柜台要求打折，柜台不验证会员卡的真伪就进行打折</li>
+</ol>
+<h2 id="session的基本介绍">session的基本介绍</h2>
+<ul>
+<li>session基本概念：用户信息保存在浏览器端不安全，可以放在session中</li>
+<li>流程图介绍session的应用场景，服务端生成sessionid返回给客户端</li>
+<li>注意：cookie是客户端概念，session是服务器端概念</li>
+</ul>
+<h2 id="session值的设置及实现原理的回顾">session值的设置及实现原理的回顾</h2>
+<ul>
+<li>php默认不开启session</li>
+<li>session_start()开启session,生成sessionid,并在服务器端创建一个文件来存储内容(phpStudy/PHPTutorial/tmp/tpm),开启session后，会默认将sessionid写入到浏览器的cookie中</li>
+<li>自动开启session(了解即可，不建议)，session.auto_start=1,php.ini</li>
+<li>重点观察开启session之后，session_id的传输过程</li>
+</ul>
+<h2 id="使用session改造登录案例">使用session改造登录案例</h2>
+<ul>
+<li>销毁session(unset)</li>
+<li>session与cookie的对比</li>
+<li>使用了session的文件，都必须使用session_start开启session</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>区别</th>
+<th>cookie</th>
+<th>session</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>存储位置</td>
+<td>浏览器</td>
+<td>服务器</td>
+</tr>
+<tr class="even">
+<td>浏览器携带的数据量</td>
+<td>多</td>
+<td>少(只携带session_id)</td>
+</tr>
+<tr class="odd">
+<td>存储的数据类型</td>
+<td>字符串</td>
+<td>任意类型</td>
+</tr>
+<tr class="even">
+<td>安全性</td>
+<td>较低</td>
+<td>较高</td>
+</tr>
+<tr class="odd">
+<td>默认的有效路径</td>
+<td>当前路径及其子路径</td>
+<td>全站有效</td>
+</tr>
+<tr class="even">
+<td>数据的传输量</td>
+<td>4kb,不能超过20个</td>
+<td>无限制</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据库的基本概念">数据库的基本概念</h2>
+<ul>
+<li>感性理解（见数据库学习笔记.doc）
+<ul>
+<li>通过excel来学习数据库相关的概念</li>
+</ul></li>
+<li>通过phpStudy打开mysql命令行窗口，默认密码是root</li>
+<li>show databases</li>
+<li>create database mybase</li>
+<li>use mybase</li>
+<li>show tables</li>
+<li>create table mytable(id int,name varchar(20),age int)</li>
+<li>desc mytable</li>
+<li>drop table mytable</li>
+<li>以上命令，只做简单了解，重点是使用可视化工具来操作数据库</li>
+</ul>
+<h2 id="navicat工具">navicat工具</h2>
+<ul>
+<li>varchar可变长度</li>
+<li>char固定长度</li>
+<li>int</li>
+<li>tinyint</li>
+</ul>
+<p>datetime是保存的日期 是否为null 默认值 字符串需要用引号包起来</p>
+<h2 id="查询语句">查询语句</h2>
+<h2 id="增加删除修改语句的说明">增加、删除、修改语句的说明</h2>
+<h2 id="补充几个统计函数">补充几个统计函数</h2>
+<ul>
+<li>count,count(*)</li>
+<li>max/min</li>
+<li>avg平均值</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">select</span> <span class="fu">count</span>(*) <span class="kw">from</span> mytable;
+<span class="kw">select</span> <span class="fu">count</span>(<span class="kw">id</span>) <span class="kw">from</span> mytable;
+<span class="kw">select</span> <span class="fu">count</span>(age) <span class="kw">from</span> mytable;
+<span class="kw">select</span> <span class="fu">max</span>(age) <span class="kw">from</span> mytable;
+<span class="kw">select</span> <span class="fu">min</span>(age) <span class="kw">from</span> mytable;
+<span class="kw">select</span> <span class="fu">max</span>(name) <span class="kw">from</span> mytable;
+<span class="kw">select</span> <span class="fu">min</span>(name) <span class="kw">from</span> mytable;
+<span class="kw">select</span> <span class="fu">avg</span>(age) <span class="kw">from</span> mytable;
+<span class="kw">select</span> <span class="fu">avg</span>(name) <span class="kw">from</span> mytable;</code></pre></div>
+<h2 id="limitorder-by">limit,order by</h2>
+<ul>
+<li>order by ,desc,asc</li>
+<li>分页</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">select</span> * <span class="kw">from</span> mytable <span class="kw">order</span> <span class="kw">by</span> <span class="kw">id</span> <span class="kw">desc</span>;
+<span class="kw">select</span> * <span class="kw">from</span> mytable <span class="kw">order</span> <span class="kw">by</span> name;
+<span class="kw">select</span> * <span class="kw">from</span> mytalbe <span class="kw">limit</span> <span class="dv">5</span>;
+<span class="kw">select</span> * <span class="kw">from</span> mytable <span class="kw">order</span> <span class="kw">by</span> <span class="kw">id</span> <span class="kw">desc</span> <span class="kw">limit</span> <span class="dv">3</span>;
+<span class="kw">select</span> * <span class="kw">from</span> mytable <span class="kw">limit</span> <span class="dv">3</span> <span class="kw">order</span> <span class="kw">by</span> <span class="kw">id</span> <span class="kw">desc</span>;
+<span class="kw">select</span> * <span class="kw">from</span> mytable <span class="kw">limit</span> <span class="dv">2</span>,<span class="dv">4</span>;
+<span class="kw">select</span> * <span class="kw">from</span> mytable <span class="kw">limit</span> <span class="dv">4</span> offset <span class="dv">2</span>;
+init pagesize = <span class="dv">10</span>;
+<span class="dt">int</span> pageCount = <span class="dv">1</span>;
+<span class="kw">select</span> * <span class="kw">from</span> mytable <span class="kw">limit</span> pageSize offset (pageCount - <span class="dv">1</span>) * pageSize;
+<span class="kw">select</span> * <span class="kw">from</span> mytable <span class="kw">limit</span> pageSize offset (pageCount - <span class="dv">1</span>) * pageSize;
+<span class="kw">select</span> * <span class="kw">from</span> mytable <span class="kw">limit</span> pageSize offset (pageCount - <span class="dv">1</span>) * pageSize;</code></pre></div>
+<h2 id="多表查询的实现">多表查询的实现</h2>
+<ul>
+<li>select * from student,class where student.cid = class.classid</li>
+<li>select * from student inner join class on student.cid = class.classid</li>
+<li>left join</li>
+<li>right join</li>
+<li>备注：这里面学的数据库知识还不够，后面会在做阿里百秀项目之前补充一些知识点，这里就学习这么多，避免大家晕掉</li>
+</ul>
+<h2 id="晚上的任务-1">晚上的任务</h2>
+<ul>
+<li>重做登录案例</li>
+<li>数据库知识点总结</li>
+</ul>
+<h1 id="day06">day06</h1>
+<h2 id="学习目标-4">学习目标</h2>
+<ul>
+<li>能够使用php连接mysql数据库</li>
+<li>能够使用php对mysql进行查询操作</li>
+<li>能够使用php检测非查询操作的受影响行数</li>
+<li>能够断开与数据库的连接</li>
+<li>综合案例：能够完成用户管理案例</li>
+</ul>
+<h2 id="引言">引言</h2>
+<ul>
+<li>正如我们自己也可以手动用鼠标来操作文本文件，但是要想做成自动化的，我们需要借助于php的file_get_contents,file_put_contents</li>
+<li>我们不能用鼠标来玩navicat，也需要使用php来操作mysql</li>
+</ul>
+<h2 id="php中建立数据库连接">php中建立数据库连接</h2>
+<ul>
+<li>这个视频录制得有问题，从15:34到16:02没声音</li>
+<li>$conn = mysqli_connect('localhost','root','root','mybase')</li>
+<li>die</li>
+<li>解决乱码问题(mysqli_set_charset($conn,'utf8'))</li>
+</ul>
+<h2 id="php中执行增加修改和删除操作">php中执行增加修改和删除操作</h2>
+<ul>
+<li>mysqli_query</li>
+<li>mysqli_error</li>
+<li>mysqli_affected_rows判断受影响的行数</li>
+</ul>
+<h2 id="php中查询结果集上">php中查询结果集(上)</h2>
+<ul>
+<li>mysqli_query($conn,&quot;set names utf-8&quot;)设置编码的另一种方式</li>
+<li>mysqli_num_rows($result)返回当前的查询结果集返回的行数</li>
+<li>utf8,utf-8二种方式都是ok的</li>
+</ul>
+<h2 id="php中查询结果集下">php中查询结果集(下)</h2>
+<ul>
+<li>mysqli_fetch_array(很少用)</li>
+<li>mysqli_fetch_assoc(用得最多)</li>
+<li>mysqli_fetch_array(基本上不会用)，返回的内容的形式（MYSQL_ASSOC|MYSQL_NUM|MYSQL_BOTH）</li>
+</ul>
+<h2 id="php操作数据库的回顾">php操作数据库的回顾</h2>
+<ol style="list-style-type: decimal">
+<li>如何创建连接</li>
+<li>设置编码</li>
+<li>创建sql语句，注意字符串要加引号</li>
+<li>执行sql语句 mysqli_query</li>
+<li>接收返回值mysqli_fetch_array,mysqli_fetch_assoc</li>
+</ol>
+<h2 id="操作简易封装">操作简易封装</h2>
+<ul>
+<li>连接数量是有限的</li>
+<li>mysqli_close($conn)</li>
+<li>封装</li>
+</ul>
+<pre><code>mysql&gt; show variables like &#39;%max_connections%&#39;;
++-----------------+-------+
+| Variable_name   | Value |
++-----------------+-------+
+| max_connections | 512   |
++-----------------+-------+
+1 row in set (0.01 sec)</code></pre>
+<div class="sourceCode"><pre class="sourceCode php"><code class="sourceCode php"><span class="co">/**</span>
+<span class="co"> * opt 封装增加、删除、修改操作</span>
+<span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">mixed</span><span class="co"> $sql </span>
+<span class="co"> * </span><span class="an">@return</span><span class="co"> mixed </span>
+<span class="co"> */</span>
+<span class="kw">function</span> opt<span class="ot">(</span><span class="kw">$sql</span><span class="ot">)</span>{
+    <span class="co">//创建连接，如果成功就返回连接对象（资源），如果失败就返回false</span>
+    <span class="kw">$conn</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span><span class="st">&#39;root&#39;</span><span class="ot">,</span><span class="st">&#39;root&#39;</span><span class="ot">,</span><span class="st">&#39;mybase&#39;</span><span class="ot">);</span>
+    <span class="co">//判断连接是否成功</span>
+    <span class="kw">if</span><span class="ot">(</span>!<span class="kw">$conn</span><span class="ot">)</span>{
+        <span class="fu">die</span><span class="ot">(</span><span class="st">&#39;连接失败&#39;</span><span class="ot">);</span>
+    }
+    <span class="co">//设置编码</span>
+    <span class="fu">mysqli_set_charset</span><span class="ot">(</span><span class="kw">$conn</span><span class="ot">,</span><span class="st">&#39;utf8&#39;</span><span class="ot">);</span>
+    <span class="co">//执行sql语句，接收返回值，对于增加删除而言，mysqli_query返回true/false </span>
+    <span class="kw">$res</span> = <span class="fu">mysqli_query</span><span class="ot">(</span><span class="kw">$conn</span><span class="ot">,</span><span class="kw">$sql</span><span class="ot">);</span>
+    <span class="co">//及时关闭连接</span>
+    <span class="fu">mysqli_close</span><span class="ot">(</span><span class="kw">$conn</span><span class="ot">);</span>
+    <span class="co">//返回</span>
+    <span class="kw">return</span> <span class="kw">$res</span><span class="ot">;</span>
+}
+
+<span class="co">/**</span>
+<span class="co"> * select封装查询操作</span>
+<span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">mixed</span><span class="co"> $sql </span>
+<span class="co"> * </span><span class="an">@return</span><span class="co"> mixed </span>
+<span class="co"> */</span>
+<span class="kw">function</span> select<span class="ot">(</span><span class="kw">$sql</span><span class="ot">)</span>{
+    <span class="co">//创建连接，如果成功就返回连接对象（资源），如果失败就返回false</span>
+    <span class="kw">$conn</span> = <span class="fu">mysqli_connect</span><span class="ot">(</span><span class="st">&#39;localhost&#39;</span><span class="ot">,</span><span class="st">&#39;root&#39;</span><span class="ot">,</span><span class="st">&#39;root&#39;</span><span class="ot">,</span><span class="st">&#39;mybase&#39;</span><span class="ot">);</span>
+    <span class="co">//判断连接是否成功</span>
+    <span class="kw">if</span><span class="ot">(</span>!<span class="kw">$conn</span><span class="ot">)</span>{
+        <span class="fu">die</span><span class="ot">(</span><span class="st">&#39;连接失败&#39;</span><span class="ot">);</span>
+    }
+    <span class="co">//设置编码</span>
+    <span class="fu">mysqli_set_charset</span><span class="ot">(</span><span class="kw">$conn</span><span class="ot">,</span><span class="st">&#39;utf8&#39;</span><span class="ot">);</span>
+    <span class="co">//查询语句的返回值,如果成功就返回资源（结果集），如果失败就返回false</span>
+    <span class="kw">$res</span> = <span class="fu">mysqli_query</span><span class="ot">(</span><span class="kw">$conn</span><span class="ot">,</span><span class="kw">$sql</span><span class="ot">);</span>
+    <span class="kw">if</span><span class="ot">(</span>!<span class="kw">$res</span><span class="ot">)</span>{
+        <span class="fu">echo</span> <span class="st">&#39;查询失败&#39;</span><span class="ot">;</span>
+    }<span class="kw">else</span> <span class="kw">if</span><span class="ot">(</span><span class="fu">mysqli_num_rows</span><span class="ot">(</span><span class="kw">$res</span><span class="ot">)</span> == <span class="dv">0</span><span class="ot">)</span>{<span class="co">//有结果集但是没有数据行</span>
+        <span class="fu">echo</span> <span class="st">&#39;没有查询到数据&#39;</span><span class="ot">;</span>
+    }<span class="kw">else</span>{
+        <span class="co">//有结果集也有数据行</span>
+        <span class="kw">while</span><span class="ot">(</span><span class="kw">$arr</span> = <span class="fu">mysqli_fetch_assoc</span><span class="ot">(</span><span class="kw">$res</span><span class="ot">))</span>{
+            <span class="kw">$result</span><span class="ot">[]</span> = <span class="kw">$arr</span><span class="ot">;</span>
+        }
+        <span class="fu">mysqli_close</span><span class="ot">(</span><span class="kw">$conn</span><span class="ot">);</span>
+        <span class="kw">return</span> <span class="kw">$result</span><span class="ot">;</span>
+    }
+    <span class="fu">mysqli_close</span><span class="ot">(</span><span class="kw">$conn</span><span class="ot">);</span>
+}</code></pre></div>
+<h2 id="用户管理案例-项目介绍和数据表的创建">用户管理案例-项目介绍和数据表的创建</h2>
+<ul>
+<li>案例介绍</li>
+<li>数据库设计、创建表userinfo</li>
+<li>给表中添加假数据</li>
+</ul>
+<h2 id="首页数据的动态展示上">首页数据的动态展示(上)</h2>
+<ul>
+<li>封装一个方法，专门处理数据库的访问逻辑，类似第6个视频</li>
+<li>查询数据，如果出错了后需要在页面显示错误信息，注意用td包裹</li>
+<li>封装的方法需要返回错误信息，为了保证数据库能正常关闭，需要调整相关代码</li>
+</ul>
+<h2 id="首页数据的动态展示下">首页数据的动态展示(下)</h2>
+<ul>
+<li>遍历数据展示用户信息</li>
+<li>计算用户年龄 strtotime转为时间戳，当前的时间戳-生日时间戳就是年龄，向上取整ceil</li>
+</ul>
+<h2 id="新增操作-实现数据验证">新增操作-实现数据验证</h2>
+<ul>
+<li>5：56-6：05中间没有说话</li>
+<li>表单校验，错误提示，和之前的思路类似</li>
+<li>视频中错误，$GLOBALS['error']不能用count来计算数量，可以去掉</li>
+</ul>
+<h2 id="新增操作-实现新增">新增操作-实现新增</h2>
+<h2 id="删除实现">删除实现</h2>
+<h2 id="编辑操作-展示默认数据">编辑操作-展示默认数据</h2>
+<h2 id="编辑操作-验证用户数据">编辑操作-验证用户数据</h2>
+<ul>
+<li>类似音乐案例 ## 编辑操作-实现数据更新</li>
+</ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+  </body>
+</html>
