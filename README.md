@@ -9,6 +9,69 @@
 [在线笔记](https://zhengwei1949.github.io/php_document/preview/README.html)
 [在线思维导图](http://naotu.baidu.com/file/13dda7e5297738f7cb6dd1e217be0edc?token=da11768fe66cbce9)
 
+## 英语单词
+- constant 常量
+- client 客户端
+- server 服务器
+- browser 浏览器
+- get 获取
+- post 发送、邮寄
+- define 定义
+- syntax 语法
+- error 报错
+- domain 区域
+- load 载入
+- module 模块
+- load module 载入模块
+- add type 添加类型
+- time zone 时区
+- document root 根目录
+- global 全局
+- define 定义
+- decimal 十进制
+- binary 二进制
+- octonary 八进制
+- hexdecimal 十六进制
+- notice 警告
+- line 第几行
+- range 范围
+- merge 合并
+- split 拆分
+- array 数组
+- right 右边
+- index 索引
+- random 随机数
+- shuffle 打乱
+- join 连接
+- exit 退出
+- insert 插入
+- delete 删除
+- update 更新
+- database(db)数据库
+- detail 详情
+- list 列表
+- edit 编辑
+- connect 连接
+- index 索引
+- fetch 获取
+- query 查询
+- redirect 跳转
+- empty 空
+- interval 整数
+- float 浮点数、小数
+- double 浮点数、小数
+- decimal 小数
+- print 打印
+- association 关联
+- context 上下文环境
+- retrive 获取
+- create 创建
+- drop 销毁，放弃
+- cookie 馅饼
+- session 会话
+- ascend 升序
+- descend 降序
+
 # day01
 ## 学习目标
 - 能够说出访问网址时请求与响应的流程
@@ -804,6 +867,10 @@ echo strrchr($str,'.');
 - strtotime能够将时间转换成时间戳
 
 ## 补充函数(后二个之前介绍过)
+- max
+- min
+- ceil
+- floor
 - rand
     + rand(1000,9999)的含义 [1000,9999]
 - parse_url
@@ -902,7 +969,7 @@ print_r(parse_url($url));
 1、把后天的当前时间打印出来
 2、打印1-100的偶数(提示：用循环+条件判断来实现)
 3、封装加减乘除取余的函数，提取到公共的php文件当中，在当前文件中使用这几个函数
-4、列表一下之前学过的表单控件(http://www.runoob.com/tags/att-input-type.html)
+4、列表一下之前学过的表单控件(h5_input_type.html)
     + input[type="text"]
     + input[type="radio"]
     + input[type="checkbox"]
@@ -910,6 +977,7 @@ print_r(parse_url($url));
     + select
     + input[type="file"]
     + input[type="date"]
+    + 参考：http://www.runoob.com/tags/att-input-type.html
 
 # day03
 ## 每日目标
@@ -1657,6 +1725,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         2. parse_url()解析请求源地址，获取域名
         3. 对域名进行判断
 
+## 晚上的任务
+- 把音乐案例重新做一遍
+- 安装google插件:editThisCookie
+
+
 # day05
 ## 学习目标
 - 掌握在服务器端操作cookie的方式
@@ -1666,8 +1739,157 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 - 能够使用SQL语句对表进行增删改查操作
 - 能够使用数据库可视化工具对表进行增删改查操作
 
+## 通过登录案例引出我们要讲的知识点
+
 ## http是无状态的
 - 会话：打电话，在没挂断电话之前这个阶段叫会话
+- 如何理解无状态
+- 实现记录和保持状态的技术有：cookie,session
+    + 用卖早餐的例子来理解cookie,session
+
+## cookie的实现原理说明
+- cookie传输流程图
+- cookie就类似在游泳馆办的打的卡，卡是商场发给用户的，以后用户再来游，都会带着卡来，在卡上打一个洞
+
+## 在php中创建cookie并再次体会cookie的实现的原理
+- setcookie
+
+
+## setcookie函数的参数说明
+- 设置cookie的有效期 setcookie('username','jack',time()+10),截止日期，单位是秒
+- 设置永久有效期setcookie('username','jack',PHP_INT_MAX),PHP_INT_MAX大概是68年，从1970年开始算的话大概20年后过期，并不完全永久，PHP_INT_MAX分平台，以上是按32位系统算的，虽然目前电脑是64位，但phpStudy仍然按32位程序运行，如果是64位的话，max值会非常大，近似永久
+- 通过path设置访问权限setcookie('username','jack',PHP_INT_MAX,'/')
+- 设置域名访问权限，了解即可(多个二级域名之间可以共享)
+
+## cookie的删除
+- 方式一：设置有效时间为过去的时间 `setcookie('uName','admin',time()-1)`
+- 方式二：将cookie中的值设置为false或空字符串`setcookie('uName',false)`或setcookie('uName',"")
+- 方式三：不设置值setcookie('uName')
+- 在浏览器自己清掉
+- 注意：即使cookie的键名完全一致，但只要设置的参数不同，浏览器就会认为是两个不同的cookie
+- cookie的缺点：
+    + 只能存字符中
+    + 只能存4kb左右
+    + 不太安全（用户可以自己修改掉进行伪造）
+
+## 登录案例
+1. 表单校验处理，由于只有两个输入框，所以统一在一处提示错误信息
+2. 精准提示用户名不存在还是密码错误
+3. 如果登录成功，向客户端写入cookie,isLogin=true
+4. 跳转到主页面
+5. 在主页面通过$_COOKIE读取isLogin,如果未登录，就调到登录页面
+6. 退出功能实现：删除cookie,跳到登录页
+7. 分析问题：目前的逻辑，只要客户端传入了一个isLogin=true的cookie,服务器就认为登录了，很不安全，就类似你拿了一张隔壁商场的会员卡，来柜台要求打折，柜台不验证会员卡的真伪就进行打折
+
+## session的基本介绍
+- session基本概念：用户信息保存在浏览器端不安全，可以放在session中
+- 流程图介绍session的应用场景，服务端生成sessionid返回给客户端
+- 注意：cookie是客户端概念，session是服务器端概念
+
+## session值的设置及实现原理的回顾
+- php默认不开启session
+- session_start()开启session,生成sessionid,并在服务器端创建一个文件来存储内容(phpStudy/PHPTutorial/tmp/tpm),开启session后，会默认将sessionid写入到浏览器的cookie中
+- 自动开启session(了解即可，不建议)，session.auto_start=1,php.ini
+- 重点观察开启session之后，session_id的传输过程
+
+## 使用session改造登录案例
+- 销毁session(unset)
+- session与cookie的对比
+- 使用了session的文件，都必须使用session_start开启session
+
+区别 | cookie | session
+---------|----------|---------
+ 存储位置 | 浏览器 | 服务器
+ 浏览器携带的数据量 | 多 | 少(只携带session_id)
+ 存储的数据类型 | 字符串 |任意类型
+ 安全性 | 较低 | 较高
+ 默认的有效路径 | 当前路径及其子路径 | 全站有效
+ 数据的传输量 | 4kb,不能超过20个 | 无限制
+
+## 数据库的基本概念
+- 感性理解（见数据库学习笔记.doc）
+    + 通过excel来学习数据库相关的概念
+- 通过phpStudy打开mysql命令行窗口，默认密码是root
+- show databases
+- create database mybase
+- use mybase
+- show tables
+- create table mytable(id int,name varchar(20),age int)
+- desc mytable
+- drop table mytable
+- 以上命令，只做简单了解，重点是使用可视化工具来操作数据库
+
+## navicat工具
+- varchar可变长度
+- char固定长度
+- int
+- tinyint
+
+datetime是保存的日期
+是否为null
+默认值
+字符串需要用引号包起来
+
+## 查询语句
+
+## 增加、删除、修改语句的说明
+
+## 补充几个统计函数
+- count,count(*)
+- max/min
+- avg平均值
+
+```sql
+select count(*) from mytable;
+select count(id) from mytable;
+select count(age) from mytable;
+select max(age) from mytable;
+select min(age) from mytable;
+select max(name) from mytable;
+select min(name) from mytable;
+select avg(age) from mytable;
+select avg(name) from mytable;
+```
+
+## limit,order by
+- order by ,desc,asc
+- 分页
+
+```sql
+select * from mytable order by id desc;
+select * from mytable order by name;
+select * from mytalbe limit 5;
+select * from mytable order by id desc limit 3;
+select * from mytable limit 3 order by id desc;
+select * from mytable limit 2,4;
+select * from mytable limit 4 offset 2;
+init pagesize = 10;
+int pageCount = 1;
+select * from mytable limit pageSize offset (pageCount - 1) * pageSize;
+select * from mytable limit pageSize offset (pageCount - 1) * pageSize;
+select * from mytable limit pageSize offset (pageCount - 1) * pageSize;
+```
+
+## 多表查询的实现
+- select * from student,class where student.cid = class.classid
+- select * from student inner join class on student.cid = class.classid
+- left join
+- right join
+- 备注：这里面学的数据库知识还不够，后面会在做阿里百秀项目之前补充一些知识点，这里就学习这么多，避免大家晕掉
+
+## 晚上的任务
+- 重做登录案例
+- 数据库知识点总结
+
+# day06
+## 学习目标
+- 能够使用php连接mysql数据库
+- 能够使用php对mysql进行查询操作
+- 能够使用php检测非查询操作的受影响行数
+- 能够断开与数据库的连接
+- 综合案例：能够完成用户管理案例
+
+
 
 
 
