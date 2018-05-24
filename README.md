@@ -17,10 +17,6 @@
 - document root 根目录
 - global 全局
 - define 定义
-- decimal 十进制
-- binary 二进制
-- octonary 八进制
-- hexdecimal 十六进制
 - notice 警告
 - line 第几行
 - range 范围
@@ -30,7 +26,6 @@
 - right 右边
 - index 索引
 - random 随机数
-- shuffle 打乱
 - join 连接
 - exit 退出
 - insert 插入
@@ -2014,6 +2009,35 @@ function select($sql){
 ## 编辑操作-实现数据更新
 
 
+# day07
+
+## 为什么需要ajax
+0. 这块前面几个视频讲得有点绕，这块忽略掉视频中的讲解，我换一种讲法 ---> 
+1. 调整网络为3g slow
+2. 观察之前我们做过的案例，发现 ---> 白屏很严重，同时发现，如果页面的头部、尾部、左侧导航之类的哪怕是一模一样的，在切换的过程当中需要重新请求新的数据，数据传输浪费
+3. 找几处ajax用到的案例
+    + https://beauty.vip.com
+    + http://tieba.baidu.com/p/5704055973
+    + http://huaban.com
+    + http://sh.jumei.com
+    + https://www.bilibili.com/video/av21556388?from=search&seid=14533231970211118374
+    http://reg.email.163.com/unireg/call.do?cmd=register.entrance&from=126mail
+    + http://m.manmanbuy.com/guoneizhekou.aspx
+    + http://music.163.com/#/share/31193205/507701291
+4. ajax的作用
+    + Asynchronous Javascript And XML不用理英文，但需要记住如下的二个单词
+        - async 异步的意思
+        - sync 同步的意思
+    + ajax是一门改善用户体验的技术，使用它可以实现在不更新整个网页的情况下，通过js异步的从后台获取需要更新的部分的数据，使用DOM拼接之类的技术更新这一部分的数据(后面会学习什么是异步，这块先可以忽略掉这个词汇)
+    + 结合https://beauty.vip.com这个网站，通过观察network让大家理解这句话的含义
+5. 写一个helloworld的demo来了解ajax的相关性的代码（先不考虑具体的细节之类的，感性的认识即可，原理性的东西后面的视频会进行讲解的）
+    + 大家练习一下代码
+
+## 如何理解异步
+- 直接用ajax代码来理解
+- 看完实现操作的例子之后，用比喻再理解
+
+## 使用异步对象发送get请求
 
 
 
