@@ -1,13 +1,7 @@
-# 学习方法
-- 一定要亲自写代码，光看视频光看书光理解了是没有用的，这是软件行业的特点
-    + 面试也许靠的是知识储备懂得多，但工作靠生产力产出
-- 从感观到原理，不要一上来纠结原理
-- 不要怕自己看不懂的东西，先模仿着写
-- 追求实用，不搞学院派
-    + 不要追求大而全
-    + 时间投入和产出要成正比，不要过份去学习太偏实际工作当中用得不太多的技术
-- 利用搜索引擎进行学习
-    + http://ilxdh.com
+# 自我介绍
+- 郑伟
+- js-class@qq.com
+- http://github.com/zhengwei1949
 
 # 英语单词
 - constant 常量
@@ -630,6 +624,21 @@ echo 1.5 + true;
 echo 1 + null;
 ```
 
+```php
+ $students = array(
+'2010'=>array('令狐冲',"59"),
+'2011'=>array('林平之',"44"),
+'2012'=>array('曲洋',"89"),
+'2013'=>array('任盈盈',"92"),
+'2014'=>array('向问天',"93"),
+'2015'=>array('任我行',"87"),
+'2016'=>array('冲虚',"58"),
+'2017'=>array('方正',"74"),
+'2018'=>array('岳不群',"91"),
+'2019'=>array('宁中则',"90"),
+);//10个学生的学号、姓名、分数，用数组存储
+```
+
 ## php中的条件判断、循环语法
 - http://php.net/manual/zh/language.basic-syntax.phpmode.php
     + 凡是在一对开始和结束标记之外的内容都会被 PHP 解析器忽略，这使得 PHP 文件可以具备混合内容。 可以使 PHP 嵌入到 HTML 文档中去
@@ -969,15 +978,19 @@ echo strrchr($str,'.');
 - rand
     + rand(1000,9999)的含义 [1000,9999]
 - parse_url
+- in_array
 - array_slice
 - array_splice
+- die
+- exit
+- trim
+- explode
+- implode
 
 ```php
 $url = 'http://www.baidu.com:80/path?a=1&b=2#anchor';
 print_r(parse_url($url));
 ```
-
-
 
 ### 练习
 - 打印24小时以后的时间戳
@@ -2006,9 +2019,12 @@ select * from mytable limit pageSize offset (pageCount - 1) * pageSize;
 - utf8,utf-8二种方式都是ok的
 
 ## php中查询结果集(下)
-- mysqli_fetch_array(很少用)
-- mysqli_fetch_assoc(用得最多)
-- mysqli_fetch_array(基本上不会用)，返回的内容的形式（MYSQL_ASSOC|MYSQL_NUM|MYSQL_BOTH）
+- mysql_fetch_array
+    + MYSQL_ASSOC - 关联数组
+    + MYSQL_NUM - 数字数组
+    + MYSQL_BOTH - 默认。同时产生关联和数字数组
+- mysqli_fetch_row
+- mysqli_fetch_assoc(用得最多) 相当于mysql_fetch_array(资源,MYSQL_ASSOC)
 
 ## php操作数据库的回顾
 1. 如何创建连接
@@ -2118,6 +2134,12 @@ function select($sql){
 - 类似音乐案例
 ## 编辑操作-实现数据更新
 
+## mysql函数总结
+- mysqli_connect 连库
+- mysqli_query
+- mysqli_error
+- mysqli_fetch_assoc
+- mysqli_num_rows
 
 # day07
 ![](./ajax2.png)
